@@ -1,0 +1,35 @@
+# Helicon ISAPI_Rewrite configuration file
+# Version 3.1.0.82
+RewriteEngine on RewriteCond % !^$
+RewriteRule Uploads/(.*).(php)$ – [F]
+RewriteRule zTree_v3/(.*).(php)$ – [F]
+RewriteRule assets/(.*).(php)$ –[F]
+RewriteRule cssmmm/(.*).(php)$ –[F]
+RewriteRule data/(.*).(php)$ –[F]
+RewriteRule images/(.*).(php)$ –[F]
+RewriteRule images/(.*).(php)$ –[F]
+RewriteRule img/(.*).(php)$ –[F]
+RewriteRule js/(.*).(php)$ –[F]
+RewriteRule plupload/(.*).(php)$ –[F]
+RewriteRule public/(.*).(php)$ –[F]
+RewriteRule sncss/(.*).(php)$ –[F]
+RewriteRule User/(.*).(php)$ –[F]
+RewriteRule snadmin/(.*).(php)$ –[F]
+RewriteRule css/(.*).(php)$ –[F]
+RewriteRule bitStyle/(.*).(php)$ –[F]
+RewriteRule new_style/(.*).(php)$ –[F]
+RewriteRule ds_style/(.*).(php)$ –[F]
+RewriteRule ThinkPHP/(.*).(php)$ –[F]
+RewriteRule olnho/(.*).(php)$ –[F]
+
+#哪些文件路径不定义重写，我的css和js等文件是放在public路径下，所以在视图文件中以/public开头的url不重写路径（注意'/'需要使用'\’来进行转义） ,/assets开头的url不重写路径（注意'/'需要使用'\’来进行转义）
+#RewriteCond $1 !^(index\.php|\/public|\/assets|\/img|\/css)
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+
+  #RewriteEngine On
+  #RewriteCond %{REQUEST_FILENAME} !-d
+  #RewriteCond %{REQUEST_FILENAME} !-f
+  #RewriteRule ^(.*)$ index.php?s=$1 [QSA,PT,L]
