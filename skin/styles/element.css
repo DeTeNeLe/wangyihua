@@ -1,0 +1,145 @@
+.inputtext {
+    border: 0;
+    border-bottom: 1px solid #000;
+    font-size: 250%;
+    padding-left: 3%;
+    margin: 0 3%;
+    background: url() no-repeat left center;
+    background-size: 30%;
+}
+
+.input_button {
+    font-size: 150%;
+    padding: 20px 0;
+	width:180px;
+    text-align: center;
+    color: #ffffff;
+    background: #e22020;
+    border-radius: 30px;
+}
+
+div.pagediv{
+   width:100%;
+   text-align:center;
+}
+dl.page {
+    width: 100%;
+    padding: 0 5%;
+    height: 150px;
+    border-bottom: 1px solid #d6d6d6;
+    background: #ffffff;
+    height: 160px;
+    line-height: 160px;
+}
+dl.page dt.d1 {
+    font-size: 250%;
+    text-align: center;
+    margin: 0 0 0 0;
+    color: #999;
+}
+
+dl.page dt {
+    margin: 45px 0 0 0;
+    width: 15%;
+    text-align: center;
+}
+
+dl.page dd.c2 {
+    width: 100%;
+	text-align:center;
+	font-size:250%;
+	color:#f16925;
+}
+
+dl.page dt.d1 {
+    font-size: 250%;
+    text-align: center;
+    margin: 0 0 0 0;
+    color: #999;
+	width: 100%;
+}
+.rows {
+    float: none!important;
+    width: 100%!important;
+    border: 0;
+    display: inline;
+}
+
+
+.mx_title
+{
+  text-align:center;
+  background-color:orange;
+  font-size:150%;
+  color:white;
+  font-weight:bold;
+  border:solid 3px dee18e;
+  padding:5px;
+}
+
+.a_btn
+{
+    color: #f16925;
+    margin: 0 0 0 30px;
+    border: 1px solid #f16925;
+    border-radius: 10px;
+    height: 48px;
+    line-height: 48px;
+	padding:10px;
+}
+
+.wrap-title {
+    margin-top:10px;
+	text-align:center;
+	position: relative;
+}
+.wrap-title .tabmenu {
+    height: 100%;
+	text-align:center;
+	position: relative;
+}
+.wrap-title .tabmenu ul {
+    width:100%;
+	list-style-type:none;
+}
+.wrap-title .tabmenu li {
+    margin-right: 20px;
+	text-align:center;
+	width:14%;
+	display:inline;
+	padding-top:5px;
+	display:inline;
+}
+.wrap-title .tabmenu li a.tabactive {
+    background: #F17500;
+    color: #fff;
+    border: 1px solid #D26400;
+}
+.wrap-title .tabmenu li a {
+    padding: 5px;
+    line-height: 90px;
+    display: inline-block;
+    font-size: 250%;
+    color: #666;
+    background: #F9F9F9;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+	text-align: center;
+	height: 90px;
+	width: 100%;
+	border-bottom: 4px solid #d6d6d6;
+}
+
+.card_line form h4 select {
+	text-align:center;
+	border: 0;
+    border-bottom: 1px solid #000;
+    font-size: 150%;
+    width: 80%;
+    padding-left: 7%;
+    margin: 0 10%;
+    background: url() no-repeat left center;
+    background-size: 30%;
+}

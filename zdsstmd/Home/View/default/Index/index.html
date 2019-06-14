@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.mainindex .uimakerinfo strong {
+				color: #F00;
+				font-size: 18pt;
+			}
+			/*.statistics {
+				width: 100%;
+				height: 500px;
+				background: yellow;
+			}*/
+			
+			.sys-set {
+				width: 100%;
+				height: 50px;
+			}
+			
+			.statistics .cur-left {
+				width: 49%;
+				min-height: 500px;
+				float: right;
+				/*background: orange;*/
+				margin-right: 2%;
+			}
+			
+			.statistics .cur-right {
+				width: 49%;
+				min-height: 500px;
+				float: right;
+				/*background: green;*/
+			}
+			
+			.statistics {
+				overflow: hidden;
+				padding: 10px;
+				background: #E8EBEC;
+			}
+			
+			.first-flow {
+				width: 100%;
+				height: 52px;
+				/*background: red;*/
+			}
+			
+			.first-table {
+				margin-bottom: 10px;
+				width: 32%;
+				height: 52px;
+				background: blue;
+				float: left;
+			}
+			
+			.first-table-img {
+				width: 40%;
+				height: 52px;
+				float: left;
+				background: red;
+				text-align: center;
+			}
+			
+			.first-table-img img {
+				display: inline-block;
+				margin-top: 5px;
+				width: 37px;
+				height: 37px;
+			}
+			
+			.first-table-content {
+				width: 60%;
+				height: 52px;
+				float: right;
+				/*	background: green;*/
+				background: white;
+			}
+			
+			.first-table-content-num {
+				height: 30px;
+				text-align: center;
+				font-size: 15px;
+				font-weight: bold;
+			}
+			
+			.first-table-content-desc {
+				height: 15px;
+				text-align: center;
+			}
+			
+			.first-middle {
+				margin-left: 2%;
+				margin-right: 2%;
+			}
+			
+			.second-flow .first-table {
+				margin-bottom: 10px;
+				width: 49%;
+				height: 52px;
+				background: blue;
+				float: left;
+			}
+			
+			.second-flow {
+				width: 100%;
+				height: 52px;
+				/*background: red;*/
+			}
+			
+			.second-flow .table-right {
+				float: right;
+			}
+			
+			.third-flow {
+				width: 100%;
+				height: 300px;
+				margin-top: 10px;
+				/*background: pink;*/
+			}
+			
+			.third-table {
+				width: 100%;
+				height: 250px;
+				/*	background: darkgray;*/
+			}
+			
+			.third-table-title {
+				width: 99%;
+				/* height: 29px; */
+				line-height: 29px;
+				padding-left: 10px;
+				background: white;
+			}
+			
+			.third-table-content {
+				width: 100%;
+				min-height: 230px;
+				margin-top: 10px;
+				background: white;
+			}
+			
+			.third-table-content-row {
+				overflow: hidden;
+				background: white;
+				padding-left: 11px;
+				line-height: 33px;
+			}
+			
+			.third-table-content-left {
+				width: 50%;
+				/*height: 20px;*/
+				float: left;
+				/*background: cadetblue;*/
+				background: white;
+			}
+			
+			.third-table-content-right {
+				width: 50%;
+				height: 20px;
+				float: right;
+				/*background: #0a4b3e;*/
+				background: white;
+			}
+			
+			.third-table-small {
+				width: 33%;
+				float: left;
+			}
+			.place{
+				background: #F2F2F2;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="place">
+			<span>位置：</span>
+			<ul class="placeul">
+				<li>
+					<a href="#">首页</a>
+				</li>
+			</ul>
+			<php>if( is_admin_user() == 1 ){</php>
+			<div class="welinfo" style="float: right; padding-right: 5px;">
+				<span><img src="/sncss/images/sun.png" alt="天气" /></span>
+				<b>{$Think.session.adminuser}，欢迎使用信息管理系统</b>
+				<a href="/Yshclbssb.php/Home/Index/adminlist">帐号设置</a>
+				&nbsp;|&nbsp;
+				<a onclick="confirm('确定要处理预约挂单？数据备份了吗？数据备份了吗？数据备份了吗？')?location.href='/Yshclbssb.php/Home/Index/yuyue_all':''" href="javascript:;">预约挂单处理</a>
+				&nbsp;|&nbsp;
+				<a onclick="confirm('确定要进场短信通知？')?location.href='/Yshclbssb.php/Home/Index/getin_sms':''" href="javascript:;">进场短信通知[{:getin_sms_count()}]</a>
+			</div>
+			<php>}</php>
+		</div>
+
+		<div class="mainindex">
+
+			<!--<div class="welinfo">
+				<span><img src="/sncss/images/sun.png" alt="天气" /></span>
+				<b>{$Think.session.adminuser}，欢迎使用信息管理系统</b>
+				<a href="/Yshclbssb.php/Home/Index/adminlist">帐号设置</a>
+				&nbsp;|&nbsp;
+				<a onclick="confirm('确定要处理预约挂单？数据备份了吗？数据备份了吗？数据备份了吗？')?location.href='/Yshclbssb.php/Home/Index/yuyue_all':''" href="javascript:;">预约挂单处理</a>
+				&nbsp;|&nbsp;
+				<a onclick="confirm('确定要进场短信通知？')?location.href='/Yshclbssb.php/Home/Index/getin_sms':''" href="javascript:;">进场短信通知[{:getin_sms_count()}]</a>
+			</div>-->
+
+			<!--<div class="welinfo">
+        <span><img src="/img/qin/time.png" alt="时间" /></span>
+        <i>您上次登录的时间：2013-10-09 15:22</i> （不是您登录的？<a href="#">请点这里</a>）
+        </div>-->
+
+		<!--	<div class="xline"></div>-->
+
+			<!--<ul class="iconlist">
+
+        <li><img src="/img/qin/ico01.png" /><p><a href="#">管理设置</a></p></li>
+        <li><img src="/img/qin/ico02.png" /><p><a href="#">发布文章</a></p></li>
+        <li><img src="/img/qin/ico03.png" /><p><a href="#">数据统计</a></p></li>
+        <li><img src="/img/qin/ico04.png" /><p><a href="#">文件上传</a></p></li>
+        <li><img src="/img/qin/ico05.png" /><p><a href="#">目录管理</a></p></li>
+        <li><img src="/img/qin/ico06.png" /><p><a href="#">查询</a></p></li>
+
+        </ul>-->
+
+			<!--<div class="ibox"><a class="ibtn"><img src="/img/qin/iadd.png" />添加新的快捷功能</a></div>-->
+
+			<div class="xline"></div>
+			<div class="box"></div>
+
+			<div class="xline"></div>
+
+			<!--<div class="uimakerinfo"><b>管理公告</b></div>
+
+			<div class="sys-set">
+				<ul class="umlist">
+					<li>
+						<small>系统开关:
+                        <if condition="$zt.zt eq '0'" >
+                            <a href="/Yshclbssb.php/Home/Index/gb">关闭系统</a>
+                            <else/>
+                            <a href="/Yshclbssb.php/Home/Index/kq">开启系统</a>
+                        </if>
+                        <br />
+                        	上次登入IP:
+                        <if condition="$scip.ip eq ''" >
+                            未登过
+                            <else/>
+                            {$scip.ip}({$scip.date})
+                        </if>
+                        <br />
+                        本次登入IP:{$bcip.ip}({$bcip.date})
+                    </small>
+					</li>
+				</ul>
+			</div>-->
+
+			<div class="statistics">
+				<div class="cur-right">
+					<div class="first-flow">
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #5FB878;">
+								<img src="/img/qin/wode.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.unaudited_user}</ul>
+								<ul class="first-table-content-desc">未审核会员</ul>
+							</ul>
+						</ul>
+						<ul class="first-table first-middle">
+							<ul class="first-table-img" style="background: #FF5722;">
+								<img src="/img/qin/liebiaosousuoicon.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.frozen_user}</ul>
+								<ul class="first-table-content-desc">冻结会员</ul>
+							</ul>
+						</ul>
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #F7B824;">
+								<img src="/img/qin/liebiaosousuoicon.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.white_user}</ul>
+								<ul class="first-table-content-desc">空单会员</ul>
+							</ul>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="second-flow">
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #009688;">
+								<img src="/img/qin/shijian.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.today_in_num}</ul>
+								<ul class="first-table-content-desc">今日买入的数量</ul>
+							</ul>
+						</ul>
+						<ul class="first-table" style="float: right">
+							<ul class="first-table-img" style="background: #5FB878;">
+								<img src="/img/qin/wode.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.today_in_order_num}</ul>
+								<ul class="first-table-content-desc">今日买入单数</ul>
+							</ul>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="third-flow">
+						<div class="third-table">
+							<div class="third-table-title">
+								统计
+							</div>
+							<div class="third-table-content">
+								<!--<div class="third-table-content-row">-->
+									<!--<div class="third-table-content-left">-->
+										<!--0%-->
+									<!--</div>-->
+									<!--<div class="third-table-content-right">今日已交割总量</div>-->
+								<!--</div>-->
+								<!--<div class="third-table-content-row">-->
+									<!--<div class="third-table-content-left">-->
+										<!--今天平仓总量-->
+									<!--</div>-->
+									<!--<div class="third-table-content-right">0.00</div>-->
+								<!--</div>-->
+								<div class="third-table-content-row">
+									<div class="third-table-small">
+										<ul>今日已交割总量</ul>
+										<ul><span style="color:red;" >{$info.today_jg_total}</span></ul>
+									</div>
+									<div class="third-table-small">
+										<ul>今天平仓总量</ul>
+										<ul><span style="color:red;" >{$info.today_pc_total}</span></ul>
+									</div>
+									<div class="third-table-small">
+										<ul>待平仓总量</ul>
+										<ul><span style="color:red;" >{$info.wait_pc_total}</span></ul>
+									</div>
+								</div>
+								<!--<div class="third-table-content-row">-->
+									<!--<div class="third-table-content-left">-->
+										<!--0%-->
+									<!--</div>-->
+									<!--<div class="third-table-content-right">（总拨出率）</div>-->
+								<!--</div>-->
+								<div class="third-table-content-row">
+									<div class="third-table-small">
+										<ul>今日抢单开仓总量</ul>
+										<ul><span style="color:red;">{$info.wait_qdkc_total}</span></ul>
+									</div>
+									<!--<div class="third-table-small">-->
+										<!--<ul>拨出</ul>-->
+										<!--<ul>0.00</ul>-->
+									<!--</div>-->
+									<!--<div class="third-table-small">-->
+										<!--<ul>利润</ul>-->
+										<!--<ul>0.00</ul>-->
+									<!--</div>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="cur-left">
+					<div class="first-flow">
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #1E9FFF;">
+								<img src="/img/qin/tuandui1.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.zuser}</ul>
+								<ul class="first-table-content-desc">用户总量</ul>
+							</ul>
+						</ul>
+						<ul class="first-table first-middle">
+							<ul class="first-table-img" style="background: #FF6C60;">
+								<img src="/img/qin/jiahaoyou.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.zt}</ul>
+								<ul class="first-table-content-desc">今日新增</ul>
+							</ul>
+						</ul>
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #009688;">
+								<img src="/img/qin/shijian.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.today_visit}</ul>
+								<ul class="first-table-content-desc">今日访问</ul>
+							</ul>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="second-flow">
+						<ul class="first-table">
+							<ul class="first-table-img" style="background: #1E9FFF;">
+								<img src="/img/qin/tuandui1.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.today_out_num}</ul>
+								<ul class="first-table-content-desc">今日卖出的数量</ul>
+							</ul>
+						</ul>
+						<ul class="first-table table-right">
+							<ul class="first-table-img" style="background: #FF6C60;">
+								<img src="/img/qin/jiahaoyou.png" alt="">
+							</ul>
+							<ul class="first-table-content">
+								<ul class="first-table-content-num">{$info.today_out_order_num}</ul>
+								<ul class="first-table-content-desc">今日卖出的单数</ul>
+							</ul>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="third-flow">
+						<div class="third-table">
+							<div class="third-table-title">
+								会员数量统计
+							</div>
+							<div class="third-table-content">
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										<img src="/sncss/images/ico01.png" alt="">
+									</div>
+									<div class="third-table-content-right">vip会员</div>
+								</div>
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										未审会员
+									</div>
+									<div class="third-table-content-right">{$info.unaudited_user}</div>
+								</div>
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										今日注册
+									</div>
+									<div class="third-table-content-right">{$info.zt}</div>
+								</div>
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										昨日注册
+									</div>
+									<div class="third-table-content-right">{$info.ztzchy}</div>
+								</div>
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										全部会员
+									</div>
+									<div class="third-table-content-right">{$info.zuser}</div>
+								</div>
+								<div class="third-table-content-row">
+									<div class="third-table-content-left">
+										明日待交割总量
+									</div>
+									<div class="third-table-content-right">{$last_transaction_volume_log.total_transaction_volume}&nbsp;&nbsp;&nbsp;&nbsp; 日期：{$last_transaction_volume_log.time}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

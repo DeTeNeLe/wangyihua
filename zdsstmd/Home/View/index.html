@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>助梦援助平台</title><link href="/Public/Css/body.css" rel="stylesheet" media="screen" type="text/css" /><link href="/Public/Css/menu.css" rel="stylesheet" media="screen" type="text/css" /><link href="/Public/Css/css.css" rel="stylesheet" type="text/css"><link href="/Public/Css/main.css" rel="stylesheet" media="all" type="text/css" /><link href="/Public/Css/style_2.css" rel="stylesheet" media="all" type="text/css" /><link href="/Public/Css/desktop.css" rel="stylesheet" media="all" type="text/css" /><!--<script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/Base.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/prototype.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/mootools.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/Ajax/ThinkAjax.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/Form/CheckForm.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/common.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/Util/ImageLoader.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/myfocus-1.0.4.min.js\"></sc"+"ript>")</script><script type="text/javascript">document.write("<scr"+"ipt src=\"/Public/Js/all.js\"></sc"+"ript>")</script>--><script type=text/javascript src="/Public/Js/jquery-1.7.2.js"></script><style>body{background:#eff5fb;}
+</style></head><body onLoad="loadBar(0)"><style>.hidden{
+    display: none
+}
+</style><style>.ab{
+    display: block
+}
+</style><!--<script type="text/javascript">    jQuery(document).ready(function(e) {
+        jQuery("#trading .records tr td a").click(function(ex){
+		ex.stopPropagation();
+        ex.preventDefault();
+        var topBody = jQuery(window.parent.document).find("body");
+        if(topBody.length > 0)
+        {
+            var bodyClass = '#buyDetail-'+this.id.split('-')[1];
+            
+            var showBoard = jQuery(bodyClass).clone();
+            showBoard.css("display","none");
+            showBoard.attr("id",null);
+            showBoard.appendTo(topBody);
+            var contentBoard = showBoard.children("div");
+            if(contentBoard.length > 0)
+            {
+                contentBoard.click(function(es){
+                    es.stopPropagation();
+                });
+            }
+            showBoard.fadeIn(300);
+            showBoard.click(function(ex){
+                ex.stopPropagation();
+                ex.preventDefault();
+                jQuery(this).fadeOut(300,function(){
+                    jQuery(this).remove();
+                });
+            });
+        }
+        else
+            alert('not found top window body');
+        });
+    });
+</script>--><!--<script type="text/javascript">    jQuery(document).ready(function(e) {
+        jQuery("#trading2 .records  tr td a").click(function(ex){
+        ex.stopPropagation();
+        ex.preventDefault();
+        var topBody = jQuery(window.parent.document).find("body");
+        if(topBody.length > 0)
+        {
+            var bodyClass = '#sellDetail-'+this.id.split('-')[1];
+            
+            var showBoard = jQuery(bodyClass).clone();
+            showBoard.css("display","none");
+            showBoard.attr("id",null);
+            showBoard.appendTo(topBody);
+            var contentBoard = showBoard.children("div");
+            if(contentBoard.length > 0)
+            {
+                contentBoard.click(function(es){
+                    es.stopPropagation();
+                });
+            }
+            showBoard.fadeIn(300);
+            showBoard.click(function(ex){
+                ex.stopPropagation();
+                ex.preventDefault();
+                jQuery(this).fadeOut(300,function(){
+                    jQuery(this).remove();
+                });
+            });
+        }
+        else
+            alert('not found top window body');
+        });
+    });
+</script>--><script type="text/javascript">jQuery(document).ready(function(e) {
+    jQuery(".show_board_btn").click(function(ex){
+		ex.stopPropagation();
+		ex.preventDefault();
+		var topBody = jQuery(window.document).find("body");
+		if(topBody.length > 0)
+		{
+			var showBoard = jQuery("#show").clone();
+			showBoard.css("display","none");
+			showBoard.attr("id",null);
+			showBoard.appendTo(topBody);
+			var contentBoard = showBoard.children("div");
+			if(contentBoard.length > 0)
+			{
+				contentBoard.click(function(es){
+					es.stopPropagation();
+				});
+			}
+			showBoard.fadeIn(300);
+			showBoard.click(function(ex){
+				ex.stopPropagation();
+				ex.preventDefault();
+				jQuery(this).fadeOut(300,function(){
+					jQuery(this).remove();
+				});
+			});
+		}
+		else
+			alert('not found top window body');
+	});
+	
+});
+</script><script type="text/javascript">jQuery(document).ready(function(e) {
+    jQuery(".show_board_btn2").click(function(ex){
+        ex.stopPropagation();
+        ex.preventDefault();
+        var topBody = jQuery(window.document).find("body");
+        if(topBody.length > 0)
+        {
+            var showBoard = jQuery("#show2").clone();
+            showBoard.css("display","none");
+            showBoard.attr("id",null);
+            showBoard.appendTo(topBody);
+            var contentBoard = showBoard.children("div");
+            if(contentBoard.length > 0)
+            {
+                contentBoard.click(function(es){
+                    es.stopPropagation();
+                });
+            }
+            showBoard.fadeIn(300);
+            showBoard.click(function(ex){
+                ex.stopPropagation();
+                ex.preventDefault();
+                jQuery(this).fadeOut(300,function(){
+                    jQuery(this).remove();
+                });
+            });
+        }
+        else
+            alert('not found top window body');
+    });
+});
+</script><script type="text/javascript"></script><!-- 获得帮助的打款信息 --><div  class="container_12"><!--<div class="banner_box"><img src="/Public/Images/MMM-banner.jpg"></div>--><div class="hpanel" style="display: none"><div class="offer"><p>我要<lable style="font-size:32px;color:#000">帮助</lable>其他伙伴</p><br><a class="show_board_btn">买入</a></div><div class="req_b"><p>我需要其他伙伴的<lable style="font-size:32px;color:#000">帮助</lable></p><br><a class="show_board_btn2">得到帮助</a></div></div><div class="midd" id="midd" style='display:none'><a class="lefrg" style="top:45%; left:30px;"><img src="/Public/Images/left.png"></a><a class="lefrg"><img src="/Public/Images/right.png"></a></div><div class="midd" id="midd2" style='display:none'><div class="hlpp"><h2>申请得到帮助</h2><p>                订单编号:I63887939<br>            	申请人:zl123456<br>                金额：400.00<br>                已匹配金额：400<br>                日期：2016-02-01 12:34:59<br>                状态：已匹配成功<br/>                确认状态：
+                	<span style="color:#017ce8">等待汇款</span><br/></p></div><a class="lefrg" style="top:45%; left:30px;"><img src="/Public/Images/left.png"></a><a class="lefrg"><img src="/Public/Images/right.png"></a></div><style>        .ord{
+            width: 250px;
+            display: inline-block;
+            
+        }
+        
+#content { 
+background: #FFFFFF; 
+padding: 30px; 
+height: 100%; 
+} 
+#content a { 
+font-size: 30px; 
+color: #369; 
+font-weight: 700; 
+} 
+#alert { z-index:2; 
+border: 1px solid #369; 
+width: 80%; 
+background: #e2ecf5; 
+z-index: 1000; 
+position: absolute; 
+display: none; 
+} 
+#alert h4 { 
+height: 20px; 
+background: #369; 
+color: #fff; 
+padding: 5px 0 0 5px; 
+} 
+#alert h4 span { 
+float: left; 
+} 
+#alert h4 span#close { 
+margin-left: 210px; 
+font-weight: 500; 
+cursor: pointer; 
+} 
+#alert p { 
+padding: 12px 0 0 30px; 
+} 
+#alert p input { 
+width: 120px; 
+margin-left: 20px; 
+} 
+#alert p input.myinp { 
+border: 1px solid #ccc; 
+height: 16px; 
+} 
+#alert p input.sub { 
+width: 60px; 
+margin-left: 30px; 
+} 
+#mask1{ position:absolute; top:0; left:0; height:100%; width:100%; background:#000; opacity:0.3; display:none; z-index:1;} 
+        </style><div class="ordin  ord" id="order_in_12972746903" style="cursor: pointer;" id_order="12972746903"><table width="100%" border="0" cellspacing="6" cellpadding="0"><tbody><tr><td><img src="/Public/images/strelka32.png" width="32" height="32"></td></span><td class="ord_title"><span class="translate">得到帮助</span><br><span class="order_in_id">I63887939</span></td></tr><tr><td colspan="2" class="ord_body"><div class="ord_body_info"><span class="translate">参加者</span>: <span class="order_in_fio">zl123456</span><br><span class="translate">金额</span>: <span class="order_in_amount">400.00</span><span class="order_in_currency">CNY</span><br><span class="rest_in" style="display: none;"><span class="translate">平衡</span>: <span class="order_in_rest">0,00</span><span class="order_in_currency">CNY</span><br></span><span class="translate">日期</span>: <span class="order_in_date">2016-02-01 12:34:59</span><br><span class="order_in_mavro"></span><br><span class="translate">状态</span>: <span class="order_in_status">已匹配成功<br/></span></div><!--<div class="ord_body_is_avto"><img src="./桌面_files/avto37.png" alt=""></div>--></td></tr><tr><td colspan="2"><a href="/index.php/Cash/eb_list_del/cid/436" onclick="if(confirm('确定删除吗?')) else return false;" style="float:right;">删除订单</a></td></tr><tr><td colspan="2"><a href="javascript:select_alert(436)" class="neoui-greybutton translate" style="float:right;">阅读更多&gt;&gt;</a></td></tr></tbody></table></div><script type="text/javascript">var myAlert = document.getElementById("alert"); 
+var myMask=document.getElementById('mask1'); 
+var reg = document.getElementById("content"); 
+var mClose = document.getElementById("close"); 
+function select_alert(id){
+    document.getElementById("main2").src="/index.php/Public/main_alert/id/"+id;
+document.getElementById('mask1').style.display="block"; 
+document.getElementById("alert").style.display = "block"; 
+document.getElementById("alert").style.position = "absolute"; 
+document.getElementById("alert").style.top = "10%"; 
+document.getElementById("alert").style.left = "10%"; 
+//document.getElementById("alert").style.marginTop = "-75px"; 
+//document.getElementById("alert").style.marginLeft = "-150px"; 
+document.body.style.overflow = "hidden"; 
+} 
+
+mClose.onclick = function() 
+{
+document.getElementById("alert").style.display = "none"; 
+document.getElementById('mask1').style.display = "none"; 
+}
+function close_alert(){
+document.getElementById("alert").style.display = "none"; 
+document.getElementById('mask1').style.display = "none"; 
+}
+    
+</script><div id="alert"><iframe id="main2" height='100%' style="z-index: 1; width:100%" name="main2" src="/index.php/Public/main_alert/id/" frameborder="0" scrolling="auto"   onload="turnHeight2('main2');" target="self" allowtransparency="true"></iframe><script>    function turnHeight2(iframe)
+    {
+
+        var frm = document.getElementById(iframe);
+        frm.height = 800;
+        var subWeb = document.frames ? document.frames[iframe].document : frm.contentDocument;
+        if (frm != null && subWeb != null)
+        {
+            if (subWeb.body.scrollHeight < 800) {
+                frm.height = 800;
+            } else {
+                frm.height = subWeb.body.scrollHeight + 20;
+            }
+        }
+    }
+    </script></div><div id="mask1" onclick="close_alert()"></div><!-- 遮罩层div--><div class="center_Box" style="display:none"><div class="set"><!--<form id="form2" name="form2" method="post" action="/index.php/Public/main">--><!--<select name="ppfg"><option value="1">审核中</option><option value="2">匹配成功</option><option value="3">确认完成</option></select>            --><!--<input type="submit" name="Submit" value="查询" class="button_text" /><span><strong>推广链接：</strong><a href="http://www.zgnpo.com/index.php/Reg/us_reg/rid/386" target="_blank">http://www.zgnpo.com/index.php/Reg/us_reg/rid/386</a>&nbsp;&nbsp;<strong>确认打款前请先联系收款人</strong></span><input type="hidden" name="__hash__" value="63a8fb03308c31bf49132c570cc2dbb0_e81e6cfea737f6db94941384c66c8db5" /></form>--></div><div class="ncen"><div id="trading" class="trading"  style='background-color:#ffffff'><table width="100%"  style="background:#f7f9fa; border-top:1px solid #f2f3f6;" ><tr align='center' ><td></td></tr></table></div><div id="trading2" class="trading" style='background-color:#ffffff'><table width="100%" style="background:#f7f9fa; border-top:1px solid #f2f3f6;"><tr align='center'><td></td></tr></table></div></div></div><script type="text/javascript">setInterval("time_controller()",1000);
+function time_controller(){
+    $(".time_val").each(function(){
+         var time_id = "ad"+$(this).attr('for');
+         var time_val= $(this).attr('value');
+         $(this).attr('value',time_val-1);
+         show_time(time_id,time_val*1000);
+    });
+}
+function show_time(id,timestamp)
+{
+    var timer = document.getElementById(id);
+    var str_time,int_day,int_hour,int_minute,int_second;
+    var time_distance = timestamp;
+    if(time_distance>0)
+    {
+          int_day=Math.floor(time_distance/86400000)
+          time_distance-=int_day*86400000;
+          int_hour=Math.floor(time_distance/3600000)
+          time_distance-=int_hour*3600000;
+          int_minute=Math.floor(time_distance/60000)
+          time_distance-=int_minute*60000;
+          int_second=Math.floor(time_distance/1000)
+
+          if(int_hour<10)
+           int_hour="0"+int_hour;
+          if(int_minute<10)
+           int_minute="0"+int_minute;
+          if(int_second<10)
+           int_second="0"+int_second;
+          str_time="<b style='color:red;font-size:16px'>剩余时间："+int_day+"天"+int_hour+"小时"+int_minute+"分钟"+int_second+"秒</b>";
+          timer.innerHTML=str_time;
+    }else{
+          timer.innerHTML="";
+//          timer.innerHTML="<bw style='color:red;font-size:16px'>剩余时间： 0天0小时0分钟0秒</b>";
+    }
+}
+</script><!--出场列表--><div class='arrg arrg_out'><!--id="arrg_13335685971" style="cursor: pointer;" id_arrangement="13335685971"--><table width="100%" border="0" cellspacing="2" cellpadding="2" class="arrg_tbarrg"><tbody><tr><td width="36" rowspan="2" class="arrg_num"><img src="/Public/images/desktop/ok.png" width="36" height="36" class="arrg_status_img"><br><span class="arrg_sm10"><br><span class="arrg_num">I63887939</span></span></td><td class="arrg_status_name"><font color="green">交易成功</font><a href='/index.php/Cash/pingjia/id/240'>已评论</a> <font color='red'>★</font></td><td class="arrg_wait"></td><td class="arrg_msg" style="width:100px;"></td></tr><tr><td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="arrg_num"><span class="arrg_sm10"><span class="translate">创建日期</span>:<br></span><span class="arrg_date">2016-02-03 19:19:56</span></td><td class="arrg_name1"><span class="arrg_user_in">LXX1976</span><!--<div class="arrg_bank_in">Other bank</div>--></td><td align="center" class="arrg_summ"><span class="arrg_summ_in">&gt;</span> &nbsp; <span class="arrg_amt">200.00 元</span> &nbsp; <span class="arrg_summ_out">&gt;</span><div class="arrg_out_files" style="display:none;"><span class="files"><span class="translate">确认</span>:</span><a href="/index.php/Cash/changepingzheng/cid/240/" target="_blank" class="_screens"><img src="/Public/images/desktop/png.png"/></a><br></div></td><td class="arrg_name2"><span class="arrg_user_out">您</span><!--<div class="arrg_bank_out">Other bank</div>--></td><td width="30"><img src="/Public/images/desktop/printout.png" width="30" height="30" onClick="arrgClickPrint(event, this); return false;" style="cursor: pointer; display: none;" class="arrg_print"></td></tr><tr><td colspan="5" style="text-align:right;padding-top:5px;"><a href="/index.php/Cash/eb_listmessage/cid/240">留言</a><a href="javascript:set_url(240)" class="neoui-greybutton translate">阅读更多&gt;&gt;</a></td></tr><tr><td colspan="5" style="font-size:10px;"><div style="display: none;" class="transfer_bottom"><div style="float:right;width:235px;"><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_disallow l-btn" iconcls="icon-cancel"><span class="l-btn-left"><span class="l-btn-text icon-cancel" style="padding-left: 20px;">Отказаться</span></span></a><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_allow l-btn" iconcls="icon-ok"><span class="l-btn-left"><span class="l-btn-text icon-ok" style="padding-left: 20px;">Принять</span></span></a></div></div></td></tr></tbody></table></td></tr></tbody></table><!--详细--><div class="content_240 content_div" id="content_240"><div style="font-size:16px; font-weight:bold;">	订单: I63887939</div><br /><div>	参与者买入的金额：<b>200.00</b></div><br /><!--<b>您应该用这些资料直到02:03 30.10.2015莫斯科时间帮助。</b>--><div class="light_border">	银行名称*：:工商银行<br /><!--收款人uid-->	帐户号码*: 6222020909005155645<br />	开户地址*：:黑龙江省伊春市西林工商支行<br /><!--收款人uid-->	姓名*: 张磊<br /><br />	微信号*: lei382701<br />	支付宝*: 15145804172<br />        累计五星：<font color='red'>★★★★★</font></div><br /><br />在左上角您点“确定打款”，并上传付款单据 （扫描的支票或使用网上银行进行业务的截图）。
+<div style="color:red;">	注意！<br />	汇款只向在订单指定的那些银行资料！如果要求汇款向其他资料（&ldquo;卡被封锁！&rdquo;等） -- 不要上当，并立即报告反馈！这几乎可以肯定是骗子。</div><br /><br /><div>	收款人: 张磊 (<a href="#">zl123456</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15145804172</a>,&nbsp;&nbsp;&nbsp;QQ:1239295988<br />	收款人的领导人: 仲启飞 (<a href="#">vip518</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15751239885,&nbsp;&nbsp;&nbsp;QQ:106171959</a><br /><br />	发款人: 刘小霞 (<a href="#">LXX1976</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15732946828,&nbsp;&nbsp;&nbsp;QQ:1261680753</a><br />	发款人的领导人: 蒋凯华 (<a href="#">cmb199</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">13216027245,&nbsp;&nbsp;&nbsp;QQ:195951391</a></div><br /><div style="color:red;display:none">	注意!!!<br /><br />	1) 给发款人需要提供在订单中指定的金额帮助。<br />	在输入现金或从个人卡汇款的情况下（没连接到体系），佣金是由发款人支付;在从账户汇款的情况下（连接到体系），佣金是由体系支付，您只需要指定按字段的佣金的金额。<br /><br /><!--2)在没执行买入的订单至02:03 30.10.2015,您的元将被取消，以确定原因。订单将被重定向到其他参与者。</div>--><div><br />	&nbsp;</div><div id="" style="height: 1px; overflow: hidden; margin-top: 10px; margin-bottom: 10px;"><div class="arrg" style="width:400px; margin-left:70px; "><table border="0" cellpadding="6" cellspacing="0" width="100%"></table></div></div><br /><br /><i>P.S.如果您收到申请指定的不全部金额的询问，不用担心！自您申请在10天内请求金额的询问就到达。:-))</i></div></div></div><div class='arrg arrg_out'><!--id="arrg_13335685971" style="cursor: pointer;" id_arrangement="13335685971"--><table width="100%" border="0" cellspacing="2" cellpadding="2" class="arrg_tbarrg"><tbody><tr><td width="36" rowspan="2" class="arrg_num"><img src="/Public/images/desktop/ok.png" width="36" height="36" class="arrg_status_img"><br><span class="arrg_sm10"><br><span class="arrg_num">I63887939</span></span></td><td class="arrg_status_name"><font color="green">交易成功</font><a href='/index.php/Cash/pingjia/id/239'>已评论</a> <font color='red'>★</font></td><td class="arrg_wait"></td><td class="arrg_msg" style="width:100px;"></td></tr><tr><td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="arrg_num"><span class="arrg_sm10"><span class="translate">创建日期</span>:<br></span><span class="arrg_date">2016-02-03 19:37:52</span></td><td class="arrg_name1"><span class="arrg_user_in">wl55555</span><!--<div class="arrg_bank_in">Other bank</div>--></td><td align="center" class="arrg_summ"><span class="arrg_summ_in">&gt;</span> &nbsp; <span class="arrg_amt">200.00 元</span> &nbsp; <span class="arrg_summ_out">&gt;</span><div class="arrg_out_files" style="display:none;"><span class="files"><span class="translate">确认</span>:</span><a href="/index.php/Cash/changepingzheng/cid/239/" target="_blank" class="_screens"><img src="/Public/images/desktop/png.png"/></a><br></div></td><td class="arrg_name2"><span class="arrg_user_out">您</span><!--<div class="arrg_bank_out">Other bank</div>--></td><td width="30"><img src="/Public/images/desktop/printout.png" width="30" height="30" onClick="arrgClickPrint(event, this); return false;" style="cursor: pointer; display: none;" class="arrg_print"></td></tr><tr><td colspan="5" style="text-align:right;padding-top:5px;"><a href="/index.php/Cash/eb_listmessage/cid/239">留言</a><a href="javascript:set_url(239)" class="neoui-greybutton translate">阅读更多&gt;&gt;</a></td></tr><tr><td colspan="5" style="font-size:10px;"><div style="display: none;" class="transfer_bottom"><div style="float:right;width:235px;"><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_disallow l-btn" iconcls="icon-cancel"><span class="l-btn-left"><span class="l-btn-text icon-cancel" style="padding-left: 20px;">Отказаться</span></span></a><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_allow l-btn" iconcls="icon-ok"><span class="l-btn-left"><span class="l-btn-text icon-ok" style="padding-left: 20px;">Принять</span></span></a></div></div></td></tr></tbody></table></td></tr></tbody></table><!--详细--><div class="content_239 content_div" id="content_239"><div style="font-size:16px; font-weight:bold;">	订单: I63887939</div><br /><div>	参与者买入的金额：<b>200.00</b></div><br /><!--<b>您应该用这些资料直到02:03 30.10.2015莫斯科时间帮助。</b>--><div class="light_border">	银行名称*：:工商银行<br /><!--收款人uid-->	帐户号码*: 6222020909005155645<br />	开户地址*：:黑龙江省伊春市西林工商支行<br /><!--收款人uid-->	姓名*: 张磊<br /><br />	微信号*: lei382701<br />	支付宝*: 15145804172<br />        累计五星：<font color='red'>★★★★★</font></div><br /><br />在左上角您点“确定打款”，并上传付款单据 （扫描的支票或使用网上银行进行业务的截图）。
+<div style="color:red;">	注意！<br />	汇款只向在订单指定的那些银行资料！如果要求汇款向其他资料（&ldquo;卡被封锁！&rdquo;等） -- 不要上当，并立即报告反馈！这几乎可以肯定是骗子。</div><br /><br /><div>	收款人: 张磊 (<a href="#">zl123456</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15145804172</a>,&nbsp;&nbsp;&nbsp;QQ:1239295988<br />	收款人的领导人: 仲启飞 (<a href="#">vip518</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15751239885,&nbsp;&nbsp;&nbsp;QQ:106171959</a><br /><br />	发款人: 琳琳 (<a href="#">wl55555</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">13009325060,&nbsp;&nbsp;&nbsp;QQ:77385956</a><br />	发款人的领导人:  (<a href="#">ww0501</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15303191145,&nbsp;&nbsp;&nbsp;QQ:</a></div><br /><div style="color:red;display:none">	注意!!!<br /><br />	1) 给发款人需要提供在订单中指定的金额帮助。<br />	在输入现金或从个人卡汇款的情况下（没连接到体系），佣金是由发款人支付;在从账户汇款的情况下（连接到体系），佣金是由体系支付，您只需要指定按字段的佣金的金额。<br /><br /><!--2)在没执行买入的订单至02:03 30.10.2015,您的元将被取消，以确定原因。订单将被重定向到其他参与者。</div>--><div><br />	&nbsp;</div><div id="" style="height: 1px; overflow: hidden; margin-top: 10px; margin-bottom: 10px;"><div class="arrg" style="width:400px; margin-left:70px; "><table border="0" cellpadding="6" cellspacing="0" width="100%"></table></div></div><br /><br /><i>P.S.如果您收到申请指定的不全部金额的询问，不用担心！自您申请在10天内请求金额的询问就到达。:-))</i></div></div></div><div class='arrg arrg_out'><!--id="arrg_13335685971" style="cursor: pointer;" id_arrangement="13335685971"--><table width="100%" border="0" cellspacing="2" cellpadding="2" class="arrg_tbarrg"><tbody><tr><td width="36" rowspan="2" class="arrg_num"><img src="/Public/images/desktop/ok.png" width="36" height="36" class="arrg_status_img"><br><span class="arrg_sm10"><br><span class="arrg_num">I63887939</span></span></td><td class="arrg_status_name">已取消</td><td class="arrg_wait"></td><td class="arrg_msg" style="width:100px;"></td></tr><tr><td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="arrg_num"><span class="arrg_sm10"><span class="translate">创建日期</span>:<br></span><span class="arrg_date">2016-02-02 10:43:31</span></td><td class="arrg_name1"><span class="arrg_user_in">mx888</span><!--<div class="arrg_bank_in">Other bank</div>--></td><td align="center" class="arrg_summ"><span class="arrg_summ_in">&gt;</span> &nbsp; <span class="arrg_amt">400.00 元</span> &nbsp; <span class="arrg_summ_out">&gt;</span><div class="arrg_out_files" style="display:none;"><span class="files"><span class="translate">确认</span>:</span><a href="/index.php/Cash/changepingzheng/cid/105/" target="_blank" class="_screens"><img src="/Public/images/desktop/png.png"/></a><br></div></td><td class="arrg_name2"><span class="arrg_user_out">您</span><!--<div class="arrg_bank_out">Other bank</div>--></td><td width="30"><img src="/Public/images/desktop/printout.png" width="30" height="30" onClick="arrgClickPrint(event, this); return false;" style="cursor: pointer; display: none;" class="arrg_print"></td></tr><tr><td colspan="5" style="text-align:right;padding-top:5px;"><a href="/index.php/Cash/eb_listmessage/cid/105">留言</a><a href="javascript:set_url(105)" class="neoui-greybutton translate">阅读更多&gt;&gt;</a></td></tr><tr><td colspan="5" style="font-size:10px;"><div style="display: none;" class="transfer_bottom"><div style="float:right;width:235px;"><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_disallow l-btn" iconcls="icon-cancel"><span class="l-btn-left"><span class="l-btn-text icon-cancel" style="padding-left: 20px;">Отказаться</span></span></a><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_allow l-btn" iconcls="icon-ok"><span class="l-btn-left"><span class="l-btn-text icon-ok" style="padding-left: 20px;">Принять</span></span></a></div></div></td></tr></tbody></table></td></tr></tbody></table><!--详细--><div class="content_105 content_div" id="content_105"><div style="font-size:16px; font-weight:bold;">	订单: I63887939</div><br /><div>	参与者买入的金额：<b>400.00</b></div><br /><!--<b>您应该用这些资料直到02:03 30.10.2015莫斯科时间帮助。</b>--><div class="light_border">	银行名称*：:工商银行<br /><!--收款人uid-->	帐户号码*: 6222020909005155645<br />	开户地址*：:黑龙江省伊春市西林工商支行<br /><!--收款人uid-->	姓名*: 张磊<br /><br />	微信号*: lei382701<br />	支付宝*: 15145804172<br />        累计五星：<font color='red'>★★★★★</font></div><br /><br />在左上角您点“确定打款”，并上传付款单据 （扫描的支票或使用网上银行进行业务的截图）。
+<div style="color:red;">	注意！<br />	汇款只向在订单指定的那些银行资料！如果要求汇款向其他资料（&ldquo;卡被封锁！&rdquo;等） -- 不要上当，并立即报告反馈！这几乎可以肯定是骗子。</div><br /><br /><div>	收款人: 张磊 (<a href="#">zl123456</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15145804172</a>,&nbsp;&nbsp;&nbsp;QQ:1239295988<br />	收款人的领导人: 仲启飞 (<a href="#">vip518</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15751239885,&nbsp;&nbsp;&nbsp;QQ:106171959</a><br /><br />	发款人:  (<a href="#">mx888</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">13437071501,&nbsp;&nbsp;&nbsp;QQ:343158838</a><br />	发款人的领导人: 仲启飞 (<a href="#">vip518</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15751239885,&nbsp;&nbsp;&nbsp;QQ:106171959</a></div><br /><div style="color:red;display:none">	注意!!!<br /><br />	1) 给发款人需要提供在订单中指定的金额帮助。<br />	在输入现金或从个人卡汇款的情况下（没连接到体系），佣金是由发款人支付;在从账户汇款的情况下（连接到体系），佣金是由体系支付，您只需要指定按字段的佣金的金额。<br /><br /><!--2)在没执行买入的订单至02:03 30.10.2015,您的元将被取消，以确定原因。订单将被重定向到其他参与者。</div>--><div><br />	&nbsp;</div><div id="" style="height: 1px; overflow: hidden; margin-top: 10px; margin-bottom: 10px;"><div class="arrg" style="width:400px; margin-left:70px; "><table border="0" cellpadding="6" cellspacing="0" width="100%"></table></div></div><br /><br /><i>P.S.如果您收到申请指定的不全部金额的询问，不用担心！自您申请在10天内请求金额的询问就到达。:-))</i></div></div></div><div class='arrg arrg_in'><!--id="arrg_13335685971" style="cursor: pointer;" id_arrangement="13335685971"--><table width="100%" border="0" cellspacing="2" cellpadding="2" class="arrg_tbarrg"><tbody><tr><td width="36" rowspan="2" class="arrg_num"><img src="/Public/images/desktop/ok.png" width="36" height="36" class="arrg_status_img"><br><span class="arrg_sm10"><br><span class="arrg_num">T16674194</span></span></td><td class="arrg_status_name"><font color="green">交易成功</font>[<a href="/index.php/Cash/pingjia/id/75">评价</a>]</td><td class="arrg_wait"></td><td class="arrg_msg" style="width:100px;"></td></tr><tr><td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td class="arrg_num"><span class="arrg_sm10"><span class="translate">创建日期</span>:<br></span><span class="arrg_date">2016-02-01 12:27:35</span></td><td class="arrg_name1"><span class="arrg_user_in">您</span><!--<div class="arrg_bank_in">Other bank</div>--></td><td align="center" class="arrg_summ"><span class="arrg_summ_in">&gt;</span> &nbsp; <span class="arrg_amt">400.00 元</span> &nbsp; <span class="arrg_summ_out">&gt;</span><div class="arrg_out_files" style="display:none;"><span class="files"><span class="translate">确认</span>:</span><a href="/index.php/Cash/changepingzheng/cid/75/" target="_blank" class="_screens"><img src="/Public/images/desktop/png.png"/></a><br></div></td><td class="arrg_name2"><span class="arrg_user_out">vip887</span><!--<div class="arrg_bank_out">Other bank</div>--></td><td width="30"><img src="/Public/images/desktop/printout.png" width="30" height="30" onClick="arrgClickPrint(event, this); return false;" style="cursor: pointer; display: none;" class="arrg_print"></td></tr><tr><td colspan="5" style="text-align:right;padding-top:5px;"><a href="/index.php/Cash/eb_listmessage/cid/75">留言</a><a href="javascript:set_url(75)" class="neoui-greybutton translate">阅读更多&gt;&gt;</a></td></tr><tr><td colspan="5" style="font-size:10px;"><div style="display: none;" class="transfer_bottom"><div style="float:right;width:235px;"><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_disallow l-btn" iconcls="icon-cancel"><span class="l-btn-left"><span class="l-btn-text icon-cancel" style="padding-left: 20px;">Отказаться</span></span></a><a href="https://mmm-office.me/5dde6/desktop.html#" class="easyui-linkbutton transfer_allow l-btn" iconcls="icon-ok"><span class="l-btn-left"><span class="l-btn-text icon-ok" style="padding-left: 20px;">Принять</span></span></a></div></div></td></tr></tbody></table></td></tr></tbody></table><!--详细--><div class="content_75 content_div" id="content_75"><div style="font-size:16px; font-weight:bold;">	订单: P17750854</div><br /><div>	参与者买入的金额：<b>400.00</b></div><br /><!--<b>您应该用这些资料直到02:03 30.10.2015莫斯科时间帮助。</b>--><div class="light_border">	银行名称*：:农业银行<br /><!--收款人uid-->	帐户号码*: 1<br />	开户地址*：:广西南宁<br /><!--收款人uid-->	姓名*: 1<br /><br />	微信号*: 1<br />	支付宝*: 1<br />        累计五星：<font color='red'>★★★★★</font></div><br /><br />在左上角您点“确定打款”，并上传付款单据 （扫描的支票或使用网上银行进行业务的截图）。
+<div style="color:red;">	注意！<br />	汇款只向在订单指定的那些银行资料！如果要求汇款向其他资料（&ldquo;卡被封锁！&rdquo;等） -- 不要上当，并立即报告反馈！这几乎可以肯定是骗子。</div><br /><br /><div>	收款人: 1 (<a href="#">vip887</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">1</a>,&nbsp;&nbsp;&nbsp;QQ:1<br />	收款人的领导人:  (<a href="#">vip888</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">13811111111,&nbsp;&nbsp;&nbsp;QQ:</a><br /><br />	发款人: 张磊 (<a href="#">zl123456</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15145804172,&nbsp;&nbsp;&nbsp;QQ:1239295988</a><br />	发款人的领导人: 仲启飞 (<a href="#">vip518</a>), 电话号码: <a data-hint="警告！由于某种原因如果参与者是不可用的 （选择不显示电话号码或者不拿起 电话），请与他的领导人联系弄清一切。如果领导人是也不可用的，写信给审计部。" title="">15751239885,&nbsp;&nbsp;&nbsp;QQ:106171959</a></div><br /><div style="color:red;display:none">	注意!!!<br /><br />	1) 给发款人需要提供在订单中指定的金额帮助。<br />	在输入现金或从个人卡汇款的情况下（没连接到体系），佣金是由发款人支付;在从账户汇款的情况下（连接到体系），佣金是由体系支付，您只需要指定按字段的佣金的金额。<br /><br /><!--2)在没执行买入的订单至02:03 30.10.2015,您的元将被取消，以确定原因。订单将被重定向到其他参与者。</div>--><div><br />	&nbsp;</div><div id="" style="height: 1px; overflow: hidden; margin-top: 10px; margin-bottom: 10px;"><div class="arrg" style="width:400px; margin-left:70px; "><table border="0" cellpadding="6" cellspacing="0" width="100%"></table></div></div><br /><br /><i>P.S.如果您收到申请指定的不全部金额的询问，不用担心！自您申请在10天内请求金额的询问就到达。:-))</i></div></div></div><style>        .content_div{
+            display: none
+        }
+    </style><script>        var id=0;
+    function set_url(e){
+        if(id!=0){
+    document.getElementById("content_"+id).style.display='none';
+        }
+        if(id==e){
+    document.getElementById("content_"+e).style.display='none';
+    id=0;
+        }else
+    document.getElementById("content_"+e).style.display='block';
+    id=e;
+    }
+    </script><div id="show" class="help_Box"><div class="del"><div class="color-line"></div><div class="modal-header"><h2>买入</h2><small>本中心首次提供金融为1000到10000元，第二次最高可以到10000元，1000元的倍数。</small></div><form name="form1" method="post" action="/index.php/Cash/buy_AC/"><div class="modal-body"><!--        	<h4 class="mod">支付方式</h4><div align="left"><label><input type="checkbox" value="0" name="pay_type[]" checked="checked">银行支付</label><label><input type="checkbox" value="1" name="pay_type[]" checked="checked" >支付宝支付</label><label><input type="checkbox" value="2" name="pay_type[]" checked="checked" >微信支付</label></div>--><h4>买入金额</h4><div class="dat"><input type="text" value="" name="money"><!--            	<select name="money"><option value="0">0</option><option value="2000">2000</option><option value="5000">5000</option><option value="10000">10000</option></select>--></div><!--<p><span style="color:green">1000</span> NPO= <span style="color:#f00">1000</span> 人民币</p>--><!--<p style=" text-align:left;color:Red">恭喜你已参加我们的互助系统，如果下面没有出现订单信息，那么等待收款方联系你或是经常登录刷新查看。如果下方有订单信息了，就要联系对方确认收款帐号，注意看好匹配金额，因为有些是部分匹配。打了钱一定要联系对方尽快确认收款。</p>--><p style=" text-align:left;">!警告，我已完全了解所有风险。我决定参与互助金融理财系统,尊重互助金融理财系统文化与传统。</p></div><div class="btns"><button class="sure" type="submit"  onclick="if(confirm('确定要买入吗？')) return true; else return false;">买入 </button><button class="cancel"  id="cancel" type="button" onclick="location.href='/index.php/Public/main1'">取消 </button></div><input type="hidden" name="s_type" value="0" /><input type="hidden" name="__hash__" value="63a8fb03308c31bf49132c570cc2dbb0_e81e6cfea737f6db94941384c66c8db5" /></form><!--<input type="hidden" name="__hash__" value="63a8fb03308c31bf49132c570cc2dbb0_e81e6cfea737f6db94941384c66c8db5" /></form>--></div></div><div id="show2" class="help_Box" ><div class="del" style="margin-top:-380px;"><div class="color-line"></div><div class="modal-header"><h2>得到帮助</h2></div><form name="form1" method="post" action="/index.php/Cash/sell_AC/"><div class="modal-body"><div class="dataa"><span>总钱包</span>&nbsp;<input type="text" value="400.00" readonly></div><div class="dataa"><span style="float:left">可提现</span>&nbsp;400.00</div><div class="dataa"><span>最低提现</span>&nbsp;200</div><!--<div class="dataa"><span>结余</span>&nbsp;2000</div>--><!--            <h4 class="mod">得到帮助支付方式</h4><div align="left"><label><input type="checkbox" value="0" name="pay_type[]" checked="checked">银行支付</label><label><input type="checkbox" value="1" name="pay_type[]" checked="checked" >支付宝支付</label><label><input type="checkbox" value="2" name="pay_type[]" checked="checked" >微信支付</label></div>--><!--<h4>请输入提现金额 且数值为100的整数倍</h4>--><div class="dat"><input type="text" value="0" name="s_money"><!--<select name="s_money"></select>--></div><!--<p><span style="color:green">1000</span> NPO币= <span style="color:#f00">1000</span> 人民币</p>--><!--<p style=" text-align:left;color:Red">恭喜你已参加我们的互助系统，如果下面没有出现订单信息，那么等待系统匹配经常登录刷新查看。如果下方有订单信息了，就要联系对方确认收款帐号，注意看好匹配金额，因为有些是部分匹配。打了钱一定要联系对方尽快确认收款。</p>--><p style=" text-align:left;">!警告，我已完全了解所有风险。我决定参与互助金融理财系统,尊重互助金融理财系统文化与传统。</p></div><div class="btns" style="padding-bottom:16px;"><button class="sure" type="submit"  onclick="if(confirm('确定要申请求助吗？')) return true; else return false;">得到帮助 </button><button class="cancel"  id="cancel" type="button" onclick="location.href='/index.php/Public/main1'">取消 </button></div><input type="hidden" name="s_type" value="1" /><input type="hidden" name="__hash__" value="63a8fb03308c31bf49132c570cc2dbb0_e81e6cfea737f6db94941384c66c8db5" /></form></div></div><!-- 买入确认打款的弹出框 --><!-- 买入确认打款的弹出框 --><!-- 得到帮助确认打款的弹出框 --><div id="sellShow-436" class="help_Box" ><div class="del2" style="margin-top:-350px;"><div class="color-line"></div><div class="modal-header"><h2>得到帮助</h2></div><form name="form1" method="post" action="/index.php/Cash/eb_list_done/"><div class="mole"><p><strong>订单号码:<span id="order_id">I63887939</span></strong></p><table width="100%" class="tab3" border="0" cellpadding="3" cellspacing="1" id="tb1" bgcolor="#b9c8d0"><tr><th>汇款款人银行</th><th>汇款人姓名</th><th>汇款人qq</th><th>汇款人电话 </th><th>汇款金额</th><th>凭证</th></tr></table><input type="hidden" name="t_id" value="436"/><p>确认收款前请先查看凭证并确认已经收到款 <font class="receiver_phone" color="#0000FF"></font></p><p><font color="#FF0000">警告!</font>在未汇款之前不要点击确认收款，因为确认了就不能撤销了，收到款后请及时确认,如果没有及时确认，系统会自动封号！</p></div><div class="foots"><div class="btns" style="padding-bottom:16px;"><button class="sure" type="submit">确认收款 </button><button class="cancel"  id="cancel" type="button" onclick="location.href='/index.php/Public/main1'">取消 </button></div></div><input type="hidden" name="__hash__" value="63a8fb03308c31bf49132c570cc2dbb0_e81e6cfea737f6db94941384c66c8db5" /></form></div></div><!-- 得到帮助确认打款的弹出框 --><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></body></html>

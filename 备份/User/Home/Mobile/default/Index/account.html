@@ -1,0 +1,75 @@
+<include file='index:head' />
+<div class="wrapper">
+    <div class="gezx">
+        <dl class="gface">
+            <dt><img src="{$userData.headimg}" data-original="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/default.jpg"></dt>
+            <dd>{$userData.ue_account} <a href="{:U('/Home/Index/usenewapp/',array('isuse' => '0'))}">[返回旧版]</a></dd>
+        </dl>
+        <ul>
+            <li style="background:none">
+                <p>
+                    静态钱包
+                </p>
+                <p class="ff">
+                    ￥{$userData.ue_money}
+                </p>
+            </li>
+            <li>
+                <p>
+                    领导奖钱包
+                </p>
+                <p class="ff">
+                    ￥{$userData.qwe}元
+                </p>
+            </li>
+            <li>
+                <p>
+                    诚信奖钱包
+                </p>
+                <p class="ff">
+                    ￥{$userData.chenxinj}元
+                </p>
+            </li>
+        </ul>
+        <div class="cz">
+            <a href="{:U('/Home/Index/withdraw/')}">取出</a>
+            <a href="{:U('/Home/Index/tgbz/')}">存入</a>
+        </div>
+        <div class="day">
+            <div style="width:33%">
+                积分钱包：
+				{$userData.jifen_num}
+            </div>
+            <div style="width:33%">
+                排单币：
+				{$pin_zs}
+            </div>
+			<div style="width:33%">
+                激活码：
+				{$jhm_zs}
+            </div>
+        </div>
+    </div>
+    <div class="gclass">
+        <a href="{:U('/Home/Index/money_record_list')}" class="g1">奖金管理</a>
+        <a href="{:U('/Home/Index/pdlist/')}" class="g2">存入记录</a>
+        <a href="{:U('/Home/Index/gdlist/')}" class="g3">取出记录</a>
+    </div>
+    <div class="gclass">
+        <a href="{:U('/Home/Myuser/Index/')}" class="g4">我的直推</a>
+        <a href="{:U('/Home/Index/tuiguang/')}" class="g10">我要推广</a>
+        <a href="{:U('/Home/Index/qdd/')}" class="g5">抢单大厅</a>
+
+    </div>
+    <div class="gclass">
+        <a href="{:U('/Home/Index/news/',array('id' => ''))}" class="g7">公告新闻</a>
+        <a href="{:U('/Home/Index/xgmm/')}" class="g8">密码管理</a>
+        <a href="{:U('/Home/Index/myacc/')}" class="g9">个人中心</a>
+    </div>
+    <div class="gclass">
+        <a href="{:U('/Home/Info/coinchange/')}" class="g6">币种交易</a>
+        <a href="{:U('/Home/Index/messageInbox/')}" class="g11">我要投诉</a>
+        <a href="{:U('/Home/Login/logout')}" title="退出系统" data-logout-msg="退出后关闭这个流览器以加强安全性" " class="g12">退出</a>
+    </div>
+</div>
+<include file='index:foot' />

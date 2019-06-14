@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html>
+
+<!-- Head -->
+<head>
+
+    <title>{:C('app_name')}　注册中心</title>
+
+    <!-- Meta-Tags -->
+        <meta name="viewport<?php if(C('open_auto_m')==0) echo '_no'; ?>" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+        
+
+    <!-- Style --> <link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
+
+
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+
+    
+    
+    <div class="container w3layouts agileits" >
+    
+        <div class="login w3layouts agileits">
+            
+          
+                  
+                      
+                      <!-- <div class="send-button w3layouts agileits">
+                                      
+                                          
+                                      
+                                        </div> -->
+            
+            
+            
+            
+            
+            <div class="clear"></div>
+        </div>
+         
+
+        <div class="register w3layouts agileits">
+            <h2>注 册</h2>
+             <form class="form-horizontal margin-none" name="register_form" action="{:U('Reg/regadd')}" method="post" id="register_form">                 
+                
+                    <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading"><span style="color:red;font-size:16px;">(注册后请完善个人资料)</span></h4>
+                        </div>
+                        <div class="widget-body">
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" style="color: white;">推荐人手机号<span class="ast">*</span></label>
+                                <div class="col-md-9">
+                               
+                                        <input type="text" class="form-control auto-ajax " placeholder="" name="pemail" id="recommended" value="{$tjmail}" autocomplete="off"/>
+                                        
+                                   
+                                    
+                                </div>
+                            </div>
+         
+                            <div class="form-group">
+                               <label class="col-md-3 control-label" style="color: white;">手机号码(登录账号)<span class="ast">*</span></label>
+                                <div class="input-group col-md-9">
+                                    <input type="text" value="" id="phone" class="form-control" name="phone" maxlength="13"  required="">
+                                  <span class="input-group-btn"> <input type="button" value="发送" onclick="time(this);" class="btn btn-primary"></span></div>
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" style="color: white;">手机验证码<span class="ast">*</span></label>
+                                <div class="col-md-9"><input class="form-control"  name="phone_check" value="" type="text"/></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" style="color: white;">姓名<span class="ast">*</span></label>
+                                <div class="col-md-9"><input class="form-control" id="realname" name="username" value="" type="text"/></div>
+                            </div>                                               
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" style="color: white;">登录密码<span class="ast">*</span></label>
+                                <div class="col-md-9"><input class="form-control" id="password" name="password"  type="password"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" style="color: white;">二级密码<span class="ast">*</span></label>
+                                <div class="col-md-9"><input class="form-control" id="secpwd" name="secpwd"  type="password"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"></label>
+                                <div class="col-md-9" style="color: white;"><input name="ty" type="checkbox" id="ty" value="ye" checked>
+                              我已完全了解所有条例。</div>
+                            </div>
+                        </div>          
+                                        
+                    </div>
+                    <div class="widget widget-body-white padding-none">                     
+                        <div class="data-footer innerAll half text-right clearfix" style="text-align:center; padding:10px;">
+                                               
+                            <input type="hidden" name="MemberId" value="-1" />
+                        </div>
+                    </div>
+                    <div class="send-button w3layouts agileits"><input type="submit" value="免费注册"></div>
+            </form>
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="footer w3layouts agileits">
+        <p>&copy; Copyright  {:C('app_name')} All rights reserved.    </p>
+    </div>
+   <script type="text/javascript">
+    $(document).ready(function($){
+        $('form[name=login_form]').submit(function(){
+            $('input#login_btn').attr('disabled','disabled');
+        });     
+        $('#username').focus();         
+       
+    });
+
+    function reg() {
+        if ($("#username").val() == "") {
+             alert("请填写用户名");
+            return false;
+        } else if ($("#recommended").val() == "") {
+             alert("请填写推荐人");
+            return false;
+        }
+        else if ($("#password").val() == "") {
+             alert("请填写密码");
+            return false;
+        }
+        /*else if ($("#password").val() != $("#cpassword").val()) {
+            layer.msg("两次密码不一致");
+            return false;
+        }*/
+        else if ($("#cpassword").val() == "") {
+             alert("请填写安全密码");
+            return false;
+        }
+        /*else if ($("#cpassword2").val() != $("#cpassword2").val()) {
+            layer.msg("两次安全密码不一致");
+            return false;
+        }*/
+        else if ($("#realname").val() == "") {
+             alert("请填写姓名");
+            return false;
+        }
+       
+        else if ($("#phone").val() == "") {
+             alert("请填写手机号");
+            return false;
+        }
+        else if ($("#password").val() == "") {
+             alert("请填写密码");
+            return false;
+        }
+
+        if (!isMobile($("#phone").val())) {
+             alert("手机格式不正确");
+            return false;
+        }
+
+       
+        /*$.post("{:U('Reg/regadd')}", $("form").serialize(), function(data) { 
+            if (data.error) { 
+                    layer.msg(data.msg);
+            } else { 
+                alert(data.msg);
+                location.href= "{:U('Login/index')}";                    
+            }},'json');*/
+
+        $("#register_form").submit();
+    }
+
+    function isMobile(str) {
+        var myreg = /^([0]?)(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
+        return myreg.test(str);
+    }
+
+    function isEmail(str) {
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        return reg.test(str);
+    }
+
+    var wait = 60;
+
+    function time(o) {  
+          console.log('yanzhnegm');     
+
+        if ($("#phone").val() == "") {
+            alert("请填写手机号");
+            return false;
+        }       
+
+        if (!isMobile($("#phone").val())) {
+             alert("手机格式不正确");
+            return false;
+        }
+
+        $.post("{:U('Reg/sendPhone')}", { phone: $("#phone").val() }, function(msg) { alert("验证码已经发送，注意查收"); });
+
+        okssss(o);
+    }
+    var wait = 60;
+    function okssss(o) {
+        if (wait == 0) {
+            $(o).removeAttr("disabled");
+            $(o).val("免费获取验证码");
+            wait = 120;
+        } else {
+            $(o).attr("disabled", true);
+            $(o).val("重新发送(" + wait + ")");
+            wait--;
+            setTimeout(function() {
+                okssss(o);
+            },
+            1000);
+        }
+    }
+</script>
+
+</body>
+<!-- //Body -->
+
+</html>

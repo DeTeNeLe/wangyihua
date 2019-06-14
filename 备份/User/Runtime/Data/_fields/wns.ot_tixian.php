@@ -1,0 +1,1 @@
+a:9:{i:0;s:2:"id";i:1;s:10:"UG_account";i:2;s:8:"TX_money";i:3;s:6:"status";i:4;s:7:"addtime";i:5;s:4:"zffs";i:6;s:3:"oid";s:3:"_pk";s:2:"id";s:5:"_type";a:7:{s:2:"id";s:7:"int(11)";s:10:"UG_account";s:11:"varchar(60)";s:8:"TX_money";s:13:"decimal(15,0)";s:6:"status";s:6:"int(6)";s:7:"addtime";s:8:"datetime";s:4:"zffs";s:6:"int(6)";s:3:"oid";s:7:"int(11)";}}

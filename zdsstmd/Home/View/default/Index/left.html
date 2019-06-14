@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+		<script language="JavaScript" src="/sncss/js/jquery.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				//导航切换
+				$(".menuson li").click(function() {
+					$(".menuson li.active").removeClass("active")
+					$(this).addClass("active");
+				});
+
+				$('.title').click(function() {
+					var $ul = $(this).next('ul');
+					$('dd').find('ul').slideUp();
+					if($ul.is(':visible')) {
+						$(this).next('ul').slideUp();
+					} else {
+						$(this).next('ul').slideDown();
+					}
+				});
+			})
+		</script>
+		<style>
+			.menuson li.active {
+				background: none;
+				color: #00C1DE;
+			}
+			
+			.menuson li.active a {
+				color: #00C1DE;
+			}
+			
+			.leftmenu dd {
+				background: #272B2E;
+			}
+			
+			a,
+			a:focus {
+				color: white;
+			}
+			
+			.title {
+				color: white;
+			}
+			.lefttop{
+				background: none;
+				border-top: 1px solid #8b8f92;
+			}
+		</style>
+	</head>
+
+	<body style="background: #1C2327;">
+		<div class="lefttop"><span></span>功能栏</div>
+
+		<dl class="leftmenu">
+			<if condition="$quanxian eq 1">
+				<dd>
+					<div class="title">
+						<span><!--<img src="/sncss/images/leftico01.png" />--></span>会员管理
+					</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/userlist" target="rightFrame">所有會員</a><i></i></li>
+						<!--<li><cite></cite>-->
+							<!--<a href="/Yshclbssb.php/Home/Index/jbzs" target="rightFrame">金币赠送</a><i></i></li>-->
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/team" target="rightFrame">会员关系网</a><i></i></li>
+						<php>if( is_admin_user() == 1 ){</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/txlist" target="rightFrame">提现管理</a><i></i></li>
+						<php>}</php>
+					</ul>
+				</dd>
+
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico03.png" />--></span>文章管理</div>
+					<ul class="menuson">
+
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Shop/add_article_cate" target="rightFrame">添加文章分类</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Shop/zsbyg_list" target="rightFrame">新闻公告</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Shop/zsbyg_list_xg" target="rightFrame">添加内容</a><i></i></li>
+
+					</ul>
+				</dd>
+
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico03.png" />--></span>留言管理</div>
+					<ul class="menuson">
+
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Shop/ly_list/type/0/" target="rightFrame">未处理留言</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Shop/ly_list/type/1/" target="rightFrame">已处理留言</a><i></i></li>
+					</ul>
+				</dd>
+
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>激活码管理</div>
+					<ul class="menuson">
+						<php>if( is_admin_user() == 1 ){</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/pin_add" target="rightFrame">生成激活码</a><i></i></li>
+						<php>}</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/pin_list" target="rightFrame">PIN管理</a><i></i></li>
+					</ul>
+
+				</dd>
+
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>交割积分管理</div>
+					<ul class="menuson">
+						<php>if( is_admin_user() == 1 ){</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/czqwe_add" target="rightFrame">充值交割积分</a><i></i></li>
+						<php>}</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/czqwe_list" target="rightFrame">充值交割记录</a><i></i></li>
+					</ul>
+				</dd>
+
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>通证管理</div>
+					<ul class="menuson">
+						<php>if( is_admin_user() == 1 ){</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/paidan_add" target="rightFrame">通证积分充值</a><i></i></li>
+						<php>}</php>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/paidan_list" target="rightFrame">通证使用记录</a><i></i></li>
+					</ul>
+				</dd>
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>财务管理</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/user_integral" target="rightFrame">总积分</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/reward_log" target="rightFrame">奖励明细</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/balance_change_log" target="rightFrame">余额变动明细</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/budget_log" target="rightFrame">日收支明细</a><i></i></li>
+					</ul>
+				</dd>
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>统计报表</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/daily_budget_statistics" target="rightFrame">日收支统计</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/total_dial_out" target="rightFrame">总拨出统计</a><i></i></li>
+
+					</ul>
+				</dd>
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>会员操作日志</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/user_login_log" target="rightFrame">会员登录日志</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/open_granary_log" target="rightFrame">会员开仓日志</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/delivery_log" target="rightFrame">会员开仓日志</a><i></i></li>
+					</ul>
+				</dd>
+				<php>if( is_admin_user() == 1 ){</php>
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>奖金管理</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/jjset" target="rightFrame">奖金设置</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/txset" target="rightFrame">提现设置</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/lixi" target="rightFrame">利息配置</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/yuanzhugg" target="rightFrame">积分涨幅</a><i></i></li>
+					</ul>
+
+				</dd>
+				<php>}</php>
+			</if>
+
+			<dd>
+				<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>匹配系统</div>
+				<ul class="menuson">
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/tgbz_list" target="rightFrame">开仓/平仓</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/jsbz_list" target="rightFrame">交割</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/ppdd_list" target="rightFrame">交易中的订单</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/ppdd_list/cz/1/" target="rightFrame">成功交易订单</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/ts1_list" target="rightFrame">到期未打款</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/ts2_list" target="rightFrame">未收到款</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/ts3_list" target="rightFrame">到期未确认</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/yuyue_list" target="rightFrame">预约明细</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/qddt_list" target="rightFrame">抢单大厅列表</a><i></i></li>
+					<php>if( is_admin_user() == 1 ){</php>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/tgbz_list_cf" target="rightFrame">开仓拆分</a><i></i></li>
+					<li><cite></cite>
+						<a href="/Yshclbssb.php/Home/Index/jsbz_list_cf" target="rightFrame">交割拆分</a><i></i></li>
+					<!-- <li><cite></cite><a  onclick="javascript:if(!confirm('确认要清理数据表吗？'))  return  false; "  href="/Yshclbssb.php/Home/Index/clearalldo" target="rightFrame">清理数据表</a><i></i></li> 
+			<li><cite></cite><a href="/Yshclbssb.php/Home/Baksql/backall" target="rightFrame">备份数据库</a><i></i></li> -->
+					<!--<li><cite></cite><a href="/admin.php/Home/Index/pin_list" target="rightFrame">PIN管理</a><i></i></li>-->
+					<!--<li><cite></cite><a href="/admin.php/Home/Shop/zsbyg_list" target="rightFrame">钻石币云购管理</a><i></i></li>-->
+					<php>}</php>
+				</ul>
+			</dd>
+			<php>if( is_admin_user() == 1 ){</php>
+			<if condition="$quanxian eq 1">
+				<dd>
+					<div class="title"><span><!--<img src="/sncss/images/leftico04.png" />--></span>最新设置</div>
+					<ul class="menuson">
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/new_config" target="rightFrame">系统设置</a><i></i></li>
+						<li><cite></cite>
+							<a href="/Yshclbssb.php/Home/Index/order" target="rightFrame">预约抢单设置</a><i></i></li>
+					</ul>
+				</dd>
+			</if>
+			<php>}</php>
+
+		</dl>
+
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<include file='index:head' />
+<link rel="stylesheet" type="text/css" media="screen" href="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/styles/element.css">
+<div class="wrapper">
+    <div class="tabs" style="margin-top:0;">
+        <ul>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/team/')}">直观图</a>
+            </li>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/tree/')}" class="current">关系/服务中心</a>
+            </li>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/paylist/')}">订单管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="tab1">
+            <volist name="list" id="v">
+                <dl class="bzb">
+                    <dt class="d1">{$i}</dt>
+                    <dd class="c1"><img src="{$v.headimg}" data-original="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/default.jpg"></dd>
+                    <dd class="c2">
+                        <i class="fl">
+                            {$v.ue_account}/{$v.regnum}/<if condition="$v.pr eq 1">
+                                左<else />右
+                            </if>/{$v.ue_accname}
+                        </i><i class="fr">
+                            <if condition="$v.ue_status eq 0">
+                                <font color="green">已激</font>
+                                <elseif condition="$v.ue_status eq 2" />
+                                <font color="red">未激</font>
+                            </if>
+                        </i>
+                    </dd>
+                </dl>
+            </volist>
+            <div class="pagediv">
+                <dl class="page">
+                    <dd class="c2">{$page}</dd>
+                </dl>
+            </div>
+        </div>
+       
+    </div>
+</div>
+<include file='index:foot' />

@@ -1,0 +1,185 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<style>
+	.content-wrapper {
+		background: #001926 !important;
+	}
+	
+	#MEIQIA-BTN-HOLDER {
+		right: 17px;
+		bottom: 90px;
+	}
+	
+	.detail_top_bar {
+		overflow: hidden;
+		width: 90%;
+		margin: 0 auto;
+	}
+	
+	.detail_top_bar label {
+		display: inline-block;
+		float: left;
+		width: 30%;
+		color: white;
+		font-size: 1.6em;
+		font-weight: normal;
+	}
+	
+	.detail_top_bar span {
+		width: 70%;
+		display: inline-block;
+		color: white;
+		float: left;
+		font-size: 1.6em;
+	}
+	
+	.detail_content {
+		background: #002639;
+		width: 90%;
+		margin: 10px auto;
+		position: relative;
+	}
+	
+	.detail_content p {
+		line-height: 40px;
+		font-size: 18px;
+		border-bottom: 1px solid #4d90d6;
+		color: white;
+		padding-left: 10px;
+	}
+	.detail_content button{
+	    color: white;
+	    padding: 0px 10px;
+	    background: #3C89FF;
+	    border: none;
+	}
+	.yes {
+		background-image: url(/img/qin/ok.png);
+		width: 110px;
+		position: absolute;
+		height: 68px;
+		top: 74px;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		right: 57px;
+	}
+</style>
+<!-- header end -->
+
+<div class="content-wrapper tab-content tab-addtabs" style="padding-top: 0px;">
+	<volist name="all_kc_info" id="kc_info">
+	<div style="text-align: center;width: 90%;background: #002639; margin: 10px auto; line-height: 48px;   font-size: 18px; color: white;">订单详情</div>
+		<div class="detail_top">
+			<div class="detail_top_bar">
+				<label>开仓编号</label>
+				<span>{$kc_info.orderid}</span>
+			</div>
+			<div class="detail_top_bar">
+				<label>持仓总量</label>
+				<span>{$kc_info.all_total}</span>
+			</div>
+			<div class="detail_top_bar">
+				<label>开仓积分</label>
+				<span>{$kc_info.kc_total}</span>
+			</div>
+			<div class="detail_top_bar">
+				<label>平仓积分</label>
+				<span>{$kc_info.pc_total}</span>
+			</div>
+			<div class="detail_top_bar">
+				<label>红利收益</label>
+				<span>{$kc_info.id|get_tgbz_lx=###}</span>
+			</div>
+			<div class="detail_top_bar">
+				<label>申请时间</label>
+				<span>{$kc_info.applay_date}</span>
+			</div>
+		</div>
+		<noempty name="kc_info.jsbz_list">
+		<volist name="kc_info.jsbz_list" id="kc_list">
+			<div class="detail_content">
+				<p>交割方信息</p>
+				<div class="detail_top_bar">
+					<label>用户账号</label>
+					<span>{$kc_list.user}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>用户姓名</label>
+					<span>{$kc_list.user_nc}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>手机号码</label>
+					<span>{$kc_list.ue_phone}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>交易积分</label>
+					<span>{$kc_list.jb}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>交易时间</label>
+					<span>{$kc_list.ppdd_date}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>结束时间</label>
+					<span>{$kc_list.date_hk}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>邀请人</label>
+					<span>{$kc_list.user_tjr}</span>
+				</div>
+				<div class="detail_top_bar">
+					<label>邀请人电话</label>
+					<span>{$kc_list.tjr_ue_phone}</span>
+				</div>
+				<div class="yes"></div>
+				<if condition="$kc_list.ppdd_zt eq 0">
+				<p style="border-top: 1px solid #4d90d6; border-bottom: none;">
+					<span class="my_red">重要提示: </span>请在
+					<span style="color:red" class="my_red">{$kc_list.ppdd_date|datedqsj=###}</span>完成交易
+				</p>
+				</if>
+				<if condition="$kc_list.ppdd_zt eq 1">
+					<p style="border-top: 1px solid #4d90d6; border-bottom: none;">
+						<span class="my_red">重要提示: </span>请在
+						<span style="color:red" class="my_red">{$kc_list.ppdd_date_hk|dateqrdqsj=###}</span>完成确认
+					</p>
+				</if>
+
+				<!--<if condition="$kc_list.ppdd_zt eq 0">-->
+					<!--<span style="color:#ff0000; position: inherit;" data="{$kc_list.ppdd_date|datedqsj=###}" class="dqsj countdownbox">剩余打款时间：</span>-->
+				<!--</if>-->
+				<!--<if condition="$kc_list.ppdd_zt eq 1">-->
+					<!--<span style="color:#ff0000; position: inherit;" data="{$kc_list.ppdd_date_hk|dateqrdqsj=###}" class="dqsj countdownbox">剩余确认时间：</span>-->
+				<!--</if>-->
+				<!--<if condition="$kc_list.ppdd_zt eq 2">-->
+					<!--<span style="color:#ff0000; position: inherit;"  class="dqsj countdownbox">已支付</span>-->
+				<!--</if>-->
+
+				<p style="border-top: 1px solid #4d90d6; border-bottom: none; padding: 10px 0px; text-align: center;">
+					<!-- <button>立即举报</button> -->
+					<a class="btn btn-info viewimg" data="{$kc_list.pic}">打款凭证</a>
+				</p>
+			</div>
+		</volist>
+		</noempty>
+	</volist>
+</div>
+
+<script type="text/javascript">
+    //预览图片
+    $(document).on('click', '.viewimg', function() {
+        var o = $(this);
+        pic = o.attr('data');
+        layer.open({
+            title: '预览图片',
+            type: 2,
+            content: '/Home/Index/home_post?act=viewimg&pic=' + pic,
+            area: ['400px', '65%'],
+            btn: ['关闭']
+        })
+    })
+</script>
+
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

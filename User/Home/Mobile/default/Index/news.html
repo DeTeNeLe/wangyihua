@@ -1,0 +1,24 @@
+<include file='index:head' />
+<div class="wrapper">
+    <div class="tabs0">
+        <li style="width:100%"><a href="{:U('Home/Index/news',array(id=>1))}" class="current">消息列表</a></li>
+    </div>
+    <div class="content">
+        <div class="tab1">
+		     <volist name="list" id="info">
+                <dl class="bzb">
+                    <dd class="c2" style="width:100%">
+					  <i class="fl" style="width:85%">
+					    <a href="{:U('Home/Index/newsPage',array(id=>$info['if_id']))}">
+						 {$info.if_theme|mb_substr=###,0,37,'utf-8'}...
+						</a>
+					  </i>
+					  <i class="fr" style="width:15%">
+						{$info.if_time|date='m-d',###}
+					  </i>
+					</dd>
+				</dl>
+			</volist>
+        </div>
+    </div>
+<include file='index:foot' />

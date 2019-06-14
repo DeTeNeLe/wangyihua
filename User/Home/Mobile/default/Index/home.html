@@ -1,0 +1,240 @@
+<include file='index:head' />
+<div class="scrollleftdiv">
+	<div class="ico">
+	</div>
+    <div class="scrollleft" id="topscroll" style="overflow: hidden; position: relative;">
+       <marquee onMouseOver=this.stop() onMouseOut=this.start() scrollamount=10 scrolldelay=7 direction=left height=77> 
+	       <foreach name='info_list' item='info'>
+		      <a href="{:U('Home/Index/newsPage',array(id=>$info['if_id']))}" style="color:#f7610a;">{$info.if_time}<b>{$info.if_theme}</b> [查看详情]</a>
+		   </foreach>
+		</marquee>
+    </div>
+</div>
+<div class="topbanner" >
+	  <img src="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/banner.jpg" style="width:100%">
+</div>
+<div class="nav">
+	<span class="n1">云晟实业</span><span class="n2">海纳百川</span><span class="n3">厚积薄发</span>
+</div>
+<div class="wrapper">
+     <div class="main">
+        <a href="{:U('/Home/Index/tgbz/')}">
+            <dl>
+                <dt><img src="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/product.jpg"></dt>
+                <dd>
+                    <h1>云晟互惠</h1>
+                    <h2><span>普通会员：<i>2000-5000</i></span></h2>
+                    <h2><span>黄金会员：<i>8000/12000/20000</i></span></h2>
+                    <h2><span>进场：<i>7-15天,3天内随机</i></span></h2>
+					<h2><span>出场：<i>冻结5天,0-72小时顺序出场</i></span></h2>
+                    <h3>
+                        <em>立即存入</em>
+                    </h3>  
+                </dd>
+            </dl>
+        </a>
+    </div>
+	<div class="main">
+        <a href="{:U('/Home/Index/withdraw/')}">
+            <dl>
+                <dt><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514803396389&di=4bf53b5850ff550182c7e1aa0e404d47&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170703%2F2b4d688817e74dd9af3c720c5d9b4473_th.jpg"></dt>
+                <dd>
+                    <h1>取出互惠</h1>
+                    <h2><span>最低取款：<i>￥{$txthemin}</i></span></h2>
+                    <h2><span>最高取款：<i>￥{$txthemax}</i></span></h2>
+                    <h2><span>说明：<i>{$jl_beishu}的整数倍</i></span></h2>
+                    <h3>
+                        <em>立即取出</em>
+                    </h3>  
+                </dd>
+            </dl>
+        </a>
+    </div>
+    <foreach name='plist' item='p'>
+       <div class="main">
+        <a href="javascript:toohome({$g.id})">
+            <dl>
+                <dt><img src="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/product.jpg"></dt>
+                <dd>
+                    <h1>存入金额: <span>GD{$p.id|md5=###|substr=###,0,8}</h1>
+                    <h2><span>存入者：<i>{$p.p_user}</i></span></h2>
+                    <h2><span>取出者：<i>{$p.g_user}</i></span></h2>
+					<h2><span>数额：<i>{$p.jb}</i></span></h2>
+                    <h2><span>日期：<i>{$p['date']}</i></span></h2>
+					<h2><span>状况：<i>
+					 <if condition="$p.zt eq 0">
+                       待付款
+                     </if>
+                     <if condition="$p.zt eq 6">
+                       预约中
+                     </if>
+					 <if condition="$p.zt eq 1">
+                       已付款
+                     </if>
+                     <if condition="$p.zt eq 2">
+                       <font color="#017F01">交易成功</font>
+                     </if>
+					 </i></span></h2>
+                    <h3>
+                       <em>查看详情</em>
+                    </h3>  
+                </dd>
+            </dl>
+        </a>
+      </div>
+    </foreach>
+	<foreach name='glist' item='g'>
+       <div class="main">
+        <a href="javascript:toohome({$g.id})">
+            <dl>
+                <dt><img src="http://n1.itc.cn/img8/wb/recom/2016/06/18/146621846347974559.JPEG"></dt>
+                <dd>
+                    <h1>取出金额: <span>GD{$g.id|md5=###|substr=###,0,8}</h1>
+                    <h2><span>取出者：<i>{$g.g_user}</i></span></h2>
+                    <h2><span>存入者：<i>{$g.p_user}</i></span></h2>
+					<h2><span>数额：<i>{$g.jb}</i></span></h2>
+                    <h2><span>日期：<i>{$g['date']}</i></span></h2>
+					<h2><span>状况：<i>
+					 <if condition="$g.zt eq 0">
+                       待收款
+                     </if>
+                     <if condition="$g.zt eq 1">
+                       待确认
+                     </if>
+                     <if condition="$g.zt eq 2">
+                       <font color="#017F01">交易成功</font>
+                     </if>
+					 </i></span></h2>
+                    <h3>
+                       <em>查看详情</em>
+                    </h3>  
+                </dd>
+            </dl>
+        </a>
+      </div>
+    </foreach>
+	<foreach name='tlist' item='t'>
+       <div class="main">
+        <a>
+            <dl>
+                <dt><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514803227410&di=b994cfee8b51199604d72a6eae6116e8&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01f9bb554320b20000019ae9ed3844.jpg"></dt>
+                <dd>
+                    <h1 style="color:#7060fa"><if condition="$t.zt eq 6">抢入金额：<else />存入金额：</if>PD{$t.id|md5=###|substr=###,0,10}</h1>
+                    <h2><span>参加者：<i>{$t.user}</i></span></h2>
+                    <h2><span>数额：<i>{$t.jb}</i></span></h2>
+                    <h2><span>日期：<i>{$t.date}</i></span></h2>
+					<h2><span>状况：<i>
+					 <if condition="$t.zt eq 0">
+                       请待续
+                     </if>
+                     <if condition="$t.zt eq 6">
+                       预约中
+                     </if>
+                     <if condition="$t.zt eq 1">
+                       匹配成功
+                     </if>
+					 </i></span></h2>
+                    <h3>
+                        <em>敬请等待</em>
+                    </h3>  
+                </dd>
+            </dl>
+        </a>
+      </div>
+    </foreach>
+	<foreach name='jlist' item='v'>
+       <div class="main">
+        <a>
+            <dl>
+                <dt><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514803151788&di=7dd3375b56370f6800b44c98467bef73&imgtype=0&src=http%3A%2F%2Fwww.taskcity.com%2Ffiles%2F0038%2F7020%2Fplaystore-icon.png%3F1462034139"></dt>
+                <dd>
+                    <h1  style="color:#cdcf7d">取出金额: <span>GD{$v.id|md5=###|substr=###,0,10}</h1>
+                    <h2><span>参加者：<i>{$v.user}</i></span></h2>
+                    <h2><span>数额：<i>{$v.jb}</i></span></h2>
+                    <h2><span>日期：<i>{$v.date}</i></span></h2>
+					<h2><span>状况：<i>
+					 <if condition="$v.zt eq 0">
+                       等待中
+                     </if>
+                     <if condition="$v.zt eq 6">
+                       预约中
+                     </if>
+                     <if condition="$v.zt eq 1">
+                       匹配成功
+                     </if>
+					 </i></span></h2>
+                    <h3>
+                        <em>敬请等待</em>
+                    </h3>
+                </dd>
+            </dl>
+        </a>
+      </div>
+    </foreach>
+    <!--<include file='index:include_duobao_list' />-->
+</div>
+
+<input type="hidden" value="" id="m_balance" />
+
+  <script>
+
+    function chg_money(obj){
+	    $("#pay_money").html("￥"+$(obj).val());
+		$("#pay_id").val($(obj).find("option:selected").attr("data-id"));
+	}
+	
+	$(function(){
+	   $("#pay_money").html("￥"+$("#type").val());
+	   $("#pay_id").val($("#type").find("option:selected").attr("data-id"));
+	   if($("#m_balance").val() > 1000){
+	       
+	   }
+	})
+
+	function toohome(id)
+	{
+		location.href = "{:U('/Home/Index/home/',array('tag' => 'o'))}";
+	}
+
+	function totgbz(id)
+	{
+		location.href = "{:U('/Home/Index/tgbz')}";
+	}
+
+
+	function apply_pay(id){
+	  location.href = "{:U('/Home/Index/home/')}";
+	  return false;
+	  if(confirm('请再次确认购买金额!')){
+	   $.ajax({
+	       url:"{:U('/Home/Index/purchase/')}",
+		   data:{rec:'create_order', 'fhpro_id':id},
+		   type:"POST",
+		   success:function(data){
+		       if(data == -99){
+			       alert("您的余额不足");
+			   }else if(data == 1){
+			        alert('购买成功!');
+			   }else{
+			       alert(data);
+			   }
+		   }
+	   })
+	   }
+	}
+	
+	function confirm_pay(){
+	    var dialog = art.dialog({
+      		content: "等待完成支付，再点击确定支付成功按钮!",
+      		ok : function () {location.href = 'complete_pay.html'},
+      		width : 400,
+      		lock: true,
+      	   	opacity: 0.3,
+      	    icon: 'face-smile',
+      	    okVal:'确定支付成功',
+			title:"确定支付",
+      	    height : 20
+  		});
+	}
+  </script>
+<include file='index:foot' />

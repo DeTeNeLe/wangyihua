@@ -1,0 +1,790 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<title>管理档案 </title>
+<meta name="viewport<?php if(C('open_auto_m')==0) echo '_no'; ?>" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+
+<script type="text/javascript" src="/templates/js/utils/remaining.js"></script>
+<script type="text/javascript" src="/templates/js/jquery.js"></script>
+<script type="text/javascript" src="/templates/default/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/templates/default/js/libs/modernizr.js"></script>
+<script type="text/javascript" src="/templates/default/js/libs/selectivizr.js"></script>
+<script type="text/javascript" src="/templates/default/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/templates/default/js/scripts.js"></script>
+<script type="text/javascript" src="/templates/js/fn/fn_number_format.js"></script>
+<script type="text/javascript" src="/templates/js/cache/9c2ff1651945cd8b31ec400ad49a89ca.js"></script>
+<script type="text/javascript" src="/templates/default/js/plugins/fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="/bitStyle/js/layer.js"></script>
+<script type="text/javascript">
+
+var _gNow = new Date();
+jQuery(document).ready(function($){
+    var _allsecs = new Array();
+    var _allsecs2 = new Array();
+    var _i18n = {
+        weeks: ['星期', '星期'],
+        days: ['天', '天'],
+        hours: ['小时', '小时'],
+        minutes: ['分', '分'],
+        seconds: ['秒', '秒']
+    };
+    $('.approve_remaining_time').each(function(){
+        var _rid = $(this).attr('id');
+        var _seconds = parseInt($(this).attr('rel'));
+        if(_seconds > 0){
+            $(this).html(
+                remaining.getString(_seconds, _i18n, false)
+            );
+        }
+        else{
+            $(this).html('剩余0天');
+        }
+        _allsecs[_rid] = _seconds;
+        _allsecs2[_rid] = _seconds;
+    });
+
+    timer = setInterval(function(){
+        var now = new Date();
+        //alert('ok');
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);
+        $('.approve_remaining_time').each(function(){
+            var _rid = $(this).attr('id');
+            _seconds = _allsecs[_rid];
+            //synchronize
+            _diff_sec = _allsecs2[_rid] - _seconds;
+            if(_diff_sec < true_elapsed){
+                _seconds = _allsecs2[_rid] - true_elapsed;
+            }
+            if(_seconds > 0){
+                $(this).html(
+                    remaining.getString(_seconds, _i18n, false)
+                );
+                _allsecs[_rid] = --_seconds;
+            }
+            else{
+                $("#too_many_user").hide();
+                $("#login_btn").removeAttr("disabled");
+                $(this).html('剩余0天');
+            }
+        });
+    }, 1000);
+});
+</script>
+<script type="text/javascript">
+/*jQuery(document).ready(function($){
+    var _allsecs = new Array();
+    var _allsecs2 = new Array();
+    var _i18n = {
+        weeks: ['星期', '星期'],
+        days: ['天', '天'],
+        hours: ['小时', '小时'],
+        minutes: ['分', '分'],
+        seconds: ['秒', '秒']
+    };
+    $('.maintain_remain_time').each(function(){
+        var _rid = $(this).attr('id');
+        var _seconds = parseInt($(this).attr('rel'));
+        if(_seconds > 0){
+            $(this).html(
+                remaining.getString(_seconds, _i18n, false)
+            );
+        }
+        else{
+            $(this).html('剩余0天');
+        }
+        _allsecs[_rid] = _seconds;
+        _allsecs2[_rid] = _seconds;
+    });
+    timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);
+        $('.maintain_remain_time').each(function(){
+            var _rid = $(this).attr('id');
+            _seconds = _allsecs[_rid];
+            //synchronize
+            _diff_sec = _allsecs2[_rid] - _seconds;
+            if(_diff_sec < true_elapsed){
+                _seconds = _allsecs2[_rid] - true_elapsed;
+            }
+            if(_seconds > 0){
+                $(this).html(
+                    remaining.getString(_seconds, _i18n, false)
+                );
+                _allsecs[_rid] = --_seconds;
+            }
+            else{
+                $("#too_many_user").hide();
+                $("#login_btn").removeAttr("disabled");
+                $(this).html('剩余0天');
+            }
+        });
+    }, 1000);
+});*/
+</script>
+
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var mdid, pdid, gdid, amount, status;
+    var img_field = $("#upload_clone").clone();
+
+    $('[data-toggle="tooltip"]').tooltip({
+        container : 'body',
+    });
+
+    $('.hireTable').click(function(){
+        $('.'+$(this).attr('value')+'.donate-body-'+$(this).attr('rel')).slideToggle('normal');
+    });
+
+    $('.transactionWrap').hide();
+    $('.btn-details').click(function () {
+        $(this).parents('table').siblings('.transactionWrap').stop(true, false).slideUp('normal');
+        $(this).parents('table').next().stop(true, false).slideToggle('normal');
+        return false;
+    });
+
+    $('#show_message_box').live("click", function(e){
+        e.preventDefault();
+        json = $(this).attr('data');
+        data = JSON && JSON.parse(json) || $.parseJSON(json);
+
+        mdid = data.mdid;
+
+        var spUrl = $(this).attr('src');
+        $("#message_div").load(spUrl);
+        $("input[name=mdid]").val(mdid);
+    });
+
+    $('a[id^=show_approve_box]').click(function(){
+        json = $(this).attr('data');
+        data = JSON && JSON.parse(json) || $.parseJSON(json);
+
+        var spUrl = $(this).attr('src');
+        $("input[name=approve_mdid]").val(data.mdid);
+        $("span[name=approve_amount]").text(format_monetary_value(data.amount));
+        $("#approve_message_div").load(spUrl);
+    });
+    $('a[id^=show_report_box]').click(function(){
+        json = $(this).attr('data');
+        data = JSON && JSON.parse(json) || $.parseJSON(json);
+        $("input[name=report_uid]").val(data.uid);
+        $("input[name=report_mdid]").val(data.mdid);
+    });
+    $('a[id^=show_confirm_box]').click(function(){
+        json = $(this).attr('data');
+        data = JSON && JSON.parse(json) || $.parseJSON(json);
+        $("input[name=confirm_mdid]").val(data.mdid);
+        $("input[name=confirm_img]").val("");
+    });
+
+    $("a[id^=show_image]").click(function(){
+        $("#image_div").html("<img alt='' class='img-responsive' src='"+$(this).attr('data')+"'>");
+    });
+
+    $("a[id^=show_message_image]").live("click", function(){
+        $("#image_div").html("<img alt='' class='img-responsive' src='"+$(this).attr('data')+"'>");
+    });
+
+    $("#pdgd_message_form").on('submit', function(events){
+        events.preventDefault();
+        if($("input[name=uid]").val() != 18162617){
+            $('#message_text').html('程序出错，请再试一次。');
+        }else{
+            $.ajax({
+                url: '?aj=1&type=add_pdgd_message',
+                type: "POST",
+                data:  new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data){
+                    var show_image = '';
+                    json = data.split('<', 1)[0];
+                    details = JSON && JSON.parse(json) || $.parseJSON(json);
+                    if(details.error == ""){
+                        $('#message_text').html('');
+                        if(details.upload != ""){
+                            show_image = '<a href="#dialog-photo" id="show_message_image" data="'+details.upload+'" data-toggle="modal" class=""><img height="100px" width="100px" src="'+details.upload+'"></a>';
+                        }
+                        var html = '<div class="innerMessage message-toggle"><div class="fullMessage clearfix"><div class="pull-left"><strong class="blue">'+details.username+'</strong></div><div class="pull-right calendar ml5"><i class="fa fa-calendar mr5"></i><span class="title-date">2015年7月9日 10:04:42AM</span></div><div class="clearfix"></div><div class="mt5"><p class="nm">'+details.message+'</p>'+show_image+'</div></div></div>';
+                        $('#message_div').append(html);
+                        $("#upload").html(img_field);
+                        img_field = $("#upload_clone").clone();
+                        $("textarea[name=message]").val('');
+                    }else{
+                        $('#message_text').html(details.error);
+                    }
+                }
+            });
+        }
+    });
+
+    // prompt user a box to pd after completed a gd
+    if(1){
+        $('#prompt-repd').modal('show');
+    }
+    $('#prompt-repd').on('click', '#click-pd', function(e){
+        e.preventDefault();
+        $("#pdBtn").trigger("click");
+        $('#prompt-repd').modal('hide');
+    });
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var gdBtn = $('#gdBtn');
+    var pdBtn = $('#pdBtn');
+
+    pdBtn.click(function(){
+        $(this).toggleClass('active');
+        gdBtn.removeClass('active');
+        $('#pdWrap').stop(true, false).slideToggle('fast');
+        $('#gdWrap').stop(true, false).slideUp('fast').removeClass('open');
+        return false;
+    });
+    // if user status is freeze or just unblock and not yet do the maintain
+    gdBtn.click(function(){
+        $(this).toggleClass('active');
+        pdBtn.removeClass('active');
+        $('#gdWrap').stop(true, false).slideToggle('fast');
+        $('#pdWrap').stop(true, false).slideUp('fast').removeClass('open');
+        return false;
+    });
+
+    // Tooltips
+    $('.tip').tooltip({placement: 'top'});
+    $('.tipr').tooltip({placement: 'right'});
+    $('.tipb').tooltip({placement: 'bottom'});
+    $('.tipl').tooltip({placement: 'left'});
+
+    $("a[href='#top']").click(function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+
+    var _server_time = new Date(2015, 7-1, 9,
+        11, 4, 42),
+        _server_time2 = new Date(2015, 7-1, 9,
+        11, 4, 42),
+        _local_time = new Date(2015, 7-1, 9,
+        10, 4, 42),
+        _local_time2 = new Date(2015, 7-1, 9,
+        10, 4, 42);
+
+    _timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);        //synchronize & increment 1 second
+        second = _local_time.getTime() + 1000;
+        elapsed = Math.round((second - _local_time2.getTime()) / 1000);
+        if(elapsed < true_elapsed){
+            diff = true_elapsed - elapsed;
+            second += (diff * 1000);
+        }
+        _local_time.setTime(second);
+        second = _server_time.getTime() + 1000;
+        elapsed = Math.round((second - _server_time2.getTime()) / 1000);
+        if(elapsed < true_elapsed){
+            diff = true_elapsed - elapsed;
+            second += (diff * 1000);
+        }
+        _server_time.setTime(second);
+
+        //update server time
+        date_text = padNumber(_server_time.getHours())+':'+padNumber(_server_time.getMinutes())+':'+padNumber(_server_time.getSeconds());
+        date_text += ' ' + _server_time.getDate()+'/'+(_server_time.getMonth()+1)+'/'+_server_time.getFullYear();
+        $('#server_time_text').html(date_text);
+        //update local time
+        date_text = padNumber(_local_time.getHours())+':'+padNumber(_local_time.getMinutes())+':'+padNumber(_local_time.getSeconds());
+        date_text += ' ' + _local_time.getDate()+'/'+(_local_time.getMonth()+1)+'/'+_local_time.getFullYear();
+        $('#local_time_text').html(date_text);
+    }, 1000);
+
+    /**
+    * @param number An integer
+    * @return Integer padded with a 0 if necessary
+    */
+    function padNumber(number) {
+        return (number >= 0 && number < 10) ? '0' + number : number;
+    }
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var _allsecs = new Array();
+    var _allsecs2 = new Array();
+    var _i18n = {
+        weeks: ['星期', '星期'],
+        days: ['天', '天'],
+        hours: ['小时', '小时'],
+        minutes: ['分', '分'],
+        seconds: ['秒', '秒']
+    };
+    $('.maintain_remain_time').each(function(){
+        var _rid = $(this).attr('id');
+        var _seconds = parseInt($(this).attr('rel'));
+        if(_seconds > 0){
+            $(this).html(
+                remaining.getString(_seconds, _i18n, false)
+            );
+        }
+        else{
+            $(this).html('@T/user/incentive/product/remaining 0');
+        }
+        _allsecs[_rid] = _seconds;
+        _allsecs2[_rid] = _seconds;
+    });
+    timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);        $('.maintain_remain_time').each(function(){
+            var _rid = $(this).attr('id');
+            _seconds = _allsecs[_rid];
+            //synchronize
+            _diff_sec = _allsecs2[_rid] - _seconds;
+            if(_diff_sec < true_elapsed){
+                _seconds = _allsecs2[_rid] - true_elapsed;
+            }
+            if(_seconds > 0){
+                $(this).html(
+                    remaining.getString(_seconds, _i18n, false)
+                );
+                _allsecs[_rid] = --_seconds;
+            }
+            else{
+                $(this).html('@T/user/incentive/product/remaining 0');
+                            }
+        });
+    }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var _allsecs = new Array();
+    var _allsecs2 = new Array();
+    var _i18n = {
+        weeks: ['星期', '星期'],
+        days: ['天', '天'],
+        hours: ['小时', '小时'],
+        minutes: ['分', '分'],
+        seconds: ['秒', '秒']
+    };
+    $('.block_remain_time').each(function(){
+        var _rid = $(this).attr('id');
+        var _seconds = parseInt($(this).attr('rel'));
+        if(_seconds > 0){
+            $(this).html(
+                remaining.getString(_seconds, _i18n, false)
+            );
+        }
+        else{
+            $(this).html('@T/user/incentive/product/remaining 0');
+        }
+        _allsecs[_rid] = _seconds;
+        _allsecs2[_rid] = _seconds;
+    });
+    timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);        $('.block_remain_time').each(function(){
+            var _rid = $(this).attr('id');
+            _seconds = _allsecs[_rid];
+            //synchronize
+            _diff_sec = _allsecs2[_rid] - _seconds;
+            if(_diff_sec < true_elapsed){
+                _seconds = _allsecs2[_rid] - true_elapsed;
+            }
+            if(_seconds > 0){
+                $(this).html(
+                    remaining.getString(_seconds, _i18n, false)
+                );
+                _allsecs[_rid] = --_seconds;
+            }
+            else{
+                $(this).html('@T/user/incentive/product/remaining 0');
+                            }
+        });
+    }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var pin_message = "此次执行需要{quantity}PIN。您现有0PIN。";
+        $('#maintain_back_btn, #pd_back_btn, #gd_back_btn').click(function(){
+        $('input[name=__req]').val('start'); //back to starting step
+    });
+
+    if(""){
+        $("#pd_pin").text(pin_message.replace("{quantity}", parseInt() / 1000));
+    }else{
+        $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+    }
+
+    $("input[name=from_wallet]").change(function(){
+        if($(this).val() == 'cwallet'){
+            $("#minimum_amount").text("RMB500.00");
+        }else{
+            $("#minimum_amount").text("RMB1,000.00");
+        }
+    });
+
+    $("#show_pd_amount").html(format_monetary_value(0));
+    $("#show_gd_amount").html(format_monetary_value(0));
+
+    $("#pd_amount").keyup(function(){
+        $("#show_pd_amount").html(format_monetary_value(parseInt($(this).val() / 1000)*1000));
+        if($(this).val() > 1000 && $(this).val() % 1000 == 0){
+            $("#pd_pin").text(pin_message.replace("{quantity}", $(this).val() / 1000));
+        }else{
+            $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+        }
+    });
+    $("#gd_amount").keyup(function(){
+        $("#show_gd_amount").html(format_monetary_value(parseInt($(this).val() / 50)*50));
+    });
+});
+</script>
+
+
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    $("#btn_cancel_donation").live("click", function(e){
+        if($("select[name=report_reason]").val() == ""){
+            e.preventDefault();
+            $("#report_reason_err_text").text("@T/user/dashboard/pdgd/report-reason-failed");
+        }else{
+            $("#report_reason_err_text").text("");
+        }
+    });
+});
+</script>
+
+<script>
+</script>
+<link rel="stylesheet" href="/templates/default/css/bootstrap/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/main.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/language/zh-CN.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/plugins/fileupload.css" type="text/css" />
+
+
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="/bitStyle/images/favicon.ico" type="image/x-icon">
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $('#terminate-account').click(function(e){
+        e.preventDefault();
+        $('#dialog-terminate-account').modal('show');
+    });
+    $('#reactive-account').click(function(e){
+        e.preventDefault();
+        $('#dialog-reactive-account').modal('show');
+    });
+});
+</script>
+</head>
+<body class="zh-CN " id="">
+
+
+<include file="User/Home/View/default/common_header.html" />
+
+
+
+
+<div class="row">
+                <div class="col-md-6 tablet-column-reset">
+                    <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">帐户详情</h4>
+                        </div>
+                        <form class="form-horizontal margin-none" id="loginForm" method="post" action="{:U('Home/Info/xgzlcl')}">           
+                            <div class="widget-body">
+                              
+                                    <div class="form-group">
+                                    <label class="col-md-4 control-label">手机号码</label>
+                                    <div class="col-md-8">
+                                        <input type="" value="{$userData['ue_phone']}" id="" class="form-control" name="phone" required="" readonly="">
+                                    </div>
+                                </div>
+                           <!--      <div class="form-group">
+                                    <label class="col-md-4 control-label">电邮地址</label>
+                                    <div class="col-md-8">
+                                        <input type="" value="{$userData['ue_account']}" id="" class="form-control" name="" readonly="">
+                                    </div>
+                                </div> -->
+                                  <div class="form-group">
+                                    <label class="col-md-4 control-label">姓名</label>
+                                    <div class="col-md-8">
+                                        <input type="" value="{$userData['ue_theme']}" id="" class="form-control" name="username" required="" >
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">微信号</label> 
+                                    <div class="col-md-8">
+                                        <input type="text" value="{$userData['weixin']}" id="wechat" class="form-control" name="wechat" <if condition=" $userData['weixin']  neq  null">readonly=''</if>> 
+                                   </div>
+								  </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">云支付账号</label>
+                                    <div class="col-md-8">
+                                        <if condition=" $userData['yzf']  eq  null">
+                                            <input type="text" value="{$userData['yzf']}" id="yzf" class="form-control" name="yzf" >
+                                            <else />
+                                        <input type="text" value="{$userData['yzf']}" id="yzf" class="form-control" name="yzf" readonly="">
+                                    </if>
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="col-md-4 control-label">支付宝账号</label>
+                                    <div class="col-md-8">
+                                        <if condition=" $userData['zfb']  eq  null">
+                                            <input type="text" value="{$userData['zfb']}" id="alipay" class="form-control" name="alipay" >
+                                            <else />
+                                        <input type="text" value="{$userData['zfb']}" id="alipay" class="form-control" name="alipay" readonly="">
+                                    </if>
+                                    </div>
+                                </div>
+                         <div class="form-group"> 
+                              <label class="col-md-4 control-label">银行名称</label> 
+                         <div class="col-md-8"> 
+                            <if condition=" $userData['yhmc'] eq  null">
+                               <input type="" value="{$userData['yhmc']}" id="" class="form-control" name="bank_name" required=""> 
+                               <else />
+                                <input type="" value="{$userData['yhmc']}" id="" class="form-control" name="bank_name" required="" readonly=""> 
+                           </if>
+                                </div> 
+                               </div> 
+                              <div class="form-group"> 
+                                   <label class="col-md-4 control-label">银行账户号码</label> 
+                                <div class="col-md-8">  
+                                     <if condition=" $userData['yhzh'] eq  null">
+                                     <input type="" value="{$userData['yhzh']}" id="" class="form-control" name="bank_number" required="">
+                                     <else />
+                                    <input type="" value="{$userData['yhzh']}" id="" class="form-control" name="bank_number"  readonly = "">
+                                 </if>
+                                  </div> 
+                                 </div> 
+                                                            
+                                <div class="form-group " <?php if(C('sms_open_mod')=="0") echo "style='display:none'"; ?>>
+                                <label class="col-md-4 control-label">手机号码</label>
+                                 <div class="input-group"><input type="" id="phone" class="form-control" name="phone" maxlength="13"  readonly="" value="{$userData['ue_phone']}">
+                                 <span class="input-group-btn mol-md-8"> <input type="button" value="发送" onclick="time(this);" class="btn btn-info"></span></div>
+        
+                                </div>                      
+                                <div class="form-group" <?php if(C('sms_open_mod')=="0") echo "style='display:none'"; ?>>
+                                    <label class="col-md-4">手机验证码<span class="ast">*</span></label>
+                                    <div class="col-md-8"><input class="form-control"  name="phone_check" value="{:session('CHECK_CODE')}" type="text"/></div>
+                                </div>
+                            </div>
+                            <footer class="data-footer innerAll half text-right clearfix">
+                                <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                            </footer>
+                        </form>
+                    </div>                    
+                </div>
+                
+                <div class="col-md-6 tablet-column-reset">
+                    
+
+                    <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">登录密码</h4>
+                        </div>
+                        <form class="form-horizontal margin-none" id="" method="post" action="{:U('Info/xgyjmmcl')}">                         
+                            <div class="widget-body">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" >原密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input type="password" class="form-control" name="ymm" value=""/>
+                                                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" >新密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input type="password" class="form-control" name="xmm" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">确认新密码</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="epassword2" name="xmmqr" value="" type="password"></div>
+                                </div>
+                            </div>
+                            <footer class="data-footer innerAll half text-right clearfix">
+                                <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                            </footer>
+                        </form>
+                    </div>
+                    
+         
+                </div>
+
+    <div class="col-md-6 tablet-column-reset">
+
+
+        <div class="widget widget-body-white padding-none">
+            <div class="widget-head">
+                <h4 class="heading">二级密码</h4>
+            </div>
+            <form class="form-horizontal margin-none" id="" method="post" action="{:U('Info/xgejmmcl')}">
+                <div class="widget-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">原二级密码</label>
+                        <div class="col-md-8">
+                            <div class="controls">
+                                <input type="password" class="form-control" name="yejmm" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">新二级密码</label>
+                        <div class="col-md-8">
+                            <div class="controls">
+                                <input type="password" class="form-control" name="xejmm" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">确认新二级密码</label>
+                        <div class="col-md-8">
+                            <input class="form-control"  name="xejmmqr" value="" type="password"></div>
+                    </div>
+                </div>
+                <footer class="data-footer innerAll half text-right clearfix">
+                    <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                </footer>
+            </form>
+        </div>
+
+
+    </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    function reg() {
+        if ($("#username").val() == "") {
+            layer.msg("请填写用户名");
+            return false;
+        } else if ($("#recommended").val() == "") {
+            layer.msg("请填写推荐人");
+            return false;
+        }
+        else if ($("#password").val() == "") {
+            layer.msg("请填写密码");
+            return false;
+        }
+        else if ($("#password").val() != $("#cpassword").val()) {
+            layer.msg("两次密码不一致");
+            return false;
+        }
+        else if ($("#cpassword").val() == "") {
+            layer.msg("请填写安全密码");
+            return false;
+        }
+        else if ($("#cpassword2").val() != $("#cpassword2").val()) {
+            layer.msg("两次安全密码不一致");
+            return false;
+        }
+        else if ($("#realname").val() == "") {
+            layer.msg("请填写姓名");
+            return false;
+        }
+       
+        else if ($("#phone").val() == "") {
+            layer.msg("请填写手机号");
+            return false;
+        }
+        else if ($("#password").val() == "") {
+            layer.msg("请填写密码");
+            return false;
+        }
+
+        if (!isMobile($("#phone").val())) {
+            layer.msg("手机格式不正确");
+            return false;
+        }
+
+       
+        /*$.post("{:U('Reg/regadd')}", $("form").serialize(), function(data) { 
+            if (data.error) { 
+                    layer.msg(data.msg);
+            } else { 
+                alert(data.msg);
+                location.href= "{:U('Login/index')}";                    
+            }},'json');*/
+
+        $("#loginForm").submit();
+    }
+
+    function isMobile(str) {
+        var myreg = /^([0]?)(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
+        return myreg.test(str);
+    }
+
+    function isEmail(str) {
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        return reg.test(str);
+    }
+
+    var wait = 60;
+
+    function time(o) {       
+
+        if ($("#phone").val() == "") {
+            layer.msg("请填写手机号");
+            return false;
+        }       
+
+        if (!isMobile($("#phone").val())) {
+            layer.msg("手机格式不正确");
+            return false;
+        }
+
+        $.post("{:U('Info/sendPhone_info')}", { phone: $("#phone").val() }, function(msg) { layer.msg("验证码已经发送，注意查收"); });
+
+        okssss(o);
+    }
+    var wait = 60;
+    function okssss(o) {
+        if (wait == 0) {
+            $(o).removeAttr("disabled");
+            $(o).val("免费获取验证码");
+            wait = 120;
+        } else {
+            $(o).attr("disabled", true);
+            $(o).val("重新发送(" + wait + ")");
+            wait--;
+            setTimeout(function() {
+                okssss(o);
+            },
+            1000);
+        }
+    }
+</script>
+</body>
+</html>
+

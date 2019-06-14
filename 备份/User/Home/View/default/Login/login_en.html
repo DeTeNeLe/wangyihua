@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7 fluid top-full sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 8]>    <html class="ie lt-ie9 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if gt IE 8]> <html class="ie gt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if !IE]><!--><html><!-- <![endif]-->
+<head>
+
+
+<script type="text/javascript" src="/bitStyle/templates/js/jquery.js"></script>
+<script type="text/javascript" src="/bitStyle/js/remaining.js"></script>
+<script type="text/javascript">
+  var _gNow = new Date();
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var _allsecs = new Array();
+  var _allsecs2 = new Array();
+  var _i18n = {
+    weeks: ['星期', '星期'],
+    days: ['天', '天'],
+    hours: ['小时', '小时'],
+    minutes: ['分', '分'],
+    seconds: ['秒', '秒']
+  };
+  $('.login_remain_time').each(function(){
+    var _rid = $(this).attr('id');
+    var _seconds = parseInt($(this).attr('rel'));
+    if(_seconds > 0){
+     $(this).html(
+        remaining.getString(_seconds, _i18n, false)
+      );
+    }
+    else{
+      $(this).html('剩余0天');
+    }
+    _allsecs[_rid] = _seconds;
+    _allsecs2[_rid] = _seconds;
+  });
+  timer = setInterval(function(){
+    var now = new Date();
+    true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);    $('.login_remain_time').each(function(){
+      var _rid = $(this).attr('id');
+      if(typeof _allsecs[_rid] == 'undefined'){
+        _allsecs[_rid] = parseInt($(this).attr('rel'));
+      }
+      _seconds = _allsecs[_rid];
+      if(typeof _allsecs2[_rid] == 'undefined'){
+        _allsecs2[_rid] = parseInt($(this).attr('rel'));
+      }
+      //synchronize
+      _diff_sec = _allsecs2[_rid] - _seconds;
+      if(_diff_sec < true_elapsed){
+        _seconds = _allsecs2[_rid] - true_elapsed;
+      }
+      if(_seconds > 0){
+        $(this).html(
+          remaining.getString(_seconds, _i18n, false)
+        );
+        _allsecs[_rid] = --_seconds;
+      }
+      else{
+        $("#too_many_user").hide();
+        $("#login_btn").removeAttr("disabled");
+        $(this).html('剩余0天');
+      }
+    });
+  }, 1000);
+});
+</script>
+<link rel="stylesheet" href="/bitStyle/css/bootstrap.min.css" type="text/css" />
+
+
+<title>会员登录</title>
+<meta name="viewport<?php if(C('open_auto_m')==0) echo '_no'; ?>" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="/bitStyle/images/favicon.ico" type="image/x-icon">
+<link href='google.h.c' rel='stylesheet' type='text/css'>
+
+<style>
+/* LOGIN PAGE ================================================== */
+.login{
+  background: url("/bitStyle/images/login-bg.jpg") no-repeat left top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.login .navbar {
+  min-height: initial;
+  background: #c0392b;
+  background: #424141;
+  
+}
+.login ul[role="sub-navigation"] {margin:0}
+.login .wrapper{
+  max-width: 354px;
+  min-width: 300px;
+  margin: 140px auto 0;
+  position: relative;
+}
+  .login .wrapper .brand{
+    margin-bottom: 20px;
+    text-align: center;
+  }
+    .login .wrapper .brand h2{
+      font-size: 22px;
+      color: #FFF;
+      line-height: 32px;
+      margin: 0;
+      font-style: italic;
+      text-shadow: 0px 1px 1px rgba(0,0,0,0.8);
+    }
+  .login .wrapper .widget{
+    background: transparent;
+    margin: 0 auto 15px;
+  }
+  .login .wrapper .widget .widget-body{
+    background: #fafafa;
+    background: rgba(250,250,250,1);
+    -background:none;
+    position: relative;
+    padding: 15px;
+    text-align:center;
+    -webkit-box-shadow: 0 3px 2px 2px rgba(5,5,5,0.3);
+    box-shadow: 0 3px 2px 2px rgba(5,5,5,0.3);
+  }
+  .login .wrapper .widget .widget-body h1{
+    font-size: 20pt;
+    margin: 10px 0 20px 0;
+    color: #686868;
+  }
+  .login .wrapper .widget .widget-body label{
+    font-size: 13px;
+    color: #7c7c7c;
+    font-weight: 500;
+  }
+  
+  .login .wrapper input[type="text"], .login .wrapper input[type="password"] {
+        font-size: 13px;
+    height: auto;
+    margin-bottom: 14px;
+    padding: 10px 9px;
+    box-shadow: none;
+    /* background: #000; */
+    border: 1px solid #D2D2D2;
+  }
+  body.login .wrapper .password {
+    float: right;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  body.login .wrapper .separator{padding: 0 0 20px;}
+  
+  .form-control { border:0; border-radius:0;}
+  
+  /* Navbar ============== */
+  .navbar-nav > li > a {
+    color: #989898;
+    font-size: 12px;
+    padding: 10px;
+  }
+  .navbar-nav > li.active > a,
+  .navbar-nav > li > a:active,
+  .navbar-nav > li > a:focus,
+  .navbar-nav > li > a:hover{
+    outline: 0;
+    background-color: #555;
+    box-shadow: inset 1px 1px 0px rgba(0,0,0,0.1);
+    color: #F7CB18;
+  }
+  .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+    background: #424242;
+  }
+  
+  .navbar-nav>li>.dropdown-menu {
+    background: #424141;
+    border: 1px solid #737373;
+    min-width:auto;
+  }
+    .navbar-nav>li>.dropdown-menu li a{
+      color: #FFF;
+      font-size: 12px;
+      padding: 10px 15px;
+    }
+    .navbar-nav>li>.dropdown-menu li a:focus,
+    .navbar-nav>li>.dropdown-menu li a:hover{
+      background: #FED501;
+      color: #424141;
+    }
+    .dropdown-menu>.active>a,
+    .dropdown-menu>.active>a:hover,
+    .dropdown-menu>.active>a:focus{background: #424242;}
+  
+  /* Navbar Right - Language Dropdown ============== */
+  [class*="language-sel-"] {
+    width:16px;
+    height:11px;
+    top: 1px;
+    margin-right:5px;
+    position: relative;
+    display: inline-block;
+  }
+  .language-sel-en{background: url(../../bitStyle/images/gb.png) no-repeat 0 0 !important}
+  .language-sel-zh-CN{background: url(../../bitStyle/images/cn.png) no-repeat 0 0 !important}
+  
+  /* Button ============== */
+  .btn-inverse{
+    background: #45484d;
+    color: #fff;
+  }
+  .btn-inverse:focus,
+  .btn-inverse:hover{
+    color: #fff;
+    background: #222;
+  }
+   .btn {padding: 8px 12px;}
+   
+   .btn-primary {margin-bottom: 10px;}
+   
+   .btn-primary {
+    color: #428bca;
+    background-color: #fff;
+    border-color:  #428bca;
+  }
+  
+  .btn-primary:hover,
+  .btn-primary:focus  {
+    color: #fff;
+    background-color: #428bca;
+    border-color:  #428bca;
+  }
+
+  
+  /* Copyright ============== */
+  .copyright{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 1px 2px #000;
+  }
+  
+  
+  @media (max-width: 767px){
+    .navbar-toggle .icon-bar{background: #FFF;}
+    
+    nav[role="main-navigation"]{
+      float: none;
+      margin: 0 !important;
+    }
+    
+    ul[role="sub-navigation"]{text-align: right; margin: 0;}
+    ul[role="sub-navigation"] > li{display: inline-block;}
+    ul[role="sub-navigation"] .open .dropdown-menu{
+      position: absolute;
+      float: left;
+      left: auto;
+      right: 0;
+      background-color: #000
+    }
+    ul[role="sub-navigation"] .open .dropdown-menu li a{
+      text-align: left;
+      padding: 5px 15px;
+    }
+  }
+</style>
+
+</head>
+<body class="login">
+
+<!--script>
+  (function(i,s,o,g,r,a,m){i['google.hAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','google.js.js','ga');
+
+  ga('create', 'UA-65533920-1', 'auto');
+  ga('send', 'pageview');
+</script-->
+
+<header class="navbar navbar-static-top" id="top" role="header">
+  <div class="container">
+    <ul class="nav navbar-nav navbar-right" role="sub-navigation">
+            <li class="dropdown" id="lang_nav">
+        <a href="#" data-toggle="dropdown">
+          <span class="language-sel-en fa-lang"></span>
+          <span class="language-text">English</span>
+        </a>
+        <ul class="dropdown-menu" role="languageMenu">
+                                        <li><a href="{:U('Login/english')}"><span class="language-sel-en"></span>English</a></li>
+                                                              <li><a href="{:U('Login/index')}"><span class="language-sel-zh-CN"></span>简体中文</a></li>
+                                      </ul>
+      </li>
+    </ul>
+  </div>
+</header>
+
+
+<div class="wrapper">
+  
+
+  <div class="widget">
+
+    <div class="widget-body">
+      <div class="brand">
+                <a href="#" class="appbrand"><img src="/bitStyle/images/nmm_logo_login.png" alt="  "></a>
+      </div>
+      <h1>Login</h1>
+            
+            
+        <div class="alert alert-danger">
+              </div>    
+            
+      
+            <form name="login_form" action="" method="post">
+        
+        
+        <input type="text" class="form-control" name="account" autofocus id="username" value="" placeholder="Username">
+        
+        
+        <input type="password" class="form-control" name="password"  id="password" placeholder="Password" value="">
+        
+        
+
+        <div class="separator bottom clearfix"></div>
+        <div class="row" style="text-align:center;">
+          <div class="col-md-6">
+                    </div>
+          <div class="col-md-12">
+            <input class="btn btn-block btn-primary" type="button" name="submit" value="Login" id="login_btn" />
+            <a class="btn btn-block btn-success" type="button" name="submit"  id="login_btn" href="{:U('Reg/index')}" />Register</a>
+            <!-- <a href="/bitStyle/zh-CN/forgot-password?source=login" class="forgot-password">找回密码</a> -->
+          </div>
+        </div>
+      </form>
+          </div>
+  </div>
+  <div class="copyright">
+  &copy; 2017 云支付. All rights reserved. </div>
+</div>
+
+
+<script type="text/javascript" src="/bitStyle/js/modernizr.js"></script>
+<script type="text/javascript" src="/bitStyle/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bitStyle/js/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function($){
+  $('.alert-danger').hide();
+  $('input#login_btn').click(function(){
+    $('input#login_btn').attr('disabled','disabled');
+    var url = "{:U('/Home/Login/logincl')}";
+    var account = $("#username").val();
+    var password = $("#password").val();
+    $.post(url,{account:account,password:password},function(data){
+      if(data.sf){
+         $('.alert-danger').html(data.nr).show();
+        $('input#login_btn').removeAttr("disabled");
+      }else{
+        document.location.href='/';
+      }
+    },'json');
+  });
+  
+    $('#username').focus();
+    
+  $.removeCookie("alert", { path: '/' });
+});
+</script>
+
+</body>
+</html>

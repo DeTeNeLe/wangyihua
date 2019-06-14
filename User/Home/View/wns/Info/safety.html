@@ -1,0 +1,46 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<!-- header end -->
+<div class="content-wrapper tab-content tab-addtabs" style="padding-top: 0px;">
+	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
+	   	<i class="fa fa-chevron-circle-left"></i>返回
+	    <script>
+			function goback(){
+				window.history.back();
+			}
+			(function(){
+				$(document).on('click','#tglj',function(){
+					var o = $(this).prev('input');
+					o.select();
+					document.execCommand("copy",false,null);
+					layer.tips('已复制至剪贴板',o);
+				})
+			})();
+		</script>
+	</span>
+	<div style="    background: #002333;width: 90%; padding: 10px; margin: 0px auto;">
+		<div style="width: 80%;margin: auto;">
+			<div style="margin: 20px 0;display:none">
+				通过验证手机短信更改登录密码，如果您的手机号无法接收短信请联系客服。
+			</div>
+			<div style="display:none">
+				<input type="button" class="form-control col-2 btn-primary" value="发送手机短信" style="width: 49%;display: inline-block;" /><input type="text" class="form-control smscode" placeholder="短信验证码" style="width: 49%;display: inline-block;" />
+			</div>
+			<div style="margin: 10px 0">
+				<span style="display: inline-block;width: 49%; color:white;">输入原密码：</span><input type="password" class="form-control ymm" placeholder="原密码" style="width: 49%;display: inline-block;" />
+			</div>
+			<div style="margin: 10px 0">
+				<span style="display: inline-block;width: 49%; color:white;">输入新的密码：</span><input type="password" class="form-control xmm" placeholder="新的密码" style="width: 49%;display: inline-block;" />
+			</div>
+			<div style="margin: 10px 0">
+				<span style="display: inline-block;width: 49%; color:white;">确认新密码：</span><input type="password" class="form-control xmmqr" placeholder="确认新密码" style="width: 49%;display: inline-block;" />
+			</div>
+			<div>
+				<a class="btn btn-primary mf_savepwd">提交</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

@@ -1,0 +1,96 @@
+<?php
+
+    
+    
+
+
+?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>回答问题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<style type="text/css">
+		
+		div{width:778px;margin:0 auto;background:#fff;text-align:left;}
+</style>
+<script language="javascript">
+	$(function(){
+    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
+	$(window).resize(function(){  
+    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
+    })  
+});  
+</script> 
+</head>
+
+
+<body style="background:#edf6fa;" algin="center">
+	<script>alert('新人温馨提示：由于您是第一次买入，需要先回答一下几个问题。答案是多选哦');</script>
+	<div >
+	<form action="{:U('index/question')}" id="form" name="form" method="post" enctype="multipart/form-data" >
+		<table>
+			<tr>
+				<td>1、云晟实业企业文化的精髓是什么？</td>
+			</tr>
+			<tr>
+			   <td><input name="question_1_A" type="checkbox" value="A" />  A、创新、跨越、激情</td>
+			</tr>
+			<tr>
+			   <td><input name="question_1_B" type="checkbox" value="B" />  B、诚信、责任、奉献</td>
+			</tr>
+			<tr>
+			   <td><input name="question_1_C" type="checkbox" value="C" /> C、感恩、格局、服务</td>
+			</tr>
+			<tr>
+			   <td><input name="question_1_D" type="checkbox" value="D" /> D、恐惧、懒惰、自卑</td>
+			</tr>
+			<tr>
+				<td>2、云晟实业控盘机制及如何保证会员质量实现盘面可持续稳定发展？</td>
+			</tr>
+			<tr>
+			   <td><input name="question_2_A" type="checkbox" value="A" /> A、激活200，排单100，跨门槛入豪门，豪门临盛宴。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_2_B" type="checkbox" value="B" /> B、限制会员进场，控制排单。防止资金大进大出，保证资金池充足，实现可持续发展。百分百收款，杜绝恐慌。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_2_C" type="checkbox" value="C" />C、奖金拆分，诚信金促打款，秒收金，实现持续排单，抱团互助。规定时间内，灵活进厂，随机匹配，防投机分子。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_2_D" type="checkbox" value="D" />D、传统互助，毫无创意，停滞不前。</td>
+			</tr>
+			<tr>
+				<td>3、云晟实业老板的格局、高层的核心精神及实体基地建设未来的前景是什么？</td>
+			</tr>
+			<tr>
+			   <td><input name="question_3_A" type="checkbox" value="A" />A、老板三大坚持【做好、做久、做强】，年前铺垫，年后爆发，树立互助标杆，扭转互助风气。实现同创共赢、共享未来的伟大目标。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_3_B" type="checkbox" value="B" /> B、价值1.6亿的基地商城在未来3年内，打造酒店、餐饮、休闲娱乐场所、品牌服装店，超市、网吧于一体的综合性大型商超，实现利润与会员流通，诚信天下，一言九鼎。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_3_C" type="checkbox" value="C" />C、企业领导秉承机制刺激人、文化塑造人、感情温暖人、事业凝聚人，赢在执行，胜靠团队的合作精神，本项目不欢迎投机分子加入。</td>
+			</tr>
+			<tr>
+			   <td><input name="question_3_D" type="checkbox" value="D" />D、实体无前景，企业文化一盘散沙。</td>
+			</tr>
+			<tr >
+				<td style="text-align: center"><input type="reset" value="重置" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" /></td>
+				
+			</tr>
+		</table>
+        
+          
+         
+     </form>
+     
+	</div>
+ 
+</body>
+
+</html>

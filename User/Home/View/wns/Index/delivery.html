@@ -1,0 +1,77 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<style>
+	.content-wrapper {
+		background: #001926 !important;
+	}
+</style>
+<!-- header end -->
+<div class="content-wrapper tab-content tab-addtabs" style="padding-top: 0px;">
+	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
+	   	<i class="fa fa-chevron-circle-left"></i>返回
+	    <script>
+			function goback(){
+				window.history.back();
+			}
+			(function(){
+				$(document).on('click','#tglj',function(){
+					var o = $(this).prev('input');
+					o.select();
+					document.execCommand("copy",false,null);
+					layer.tips('已复制至剪贴板',o);
+				})
+			})();
+		</script> 
+	</span>
+	<div style="padding: 10px;">
+		<div style="color: white; margin-top: 10px;margin-left: 5%;">
+			<p style="font-size: 18px;">您的帐户余额:{$userData['ue_money']}</p>
+			<p style="font-size: 18px;">提现用户</p>
+			<select id="select" style="background: white;color: black; height: 35px; margin-bottom: 10px;">
+				<option value="1">本息帐户</option>
+				<option value="2">奖励帐户</option>
+			</select>
+		</div>
+		<input id="num" style="margin-left: 5%; width: 90%;line-height: 35px; padding: 5px;font-size: 18px;" type="text" placeholder="最多可提现金额2000.00元" />
+		<div id="btn" style="width: 90%;margin-left: 5%; background: #2C3E50;margin-top: 5%;color: white;line-height: 42px;text-align: center;font-size: 18px;">提交</div>
+	</div>
+</div>
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->
+<script>
+	$(function() {
+		var selltype = 1;
+		$('#select').change(function() {
+			selltype = $(this).val();
+		}) 
+		$("#btn").click(function() {
+			if($("#num").val() == '' || $("#num").val() == undefined || $("#num").val() == null) {
+				alert('请输入金额');
+			} else {
+				$.ajax({
+					type: 'post',
+					url: selltype,
+					data: 'zffs1=1&zffs2=1&zffs3=1&get_amount=' + num + '&type=' + selltype + '&card=' + card,
+					timeout: 7000,
+					success: function(data) {
+						if(data.sf == 1) {
+							layer.closeAll();
+							layer.msg(data.nr);
+							setTimeout(function() {
+								location.reload();
+							}, 1000)
+						} else {
+							layer.msg(data.nr);
+						}
+					},
+					complete: function(XMLHttprequest) {
+						if(XMLHttprequest.statusText == 'timeout') {
+							layer.msg('连接超时，请更换网络环境或稍后再试');
+						}
+					}
+				});
+			}
+		})
+	})
+</script>

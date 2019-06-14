@@ -1,0 +1,319 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<!-- header end -->
+
+<div class="content-wrapper tab-content tab-addtabs" style=" padding-top: 0px !important;">
+	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
+	   	<i class="fa fa-chevron-circle-left"></i>返回
+	    <script>
+			function goback(){
+				window.history.back();
+			}
+			(function(){
+				$(document).on('click','#tglj',function(){
+					var o = $(this).prev('input');
+					o.select();
+					document.execCommand("copy",false,null);
+					layer.tips('已复制至剪贴板',o);
+				})
+			})();
+		</script>
+	</span>
+	<div role="tabpanel" class="tab-pane active" style="overflow: auto; padding-top: 0px; margin-left: 2.5%; width: 95%">
+		<div class="maincon">
+			<div class="walletpanel">
+				<div class="row dddd">
+					<!--<div class="clo-lg-12">
+						<div class="num">
+							{:C('pdm_name')}:{$userData['pdmnum']},{:C('jhm_name')}:{$userData['jhmnum']}
+						</div>
+						<span>支付{:C('pdm_name')}请联系客服,
+							
+						客服QQ：<a style="margin:0 10px;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1063156322&amp;site=&amp;menu=yes"><img style="vertical-align:middle;" border="0" src="http://wpa.qq.com/pa?p=2:1063156322:51" alt="" title="" /></a> 微信:000000</span>
+					</div>-->
+					<div class="clo-lg-12">
+						<div class="num">
+							{:C('bx_wallet_name')}:{$userData['ue_money']}
+						</div>
+						<span></span>
+					</div>
+					<div class="clo-lg-12">
+						<div class="num">
+							{:C('ldj_wallet_name')}:{$userData['qwe']}
+						</div>
+						<span></span>
+					</div>
+					<div class="clo-lg-12">
+						<div class="num">
+							{:C('jifen_wallet_name')}:{$userData['jifen']}
+						</div>
+						<span> 
+							<!--<a class="btn btn-primary" style="margin: 3px; background: #3B8CFF;" href="/Info/jifen.html">兑换{:C('jhm_name')}</a>&nbsp;&nbsp;-->
+							<!--兑换通证积分-->
+							<a class="btn btn-primary" style="margin: 3px; background: #3B8CFF;" href="/Info/pdm_jifen.html">兑换{:C('pdm_name')}</a>&nbsp;&nbsp;
+		 				</span>
+					</div>
+					<!--<div class="clo-lg-12">
+						<div class="num">
+							{:C('shopjifen_wallet_name')}:{$userData['shopjifen']}
+						</div>
+
+					</div>-->
+
+				</div>
+			</div>
+			<div class="walletpanel" style="display:none">
+				<a href="/jiesuan" class="btn btn-success">查看历史结算数据</a>
+			</div>
+			<div class="walletpanel">
+				<div class="contitle active">
+					利息
+				</div>
+				<div>
+					<foreach name='tgbz_list' item='v'>
+						<div class="order_bar">
+							<h5 style="overflow: hidden;">
+										<span style="float: left;">编号:{$aab=$v.orderid}</span>
+										<span style="float: right;">日期：{$v.date}</span>
+									</h5>
+							<p style="display: block; text-align: left">金额：{$v.total}</p>
+							<p style="display: block; text-align: left;">利息：{$v|w_peidui_lx=###}</p>
+							<p style="display: block; text-align: left">天数：{$v|w_peidui_day=###}</p>
+							<p style="display: block; text-align: left">交割：
+								<if condition="$v.zt eq '0'">
+									(不可交割)
+									<else/> 已转出
+								</if>
+							</p>
+							<p style="display: block; text-align: left;">是否转出：{$v.id|user_tgbz_jerry=###}</p>
+							<p style="display: block; text-align: left">匹配状态：未匹配</p>
+							<p style="display: block; text-align: left">订单状态：排队中</p>
+						</div>
+					</foreach>
+
+					<foreach name='jj_list' item='v'>
+						<div class="order_bar">
+							<h5 style="overflow: hidden;">
+										<span style="float: left;">编号:{$aab=$v.r_id|getporderid_by_jj_r_id=###}</span>
+										<span style="float: right;">日期：{$v.date}</span>
+									</h5>
+							<p style="display: block; text-align: left">金额：{$v.total}</p>
+							<p style="display: block; text-align: left;">利息：{$v.id|user_jj_zong_lx=###}</p>
+							<p style="display: block; text-align: left">天数：{$v.id|user_jj_zong_ts=###}</p>
+							<p style="display: block; text-align: left">交割: {$v|canable_tixian=###}</p>
+							<p style="display: block; text-align: left">是否转出：
+								<if condition="$v.zt eq '0'">未转出</if>
+								<if condition="$v.zt eq '1'">已转出({$v.r_id|get_had_zc=###})</if>
+							</p>
+							<p style="display: block; text-align: left;">{$bbh=$v.r_id|getpporderid_by_jj_r_id=###}</p>
+							<p style="display: block; text-align: left">{$ztrs2|user_jj_pipei_z=$bbh,###}</p>
+						</div>
+					</foreach>
+				</div>
+				<!--<table class="table">
+					<tbody>
+						<tr>
+							<th>编号</th>
+							<th>日期</th>
+							<th>金额</th>
+							<th>利息</th>
+							<th>天数</th>
+							<th>提现</th>
+							<th>是否转出</th>
+							<th>匹配编号 </th>
+							<th>匹配状态</th>
+						</tr>
+						<foreach name='tgbz_list' item='v'>
+							<tr>
+								<td class="sorting_1">{$aab=$v.orderid}</td>
+								<td>{$v.date}</td>
+								<td>{$v.total}</td>
+								<td>{$v|w_peidui_lx=###}</td>
+								<td>{$v|w_peidui_day=###}</td>
+								<td>
+									<if condition="$v.zt eq '0'">
+										(不可提现)
+										<else/> 已转出
+									</if>
+								</td>
+								<td>{$v.id|user_tgbz_jerry=###}</td>
+								<td>未匹配</td>
+								<td>排队中</td>
+							</tr>
+						</foreach>
+						<foreach name='jj_list' item='v'>
+							<tr>
+								<td>{$aab=$v.r_id|getporderid_by_jj_r_id=###}</td>
+								<td>{$v.date}</td>
+								<td>{$v.total}</td>
+								<td>{$v.id|user_jj_zong_lx=###}</td>
+								<td>{$v.id|user_jj_zong_ts=###}</td>
+								<td>
+									{$v|canable_tixian=###}
+								</td>
+								<td>
+									<if condition="$v.zt eq '0'">未转出</if>
+									<if condition="$v.zt eq '1'">已转出({$v.r_id|get_had_zc=###})</if>
+								</td>
+								<td>{$bbh=$v.r_id|getpporderid_by_jj_r_id=###}</td>
+								<td>{$ztrs2|user_jj_pipei_z=$bbh,###}</td>
+							</tr>
+						</foreach>
+						<div>
+
+						</div>
+					</tbody>
+				</table>-->
+				<!--<div class="fixed-table-pagination" style="display: block;">
+					<div class="pull-left pagination-detail">
+						<span class="pagination-info"> 共 {$jj_tg_count_sum} 条纪录
+							<a style="background: #3B8CFF;" href="?jjshowall={$jjshowall}" class="btn btn-success showall">
+								<if condition='$jjshowall eq 1'>显示<else />隐藏</if>所有已提现订单
+							</a>
+						</span>
+						<span class="page-list2">每页显示 <span class="btn-group dropup"> 
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> 
+								<span class="page-size2">10</span> 
+								<span class="caret"></span> 
+							</button>
+						<ul class="dropdown-menu" role="menu">
+							<li role="dropdown-menu" class="active">
+								<a>10</a>
+							</li>
+							<li role="dropdown-menu">
+								<a>25</a>
+							</li>
+							<li role="dropdown-menu">
+								<a>50</a>
+							</li>
+						</ul>
+						</span>条记录</span>
+					</div>
+					<div class="pull-right pagination">
+						<div class="page">
+							{$jj_page}
+						</div>
+					</div>
+				</div>-->
+				<div class="contitle active">
+					奖励
+				</div>
+				<!--<table class="table">
+					<tr>
+						<th>类型</th>
+						<th>日期 </th>
+						<th>详情</th>
+						<th>+收入/-支出</th>
+						<th>余额</th>
+					</tr>
+					<tbody>
+						<foreach name='bonus_list' item='b'>
+							<tr>
+								<td>{$b.ug_datatype|get_jj_type=###}</td>
+								<td>{$b.ug_ge/tttime}</td>
+								<td>{$b.ug_note}</td>
+								<td>{$b.ug_money}</td>
+								<td>{$b.ug_balance}<d>
+							</tr>
+						</foreach>
+					</tbody>
+				</table>-->
+				<div>
+					<foreach name='bonus_list' item='b'>
+						<div class="order_bar">
+							<h5 style="overflow: hidden;">
+								<span style="float: left;">类型:{$b.ug_datatype|get_jj_type=###}</span>
+								<span style="float: right;">日期：{$b.ug_gettime}</span>
+							</h5>
+							<p style="display: block; text-align: left">余额：{$b.ug_balance}</p>
+							<p style="display: block; text-align: left;">+收入/-支出：{$b.ug_money}</p>
+							<p style="display: block; text-align: left">详情：{$b.ug_note}</p>
+						</div>
+					</foreach>
+				</div>
+				<!--<div class="fixed-table-pagination" style="display: block;">
+					<div class="pull-left pagination-detail">
+						<span class="pagination-info"> 共 {$bonus_count} 条纪录</span>
+						<span class="page-list2">每页显示 <span class="btn-group dropup"> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span class="page-size2">10</span> <span class="caret"></span> </button>
+						<ul class="dropdown-menu" role="menu">
+							<li role="dropdown-menu" class="active">
+								<a>10</a>
+							</li>
+							<li role="dropdown-menu">
+								<a>25</a>
+							</li>
+							<li role="dropdown-menu">
+								<a>50</a>
+							</li>
+						</ul>
+						</span>条记录</span>
+					</div>
+					<div class="pull-right pagination">
+						<div class="page">
+							{$bonus_page}
+						</div>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.walletpanel {
+		padding: 10px 5px;
+		color: white;
+	}
+
+	.dddd {
+		width: 96%;
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	.dddd>div {
+		height: 5em;
+		padding: 5px;
+		border: 1px solid rgba(0, 0, 0, .1)
+	}
+
+	.contitle {
+		text-align: left;
+		background: white;
+		color: black;
+		padding: 0.5em 1em;
+		border-bottom: none;
+		font-size: 1.2em;
+		margin-top: 10px;
+		font-weight: bold;
+	}
+
+	.dddd>div .num {
+		font-size: 1.5em;
+		font-weight: bold;
+		display: inline-block;
+		height: 100%;
+		float: left;
+		line-height: 2.8em
+	}
+
+	tr.green {
+		background: rgba(0, 250, 0, .2) !important;
+		color: #444
+	}
+
+	tr.red {
+		background: rgba(250, 0, 0, .2) !important;
+		color: #444
+	}
+</style>
+</div>
+
+<script>
+	(function() {
+		document.title = "钱包";
+		//积分转账
+	})();
+</script>
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

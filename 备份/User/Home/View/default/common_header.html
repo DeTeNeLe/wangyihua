@@ -1,0 +1,7 @@
+<?php
+if(!ismobile() || C('open_auto_m') == 0){
+?>
+<include file="User/Home/View/default/common_header_pc_new.html" />
+<?php }else{ ?>
+<include file="User/Home/View/default/common_header_m_old.html" />
+<?php }?>

@@ -1,0 +1,550 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<!-- header end -->
+<link rel="stylesheet" href="/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css" />
+<script type="text/javascript" src="/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+<style>
+	#teamlist {
+		background: #002333;
+		padding: 10px 5px;
+		color: white;
+	}
+	
+	.nllist {
+		margin: 50px auto;
+		text-align: left;
+		display: block;
+		padding: 20px;
+		zoom: .6;
+	}
+	
+	.treeblock {
+		margin-left: 40px;
+		border-left: 1px dotted #999
+	}
+	
+	.nllist>.treeblock {
+		border-left: none
+	}
+	
+	.treeitem {
+		margin: 10px 0 10px -10px;
+	}
+	
+	.treeitem>span {
+		padding: 0 3px;
+		vertical-align: middle;
+	}
+	
+	.treeitem>span:nth-child(n+3) {
+		display: inline-block;
+		margin: 0 15px 0 0;
+	}
+	
+	.treeitem>span:nth-child(2) {
+		display: inline-block;
+		border: 1px solid rgba(0, 0, 0, .3);
+		border-radius: 50%;
+		width: 26px;
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		margin-left: 10px;
+	}
+	
+	.treeitem>span:first-child {
+		font: normal normal normal 14px/1 FontAwesome;
+		font-size: inherit;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+	}
+	
+	.treeitem>span.plus:before {
+		content: "\f0fe";
+		cursor: pointer;
+		margin-right: 4px;
+		color: #2196f3
+	}
+	
+	.treeitem>span.minus:before {
+		content: "\f146";
+		cursor: pointer;
+		margin-right: 4px;
+		color: #aaa
+	}
+	
+	.treeitem>span:nth-child(3) {
+		width: 350px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		line-height: 1em;
+		height: 1em
+	}
+	
+	.treeitem>span:nth-child(4) {
+		width: 220px;
+	}
+	
+	.treeitem>span:nth-child(5) {
+		width: 200px;
+	}
+	
+	.lx_search {
+		height: 2.2em
+	}
+	
+	@media screen and (max-width: 768px) {
+		.treeblock {
+			margin-left: 50px;
+		}
+		.nllist {
+			font-size: .5em;
+			zoom: .4;
+			margin-top: 85px;
+		}
+		.treeitem {
+			display: inline-block;
+			border-bottom: 1px solid rgba(0, 0, 0, .05)
+		}
+		.treeitem>span:nth-child(2) {
+			margin-left: 10px;
+			width: 44px;
+			height: 40px;
+			line-height: 40px;
+		}
+		.treeitem>span:nth-child(3) {
+			width: 280px;
+		}
+		.treeitem>span:nth-child(4) {
+			width: 180px;
+		}
+		.treeitem>span:nth-child(5) {
+			width: 190px;
+		}
+		.lx_search {
+			height: 2em
+		}
+	}
+	
+	.noactive {
+		color: #fb6f00
+	}
+	
+	.table>thead>tr>th,
+	.table>tbody>tr>th,
+	.table>tfoot>tr>th,
+	.table>thead>tr>td,
+	.table>tbody>tr>td,
+	.table>tfoot>tr>td {
+		padding: 8px 0px;
+		width: 27px;
+	}
+	
+	.btn {}
+	
+	.ztree li a {
+		color: white;
+	}
+	
+	.ztree * {
+		font-size: 37px;
+	}
+	
+	.ztree li {
+		line-height: inherit;
+	}
+	
+	.ztree li a.curSelectedNode {
+		height: auto;
+	}
+	
+	.ztree li span {
+		line-height: inherit;
+	}
+	
+	.ztree li a {
+		height: auto;
+	}
+	
+	.ztree li span.button {
+		content: '';
+	}
+	
+	.ztree li span.button.root_close {
+		background-image: url(/img/qin/addicon.png);
+		background-size: 100%;
+		width: 50px;
+		height: 50px;
+		background-position: 0px 0px;
+	}
+	
+	.ztree li span.button.root_open {
+		background-image: url(/img/qin/minusicon.png);
+		background-size: 100%;
+		width: 50px;
+		height: 50px;
+		background-position: 0px 0px;
+	}
+	
+	.ztree li span.button.center_close {
+		background-image: url(/img/qin/addicon.png);
+		background-size: 100%;
+		width: 30px;
+		height: 30px;
+		background-position: 0px 0px;
+	}
+	
+	.ztree li span.button.center_open {
+		background-image: url(/img/qin/minusicon.png);
+		background-size: 100%;
+		width: 30px;
+		height: 30px;
+		background-position: 0px 0px;
+	}
+</style>
+<div class="content-wrapper tab-content tab-addtabs" style="padding-top: 0px;">
+	<div role="tabpanel" class="tab-pane active" style="overflow: auto">
+		<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
+			   <i class="fa fa-chevron-circle-left"></i>返回
+			    <script>
+					function goback(){
+						window.history.back();
+					}
+					(function(){
+						$(document).on('click','#tglj',function(){
+							var o = $(this).prev('input');
+							o.select();
+							document.execCommand("copy",false,null);
+							layer.tips('已复制至剪贴板',o);
+						})
+					})();
+				</script>
+     		</span>
+		<div class="maincon">
+			<div id="teamlist" style="padding: 0px;">
+				<div class="btn-group" style="width: 100%;float: left;margin:5px;">
+					<a class="btn btn-default active ftab">直推</a>
+					<a class="btn btn-default ftab">团队</a>
+				</div>
+				<div class="tab">
+					<div>
+						<foreach name='fristList' item='v'>
+							<div class="order_bar">
+								<h5 style="overflow: hidden; display: block;">
+									<span style="float: left;">昵称：{$v.ue_theme}</span>
+									<span style="float: right;">状态:
+										<if condition="$v.ue_check eq 0 ">
+											<font color="red">未激活</font>
+											<else/>已激活
+										</if>
+									</span>
+								</h5>
+								<p style="display: block; text-align: left">账户：{$v.ue_account}</p>
+								<p style="display: block; text-align: left">手机号：{$v.ue_phone}</p>
+								<!--<p style="display: block; text-align: left;">推荐人：{$v.ue_accname}</p>-->
+								<!--<p style="display: block; text-align: left">注册时间：{$v.ue_regtime|strtotime|date="Y-m-d",###}</p>-->
+								<p style="display: block; text-align: left">注册时间：{$v.ue_regtime}</p>
+								<p style="display: block; text-align: left">操作：
+									<!--自己直推的会员才有资格激活-->
+									<if condition="$v.ue_accname eq $userData['ue_account']">
+									<if condition="$v.ue_check eq 0 ">
+										<span style=" border: none;" class="btn btn-success btn-jihuo" data="{$v.ue_account}">激活</span>
+										<else/>
+										<span style="background: #C0C0C0; border: none;" class="btn btn-success btn-jihuo" data="{$v.ue_account}">激活</span>
+									</if>
+									</if>
+								</p>
+							</div>
+						</foreach>
+					</div>
+					<div style="margin-top: 20px;background: #000;color: #fff;padding: 5px;display:none">
+						最近七天团队新增成员
+					</div>
+					<table class="table" style="display:none">
+						<tbody>
+							<tr>
+								<th>层级</th>
+								<th>昵称</th>
+								<th>手机号</th>
+								<th>注册时间</th>
+								<th>激活时间</th>
+								<th>排单</th>
+							</tr>
+							<tr>
+								<td colspan="7">查询结果为空</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="tab" style="display: none;">
+					<div style="width: 100%; overflow: hidden; margin-top: 5%;">
+						<form action="" method="get">
+							<input name="user1" id="user1" type="hidden" value="{$user}" />
+							<input type="text" class=" lx_search col-md-7 col-xs-7" style="height: 35px;color: black; margin-left: 5%;" 
+								name="user" id="user" value="{$user}" placeholder="搜索会员" />
+							<input name="" type="button" id="btn" value="搜索" class="btn btn-info btn-sm">
+						</form>
+					</div>
+					<div style="text-align: center;padding-left: 5%; line-height: 50px;">
+						我的团队：{$all_user_num} 人
+					</div>
+					<div>
+						<foreach name='list' item='v'>
+							<div class="order_bar">
+								<h5 style="overflow: hidden; display: block;">
+									<span style="float: left;">姓名：{$v.ue_theme}</span>
+								</h5>
+								<p style="display: block; text-align: left">账户：{$v.ue_account}</p>
+								<p style="display: block; text-align: left">手机号：{$v.ue_phone}</p>
+								<p style="display: block; text-align: left">上级会员：{$v.ue_accname}</p>
+								<p style="display: block; text-align: left">上级会员的手机：{$v.parent_phone}</p>
+								<!--<p style="display: block; text-align: left">注册时间：{$v.ue_regtime|strtotime|date="Y-m-d",###}</p>-->
+								<p style="display: block; text-align: left">注册时间：{$v.ue_regtime}</p>
+							</div>
+						</foreach>
+					</div>
+					
+					<!--<div class="nllist" style="padding-top: 0px; margin-top: 0px;">
+						<div class="row">
+							<div class="col-md-4 col-xs-4 pull-left">
+
+							</div>
+							<div class="col-md-7 col-xs-7 pull-right row">
+								<form action="" method="get">
+									<input name="user1" id="user1" type="hidden" value="{$user}" />
+									<input type="text" class=" lx_search col-md-7 col-xs-7" style="height: 35px;" name="user" id="user" value="{$user}" placeholder="搜索会员" />
+									<input name="" type="button" id="btn" value="搜索" class="btn btn-info btn-sm">
+								</form>
+							</div>
+						</div>
+						<div class="treeblock" style="margin-left: 0px;">
+							<div class="treeitem" style="width: 100%;">
+								<div style="display:none">
+									<span class="plus"></span>
+									<span data-id="70040">1</span>
+									<span>高飞(13815594900)</span>
+									<span>2018-04-10</span>
+									<span>7天以前排单</span>
+									<span>正常</span>
+								</div>
+								<ul id="treeDemo" class="ztree" style="font-size:20px;color:white; width: 100%;"></ul>
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	(function() {
+		var curpage = parseInt($(document).find('.page-number.active').text());
+		var totalpage = $(document).find('.page-next').prev('.page-number').text();
+
+		function refreshpage($p) {
+			if($p == '') {
+				$p = curpage;
+			} else {
+				curpage = $p;
+			}
+			var limit = $(document).find('.page-size').text();
+			var str = '';
+			if(limit > 0) {
+				str += '&pagesize=' + limit;
+			}
+			str += '&p=' + $p;
+			str += $('#lookall').is(':checked') ? '&all' : '';
+			$url = '/Home/{$Think.CONTROLLER_NAME}/{$Think.ACTION_NAME}?' + str;
+			location.href = $url;
+		}
+		$(document).on('click', '.btn-jihuo', function() {
+			if(confirm('确定激活吗？')) {
+				var o = $(this);
+				var uname = o.attr('data');
+				$.ajax({
+					type: 'post',
+					url: '/Home/Index/home_post',
+					data: 'act=jihuo&uname=' + uname,
+					timeout: 7000,
+					success: function(data) {
+						if(data.sf == 1) {
+							layer.msg(data.nr);
+							setTimeout(function() {
+								location.reload();
+							}, 1000)
+						} else {
+							layer.msg(data.nr);
+						}
+					},
+					compplete: function(XMLHttprequest) {
+						if(XMLHttprequest.statusText == 'timeout') {
+							layer.msg('连接超时,请更换网络环境或稍后再试!')
+						}
+					}
+				})
+			}
+		});
+		$(document).on('keypress', '.lx_search', function(e) {
+			var o = $(this);
+			if(e.keyCode == 13) {
+				o.next('a').click();
+			}
+		})
+		$(document).on('click', '.page-list a', function() {
+			var p = $(this).text();
+			$(document).find('.page-size').text(p);
+			refreshpage();
+		})
+		$(document).on('click', '.page-number:not(.active)', function() {
+			var p = parseInt($(this).text());
+			refreshpage(p);
+		})
+		$(document).on('keydown', '.page-number.active', function(event) {
+			var p = parseInt($(this).text());
+			if(event.keyCode == 13) {
+				refreshpage(p);
+			}
+		})
+		$(document).on('click', '.page-pre', function() {
+			if(curpage == 1) {
+				refreshpage(totalpage);
+			} else {
+				refreshpage(curpage - 1);
+			}
+		})
+		$(document).on('click', '.page-next', function() {
+			if(curpage == totalpage) {
+				refreshpage(1);
+			} else {
+				refreshpage(curpage + 1);
+			}
+		})
+		$(document).on('click', '.btn-tuoguan', function() {
+			var id = $(this).attr('data');
+			layer.open({
+				type: 2,
+				content: '?act=manage&id=' + id,
+				title: '您正在访问您直推会员的账户',
+				offset: '0',
+				area: ['100%', '100%'],
+				btn: ['返回我的账户', '关闭'],
+				yes: function(inedx, layero) {
+					location.href = '/team?act=goback';
+				},
+				end: function() {
+					location.href = '/';
+				}
+			});
+		})
+		$(document).on('click', '.ftab', function() {
+			var o = $(this);
+			o.parent('div').find('a').toggleClass('active');
+			$(document).find('.tab').toggle();
+		})
+		$(document).on('click', '.plus', function() {
+			var t = $(this);
+			var ex = t.siblings('div');
+			if(!ex.length) {
+				var id = t.next('span').attr('data-id');
+				var me = t.next('span').text();
+				$.ajax({
+					type: 'post',
+					url: '/team?',
+					data: 'act=nextlevel&juid=' + id + '&method=' + me,
+					success: function(data) {
+						t.addClass('minus').parent('div').append(data);
+					}
+				})
+			} else {
+				t.toggleClass('minus')
+				ex.toggle();
+			}
+		})
+		document.title = '团队';
+	})();
+</script>
+
+<script type=text/javascript>
+	var setting = {
+		view: {
+			showLine: true
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		}
+	};
+
+	var zNodes = [{
+			id: 1,
+			pId: 0,
+			name: "父節點1 - 展開",
+			open: true
+		},
+		{
+			id: 11,
+			pId: 1,
+			name: "父節點11 - 摺疊"
+		},
+		{
+			id: 234,
+			pId: 23,
+			name: "葉子節點234"
+		},
+		{
+			id: 3,
+			pId: 0,
+			name: "父節點3 - 沒有子節點",
+			isParent: true
+		}
+	];
+	$(document).ready(function() {
+		var $user = "{$userData['ue_account']}";
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			global: false,
+			url: "/index.php/Home/Common/getTree",
+			data: {
+				user: $user
+			},
+			success: function(data, textStatus) {
+				if(data.status == 0) {
+					zNodes1 = data.data;
+					$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+				} else {
+					alert(data.data);
+				}
+				return;
+			}
+		});
+
+		$('#btn').click(function() {
+			var $user = $('#user').val();
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				global: false,
+				url: "/index.php/Home/Common/getTreeso",
+				data: {
+					user: $user
+				},
+				success: function(data, textStatus) {
+					if(data.status == 0) {
+						zNodes1 = data.data;
+						$.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+					} else {
+						alert(data.data);
+					}
+					return;
+				}
+			});
+		});
+	});
+</script>
+
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

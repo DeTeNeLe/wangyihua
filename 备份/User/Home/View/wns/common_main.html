@@ -1,0 +1,232 @@
+                    <div class="page-title">
+  <div class="container">
+    <h3 class="title col-md-3" style="color:red">中信金融系统首页</h3>
+
+ 
+      <nav class="collapse navbar-collapse" role="main-navigation" id="">
+      <ul class="nav navbar-nav">
+        <li <if condition="$home">class="active"</if>>
+          <a href="/" class="glyphicons home" style="color:red"><i></i>首页</a>
+        </li>
+
+        <li  style="color:red" <if condition="$profile">class="active"</if>><a href="{:U('Info/index')}" class="glyphicons user" style="color:red"><i></i>管理档案</a></li>
+      
+      <li style="color:red" <if condition="$manage">class="dropdown active"<else/>class="dropdown"</if>>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:red">帐户管理 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">                          
+                            <li ><a href="{:U('Info/pintopin')}">诚信码管理</a></li>
+              <li ><a href="{:U('Myuser/index')}">我的团队</a></li>
+              <li ><a href="{:U('Myuser/xzzh')}">存入与记录</a></li>
+                          </ul>
+          </li>
+
+
+          <li  <if condition="$detail">class="dropdown active"<else/>class="dropdown"</if>>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:red">交易记录 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" style="color:red">
+              <li ><a href="{:U('Info/pdhistory')}">存入金额记录</a></li>
+              <li ><a href="{:U('Info/gdhistory')}">取出金额记录</a></li>
+              <li ><a href="{:U('Info/rwhistory')}">存入金额交易记录</a></li>
+              <li ><a href="{:U('Info/cwhistory')}">经理奖钱包记录</a></li>
+              <li ><a href="{:U('Info/nwhistory')}">推荐钱包记录</a></li>
+              <li ><a href="{:U('Info/pin')}">诚信码交易记录</a></li>
+            </ul>
+          </li>
+
+
+                    
+          
+
+          <li <if condition="$reg">class="active"</if>>
+            <a href="{:U('Index/news')}" class="glyphicons home" style="color:red"><i></i>新闻<span class="badge"></span></a>
+          </li>
+
+
+          <li    <if condition="$reg">class="active"</if>>
+            <a href="{:U('Index/reg')}" class="glyphicons home" style="color:red"><i></i>注册会员<span class="badge"></span></a>
+          </li>      
+
+          
+
+                            
+          
+          
+      
+        
+          
+          <!-- <li class=""><a href="/bitStyle/zh-CN/platform/commission"class="glyphicons down_arrow"><i></i>佣金</a></li> -->
+          
+              </ul>
+    </nav>
+  </div>
+</div>
+                  <div class="clockWrap">
+                    <div class="container clearfix">
+                      <div class="pull-left" id="userRank">
+                        <span class="glyphicon glyphicon-user">
+                        </span>
+                       <span style="color:red">{$userData['ue_account']}</span> 级别 : {$userData['levelname']}
+                      </div>
+                      <div class="clock-location">
+                        <strong class="mr5">
+                          服务器时间
+                        </strong>
+                        <span id="server_time_text">
+                           <php> echo date('Y-m-d H:i:s');</php>
+                        </span>
+                      </div>
+                      <div class="clock-location">
+                        <strong class="mr5">
+                          当地时间
+                        </strong>
+                        <span id="local_time_text">
+                         
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="innerContent">
+                      <div id="donationWrap">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <a class="btn btn-block " id="pdBtn">
+                              <span class="p-donation">
+                                存入金额
+                              </span>
+                            </a>
+                          </div>
+                          <div class="col-sm-6">
+                            <a class="btn btn-block " id="gdBtn">
+                              <span class="g-donation">
+                                取出金额
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12" id="pdWrap" style="">
+                            <div class="widget widget-body-white">
+                              <form method="post" action="/Home/Index/tgbzcl" name="buy_share_form"
+                              class="form-horizontal margin-none" id="provide_help">
+                                <div class="widget-head widget-head-blue">
+                                  <h4 class="heading">
+                                    存入金额
+                                  </h4>
+                                </div>
+                                <div class="widget-body">
+                                  <div class="form-group">
+                                    <p class="help-block apply_tip">
+                                      申请完成后，请等待系统1-30日随机分配受善需求
+                                    </p>
+                                    <label class="col-md-3 control-label">
+                                      支付方式
+                                    </label>
+                                    <div class="col-md-9">
+                                     <!--<label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs1" checked="">
+                          银行支付
+                        </label>-->
+                        <label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs2" checked="">
+                         云支付
+                        </label>
+                        <!--<label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs3" checked="">
+                          微信支付
+                        </label>-->
+                                  
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label">
+                                      存入金额
+                                    </label>
+                                    <div class="col-md-9">
+                                      <input type="text" class="form-control get_amount" placeholder="输入{$jj01s}-{$jj01m}"
+                                      name="amount" id="amount" autocomplete="off" required>
+                                      <p class="help-block">
+                                        目前，每月增长50%-300%
+                                      </p>
+                                      <p class="help-block">
+                                        警告，我已完全了解所有风险。我决定参与中信金融,尊重中信金融文化与传统。
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <footer class="data-footer innerAll half text-right clearfix">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    取消
+                                  </button>
+                                  <!-- <button type="button" class="btn_next btn-warning btn-sm" data-dismiss="modal"
+                                  data-toggle="modal" data-target="#myModal2">存入金额</button>-->
+                                  <input name="jhwjjc" id="jhwjjc" type="submit" class="btn_next btn-warning btn-sm btn btn-primary "
+                                  value="存入金额">
+                                </footer>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="col-md-12" id="gdWrap" style="">
+                            <div class="widget widget-body-white">
+                              <form action="/Home/Index/jsbzcl" method="post" name="wallet_transfer_form"
+                              class="form-horizontal margin-none" id="get_help">
+                                <input type="hidden" value="" id="wallet_type" name="wallet_type">
+                                <fieldset>
+                                  <div class="widget-head widget-head-blue">
+                                    <h4 class="heading">
+                                      取出金额
+                                    </h4>
+                                  </div>
+                                  <div class="widget-body">
+                                    <div class="form-group">
+                                      <label class="col-md-3 control-label">
+                                        支付方式
+                                      </label>
+                                      <div class="col-md-9">
+                                       <!--<label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs1" checked="">
+                          银行支付
+                        </label>-->
+                        <label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs2" checked="">
+                         云支付
+                        </label>
+                        <!--<label>
+                          <input type="checkbox" value="1" class="ckbox" name="zffs3" checked="">
+                          微信支付
+                        </label>-->                                    
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-md-3 control-label">
+                                        取出总额:
+                                        <span class="ast">
+                                          *
+                                        </span>
+                                      </label>
+                                      <div class="col-md-9">
+                                        <input type="text" class="form-control get_amount" placeholder="输入RMB,{$txthemin}到{$txthemax},{$txthebeishu}的倍数"
+                                        name="get_amount" autocomplete="off" required>
+                                        <p class="help-block">
+                                          您现有可出售余额： {$userData['ue_money']}RMB
+                                        </p>
+                                        <p class="help-block">
+                                          您最低出售数量 <if condition="$txthemin gt $userData['ue_money']">{$userData['ue_money']}<else/>{$txthemin}</if>RMB
+                                        </p>
+                                        <p class="help-block">
+                                          警告，我已完全了解所有风险。我决定参与中信金融,尊重中信金融文化与传统。
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="data-footer innerAll half text-right clearfix">
+                                    <button value="继续" id="withdraw_btn" type="submit" class="btn btn-primary btn-sm">
+                                      取出金额
+                                    </button>
+                                  </div>
+                                </fieldset>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>

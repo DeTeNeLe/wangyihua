@@ -1,0 +1,23 @@
+<include file='index:head' />
+<style>
+ .tab1 h2{font-size:60px;padding-top: 4%;padding-bottom: 3%;}
+ .tab1{background-color:#fff;font-size: 200%;padding: 0px 4%;line-height: 200%;margin-top: 10px;}
+ hr{background-color: black;height: 1px;}
+</style>
+
+<div class="wrapper">
+    <div class="tabs0">
+        <li style="width:100%"><a href="{:U('Home/Index/news',array(id=>1))}" class="current">公告详情</a></li>
+    </div>
+    <div class="content">
+        <div class="tab1">
+            <h2>{$data.if_theme}</h2>
+            <p>
+                <span>公告类型:{$data.if_type}</span><br/>
+				<span>发布时间:{$data.if_time}</span><hr>
+                {$data.if_content}<br />
+            <p />
+
+        </div>
+    </div>
+    <include file='index:foot' />

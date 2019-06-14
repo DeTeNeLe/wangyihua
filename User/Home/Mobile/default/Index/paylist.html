@@ -1,0 +1,81 @@
+<include file='index:head' />
+<div class="wrapper">
+    <div class="tabs" style="margin-top:0;">
+        <li style="width:50%">
+            <a href="{:U('/Home/Index/paylist/')}" class="current">订单中心</a>
+        </li>
+        <li style="width:50%">
+            <a href="{:U('/Home/Index/reg')}">会员注册</a>
+        </li>
+    </div>
+    <div class="content">
+        <div class="tab1">
+            <ul class="jilu">
+			   <volist name="list" id="v">
+                <li>
+                    <p class="jname">
+                        <span class="fl">编号：{$v.jmid}</span>
+                        <span class="fr">{$v.date}</span>
+                    </p>
+                    <dl class="kjname">
+                        <dt><img class="lazy" src="{$v.fhpro_id|getFHProById=###,'image'}" data-original="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/images/product.jpg"></dt>
+                        <dd>
+                            <h1>{$v.fhpro_id|getFHProById=###,'name'}</h1>
+							<h2>会员账户：<span class="c1">{$v.regname|isnullthen=###}</span></h2>
+                            <h2>订单类型：
+							  <span class="c1">
+							    <if condition="$v.type eq 1">
+								账户充值
+								<elseif condition="$v.type eq 2"/>
+								产品买入
+								<else/>
+								停权
+								</if>
+							  </span>
+							</h2>
+                            <h2>金额：<span class="c1"> ￥{$v.money}元</span></h2>
+                            <h2>状态：
+							<span class="c1">
+							  <switch name="v.zt">
+							  <case value="0">待付款</case>
+							  <case value="1">已完成</case>
+							  <case value="2">已激活</case>
+							  <case value="3">已取消</case>
+							  <case value="4">待审核</case>
+							  </switch>
+							</span></h2>
+                        </dd>
+                    </dl>
+                    <p class="ok" >
+					    <switch name="v.zt">
+							  <case value="0">
+							    <span class="waiting2">待付款</span>
+							    <span class="fr"><a href="/Home/Index/details/id/{$v.jmid}">现在付款</a></span>
+								<span class="fr">
+								   <if condition="($v.zt eq 0) and ($_SESSION['sfjl'] eq true) and ($v.regname neq null)">
+								     <a href="#" onclick="if(confirm('确定取消订单?会员账号将会删除!')){window.location.href='/Home/Index/deleteuser_all_data/regname/{$v.regname}';}">取消订单</a>
+								   </if>
+								   <if condition="($v.zt eq 0) and ($v.regname eq null)">
+								     <a href="#" onclick="if(confirm('确定取消订单?')){window.location.href='/Home/Index/deleteorder/id/{$v.id}';}">取消订单</a>
+								   </if>
+								</span>
+							  </case>
+							  <case value="1">
+							    <span class="fl">已完成</span>
+							    <span class="fr"><a href="/Home/Index/details/id/{$v.jmid}">订单明细</a></span>
+							  </case>
+							  <case value="2"><span class="fl">已激活</span></case>
+							  <case value="3"><span class="waiting2">已取消</span></case>
+							  <case value="4"><span class="waiting2">待审核</span></case>
+						</switch>
+                    </p>
+                </li>
+			   </volist>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<include file='index:foot' />

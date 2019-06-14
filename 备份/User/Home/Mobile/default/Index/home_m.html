@@ -1,0 +1,118 @@
+<include file='index:head' />
+<div class="scrollleftdiv">
+	<div class="ico">
+	</div>
+<div class="scrollleft" id="topscroll" style="overflow: hidden; position: relative;">
+<marquee onMouseOver=this.stop() onMouseOut=this.start() scrollamount=10 scrolldelay=7 direction=left height=77> 
+				2017-11-02<b>[admi***ni]</b> <a style="color:#f7610a
+;">提走1000元,开汽车溜了</a>
+							2017-12-02<b>[admi***ni]</b> <a style="color:#f7610a
+;">提走10000元,坐火箭去太空啪啪啪</a>
+							2017-10-19<b>[1537***15]</b> <a style="color:#f7610a
+;">带着400.00元购买众筹基金理财来了</a>
+							2017-10-16<b>[A000***01]</b> <a style="color:#f7610a
+;">带着200.00元购买众筹基金理财来了</a>
+							2017-09-20<b>[***]</b> <a style="color:#f7610a
+;">带着1000.00元购买众筹基金理财来了</a>
+							2017-09-06<b>[***]</b> <a style="color:#f7610a
+;">提走100元,开摩托车溜了</a>
+							2017-07-26<b>[***]</b> <a style="color:#f7610a
+;">提走100元,开摩托车溜了</a>
+			
+</marquee>
+</div>
+</div>
+<div class="topbanner" >
+	  <a href="" target="_blank"><img src="/skin/images/banner.jpg" style="width:100%"></a>
+	 </div>
+<div class="nav">
+	<span class="n1">云晟实业</span><span class="n2">海纳百川</span><span class="n3">厚积薄发</span>
+</div>
+<div class="wrapper">
+	 <foreach name='tlist' item='t'>
+       <div class="main">
+        <a href="javascript:apply_pay({$v.id})">
+            <dl>
+                <dt><img src="/skin/images/product.jpg"></dt>
+                <dd>
+                    <h1><if condition="$t.zt eq 6">抢入金额：<else />存入金额：</if>PD{$t.id|md5=###|substr=###,0,10}</h1>
+                    <h2><span>参加者：<i>{$t.user}</i></span></h2>
+                    <h2><span>数额：<i>{$t.jb}</i></span></h2>
+                    <h2><span>日期：<i>{$t.date}</i></span></h2>
+					<h2><span>状况：<i>
+					 <if condition="$t.zt eq 0">
+                       请待续
+                     </if>
+                     <if condition="$t.zt eq 6">
+                       预约中
+                     </if>
+                     <if condition="$t.zt eq 1">
+                       匹配成功
+                     </if>
+					 </i></span></h2>
+                    <h3>
+                        <em>查看交易</em>
+                    </h3>
+                </dd>
+            </dl>
+        </a>
+      </div>
+    </foreach>
+    <!--<include file='index:include_duobao_list' />-->
+</div>
+
+<input type="hidden" value="" id="m_balance" />
+
+  <script>
+
+    function chg_money(obj){
+	    $("#pay_money").html("￥"+$(obj).val());
+		$("#pay_id").val($(obj).find("option:selected").attr("data-id"));
+	}
+	
+	$(function(){
+	   $("#pay_money").html("￥"+$("#type").val());
+	   $("#pay_id").val($("#type").find("option:selected").attr("data-id"));
+	   if($("#m_balance").val() > 1000){
+	       
+	   }
+	})
+
+
+	function apply_pay(id){
+	  location.href = "{:U('/Home/Index/home/')}";
+	  return false;
+	  if(confirm('请再次确认购买金额!')){
+	   $.ajax({
+	       url:"{:U('/Home/Index/purchase/')}",
+		   data:{rec:'create_order', 'fhpro_id':id},
+		   type:"POST",
+		   success:function(data){
+		       if(data == -99){
+			       alert("您的余额不足");
+			   }else if(data == 1){
+			        alert('购买成功!');
+			   }else{
+			       alert(data);
+			   }
+		   }
+	   })
+	   }
+	}
+	
+	function confirm_pay(){
+	    var dialog = art.dialog({
+      		content: "等待完成支付，再点击确定支付成功按钮!",
+      		ok : function () {location.href = 'complete_pay.html'},
+      		width : 400,
+      		lock: true,
+      	   	opacity: 0.3,
+      	    icon: 'face-smile',
+      	    okVal:'确定支付成功',
+			title:"确定支付",
+      	    height : 20
+  		});
+	}
+  </script>
+
+<include file='index:foot' />

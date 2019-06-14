@@ -1,0 +1,42 @@
+<include file='index:head' />
+<link rel="stylesheet" type="text/css" media="screen" href="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/styles/element.css">
+<div class="wrapper">
+    <div class="tabs" style="margin-top:0;">
+       <ul>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/mymoney/')}">钱包明细</a>
+            </li>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/bonus/')}" >奖金明细</a>
+            </li>
+            <li style="width:33%">
+                <a href="{:U('/Home/Index/fundlist/')}" class="current">静态明细</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="tab1">
+		    <div class = "mx_title">申请时间&nbsp;&nbsp;&nbsp;&nbsp;购买金额&nbsp;&nbsp;&nbsp;&nbsp;收益比&nbsp;&nbsp;&nbsp;&nbsp;收益&nbsp;&nbsp;&nbsp;&nbsp;状态</div>
+            <volist name="list" id="v">
+                <dl class="bzb">
+                    <dt class="d1">{$i}</dt>
+                    <dd class="c2" style="width:80%">
+                        <i class="fl">
+                            {$v.indate|showYMDnonesplit=###}&nbsp;￥{$v.money}&nbsp;{$v.rate}%&nbsp;￥{$v.lx}
+                        </i>
+						<i class="fr">
+							<span class="fr"><if condition="$v.zt eq 1">已收益<else/>无收益</if></span>
+                        </i>
+                    </dd>
+                </dl>
+            </volist>
+            <div class="pagediv">
+                <dl class="page">
+                    <dd class="c2">{$page}</dd>
+                </dl>
+            </div>
+        </div>
+       
+    </div>
+</div>
+<include file='index:foot' />

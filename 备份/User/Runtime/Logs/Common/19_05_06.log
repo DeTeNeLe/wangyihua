@@ -1,0 +1,7 @@
+[ 2019-05-06T16:47:27+08:00 ] 111.121.68.13 /index.php/admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000265s ]
+NOTIC: [8] Undefined index: c /mnt/wwwroot/fuzhu.qysc.cc/ThinkPHP/Library/Think/Dispatcher.class.php 第 179 行.
+ERR: 无法加载模块:Admin
+

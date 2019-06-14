@@ -1,0 +1,1 @@
+<?php	return array ( 'orderstart' => '1', 'timeorder_limit' => '1', 'get_start' => '12:00', 'get_end' => '14:00', 'qiantai_num' => '32', 'amount_limit' => '1', 'get_amount' => '90000000', 'submit' => '提交', );?>

@@ -1,0 +1,39 @@
+<include file='index:head' />
+<link rel="stylesheet" type="text/css" media="screen" href="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/styles/account.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/styles/element.css">
+<div class="tabs0">
+    <ul>
+        <li style="width: 100%"><a href="#" class="current">提供帮助</a></li>
+    </ul>
+</div>
+<h5 style="padding-top: 15%">
+<span id="money" class="c1">请选择存入金额</span>
+</h5>
+<div class="card_line">
+    <form id="wallet_transfer_form" method="post" action="{:U('Index/tgbzcl')}" >
+	    <input type="hidden" name="zffs1" value="1" />
+		<input type="hidden" name="zffs2" value="1" />
+		<input type="hidden" name="zffs3" value="1" />
+		<h4>
+          <select name="amount" id="amount" class="form-control">
+            <for start="$my_member_min" end="$my_member_max" step="1000">
+            <option value="{$i}">{$i} (RMB)</option>
+            </for>
+			<option value="{$my_member_max}">{$my_member_max} RMB)</option>
+		  <select name="amount" id="amount">
+		</h4>
+        <h6>
+            <button id="withdraw_btn" style="#fff" class="btn btn-success" type="submit" onclick="check_inp();"><i class="icon-ok icon-white"></i><span style="color: #fff">提交申请</span></button>
+        </h6>
+        <h6 style="color: #666666; background: #e4e4e4;"><a href="{:U('/Home/Index/pdlist')}">存入明细</a></h6>
+    </form>
+	<div style="text-align:left;width:100%;padding-top:50px;">
+	  <h5 style="padding-top: 15%;text-align:left" class="js_tips">
+	    当前等级最低额度：</br><span id="money" class="c1">{$my_member_min}起,{$my_member_max}止,{$jj01}的整数倍</span></br></br>
+	    最低额度：</br><span id="money" class="c1">{$jj01s}起,{$jj01m}止,{$jj01}的整数倍</span></br></br>
+		直推人数：</br><span id="money" class="c1">{$zhitui_num}位&nbsp;&nbsp;&nbsp;&nbsp;当前排单币数量{$pin_zs}</span>
+	  </h5>
+	</div>
+</div>
+
+<include file='index:foot' />

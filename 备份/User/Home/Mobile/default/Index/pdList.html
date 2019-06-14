@@ -1,0 +1,1005 @@
+ <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7 fluid top-full sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 8]>    <html class="ie lt-ie9 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if gt IE 8]> <html class="ie gt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if !IE]><!--><html><!-- <![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<title>PD记录 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+<script type="text/javascript" src="/templates/js/utils/remaining.js"></script>
+<script type="text/javascript" src="/templates/js/jquery.js"></script>
+<script type="text/javascript" src="/templates/default/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/templates/default/js/libs/modernizr.js"></script>
+<script type="text/javascript" src="/templates/default/js/libs/selectivizr.js"></script>
+<script type="text/javascript" src="/templates/default/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/templates/default/js/scripts.js"></script>
+<script type="text/javascript" src="/templates/js/fn/fn_number_format.js"></script>
+<script type="text/javascript" src="/templates/js/cache/9c2ff1651945cd8b31ec400ad49a89ca.js"></script>
+<script type="text/javascript" src="/templates/default/js/plugins/fileupload/bootstrap-fileupload.js"></script>
+<script src="/cssmmm/jquery.countdown.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var mdid, pdid, gdid, amount, status;
+  var img_field = $("#upload_clone").clone();
+
+  $('[data-toggle="tooltip"]').tooltip({
+    container : 'body',
+  });
+
+  $('.hireTable').click(function(){
+    $('.'+$(this).attr('value')+'.donate-body-'+$(this).attr('rel')).slideToggle('normal');
+  });
+
+  $('.transactionWrap').hide();
+  $('.btn-details').click(function () {
+    $(this).parents('table').siblings('.transactionWrap').stop(true, false).slideUp('normal');
+    $(this).parents('table').next().stop(true, false).slideToggle('normal');
+    return false;
+  });
+
+  $('#show_message_box').live("click", function(e){
+    e.preventDefault();
+    json = $(this).attr('data');
+    data = JSON && JSON.parse(json) || $.parseJSON(json);
+
+    mdid = data.mdid;
+
+    var spUrl = $(this).attr('src');
+    $("#message_div").load(spUrl);
+    $("input[name=mdid]").val(mdid);
+  });
+
+  $('a[id^=show_approve_box]').click(function(){
+    json = $(this).attr('data');
+    data = JSON && JSON.parse(json) || $.parseJSON(json);
+
+    var spUrl = $(this).attr('src');
+    $("input[name=approve_mdid]").val(data.mdid);
+    $("span[name=approve_amount]").text(format_monetary_value(data.amount));
+    $("#approve_message_div").load(spUrl);
+  });
+  $('a[id^=show_report_box]').click(function(){
+    json = $(this).attr('data');
+    data = JSON && JSON.parse(json) || $.parseJSON(json);
+    $("input[name=report_uid]").val(data.uid);
+    $("input[name=report_mdid]").val(data.mdid);
+  });
+  $('a[id^=show_confirm_box]').click(function(){
+    json = $(this).attr('data');
+    data = JSON && JSON.parse(json) || $.parseJSON(json);
+    $("input[name=confirm_mdid]").val(data.mdid);
+    $("input[name=confirm_img]").val("");
+  });
+
+  $("a[id^=show_image]").click(function(){
+    $("#image_div").html("<img alt='' class='img-responsive' src='"+$(this).attr('data')+"'>");
+  });
+
+  $("a[id^=show_message_image]").live("click", function(){
+    $("#image_div").html("<img alt='' class='img-responsive' src='"+$(this).attr('data')+"'>");
+  });
+
+  $("#pdgd_message_form").on('submit', function(events){
+    events.preventDefault();
+    if($("input[name=uid]").val() != 18162617){
+      $('#message_text').html('程序出错，请再试一次。');
+    }else{
+      $.ajax({
+        url: '?aj=1&type=add_pdgd_message',
+        type: "POST",
+        data:  new FormData(this),
+        contentType: false,
+        cache: false,
+        processData:false,
+        success: function(data){
+          var show_image = '';
+          json = data.split('<', 1)[0];
+          details = JSON && JSON.parse(json) || $.parseJSON(json);
+          if(details.error == ""){
+            $('#message_text').html('');
+            if(details.upload != ""){
+              show_image = '<a href="#dialog-photo" id="show_message_image" data="'+details.upload+'" data-toggle="modal" class=""><img height="100px" width="100px" src="'+details.upload+'"></a>';
+            }
+            var html = '<div class="innerMessage message-toggle"><div class="fullMessage clearfix"><div class="pull-left"><strong class="blue">'+details.username+'</strong></div><div class="pull-right calendar ml5"><i class="fa fa-calendar mr5"></i><span class="title-date">2015年7月9日 10:04:42AM</span></div><div class="clearfix"></div><div class="mt5"><p class="nm">'+details.message+'</p>'+show_image+'</div></div></div>';
+            $('#message_div').append(html);
+            $("#upload").html(img_field);
+            img_field = $("#upload_clone").clone();
+            $("textarea[name=message]").val('');
+          }else{
+            $('#message_text').html(details.error);
+          }
+        }
+      });
+    }
+  });
+
+  // prompt user a box to pd after completed a gd
+  if(1){
+    $('#prompt-repd').modal('show');
+  }
+  $('#prompt-repd').on('click', '#click-pd', function(e){
+    e.preventDefault();
+    $("#pdBtn").trigger("click");
+    $('#prompt-repd').modal('hide');
+  });
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var gdBtn = $('#gdBtn');
+  var pdBtn = $('#pdBtn');
+
+  pdBtn.click(function(){
+    $(this).toggleClass('active');
+    gdBtn.removeClass('active');
+    $('#pdWrap').stop(true, false).slideToggle('fast');
+    $('#gdWrap').stop(true, false).slideUp('fast').removeClass('open');
+    return false;
+  });
+  // if user status is freeze or just unblock and not yet do the maintain
+  gdBtn.click(function(){
+    $(this).toggleClass('active');
+    pdBtn.removeClass('active');
+    $('#gdWrap').stop(true, false).slideToggle('fast');
+    $('#pdWrap').stop(true, false).slideUp('fast').removeClass('open');
+    return false;
+  });
+
+  // Tooltips
+  $('.tip').tooltip({placement: 'top'});
+  $('.tipr').tooltip({placement: 'right'});
+  $('.tipb').tooltip({placement: 'bottom'});
+  $('.tipl').tooltip({placement: 'left'});
+
+  $("a[href='#top']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+
+  var _server_time = new Date(2015, 7-1, 9,
+    11, 4, 42),
+    _server_time2 = new Date(2015, 7-1, 9,
+    11, 4, 42),
+    _local_time = new Date(2015, 7-1, 9,
+    10, 4, 42),
+    _local_time2 = new Date(2015, 7-1, 9,
+    10, 4, 42);
+
+  _timer = setInterval(function(){
+    var now = new Date();
+    true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);    //synchronize & increment 1 second
+    second = _local_time.getTime() + 1000;
+    elapsed = Math.round((second - _local_time2.getTime()) / 1000);
+    if(elapsed < true_elapsed){
+      diff = true_elapsed - elapsed;
+      second += (diff * 1000);
+    }
+    _local_time.setTime(second);
+    second = _server_time.getTime() + 1000;
+    elapsed = Math.round((second - _server_time2.getTime()) / 1000);
+    if(elapsed < true_elapsed){
+      diff = true_elapsed - elapsed;
+      second += (diff * 1000);
+    }
+    _server_time.setTime(second);
+
+    //update server time
+    date_text = padNumber(_server_time.getHours())+':'+padNumber(_server_time.getMinutes())+':'+padNumber(_server_time.getSeconds());
+    date_text += ' ' + _server_time.getDate()+'/'+(_server_time.getMonth()+1)+'/'+_server_time.getFullYear();
+    $('#server_time_text').html(date_text);
+    //update local time
+    date_text = padNumber(_local_time.getHours())+':'+padNumber(_local_time.getMinutes())+':'+padNumber(_local_time.getSeconds());
+    date_text += ' ' + _local_time.getDate()+'/'+(_local_time.getMonth()+1)+'/'+_local_time.getFullYear();
+    $('#local_time_text').html(date_text);
+  }, 1000);
+
+  /**
+  * @param number An integer
+  * @return Integer padded with a 0 if necessary
+  */
+  function padNumber(number) {
+    return (number >= 0 && number < 10) ? '0' + number : number;
+  }
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var _allsecs = new Array();
+  var _allsecs2 = new Array();
+  var _i18n = {
+    weeks: ['星期', '星期'],
+    days: ['天', '天'],
+    hours: ['小时', '小时'],
+    minutes: ['分', '分'],
+    seconds: ['秒', '秒']
+  };
+  $('.maintain_remain_time').each(function(){
+    var _rid = $(this).attr('id');
+    var _seconds = parseInt($(this).attr('rel'));
+    if(_seconds > 0){
+      $(this).html(
+        remaining.getString(_seconds, _i18n, false)
+      );
+    }
+    else{
+      $(this).html('@T/user/incentive/product/remaining 0');
+    }
+    _allsecs[_rid] = _seconds;
+    _allsecs2[_rid] = _seconds;
+  });
+  timer = setInterval(function(){
+    var now = new Date();
+    true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);    $('.maintain_remain_time').each(function(){
+      var _rid = $(this).attr('id');
+      _seconds = _allsecs[_rid];
+      //synchronize
+      _diff_sec = _allsecs2[_rid] - _seconds;
+      if(_diff_sec < true_elapsed){
+        _seconds = _allsecs2[_rid] - true_elapsed;
+      }
+      if(_seconds > 0){
+        $(this).html(
+          remaining.getString(_seconds, _i18n, false)
+        );
+        _allsecs[_rid] = --_seconds;
+      }
+      else{
+        $(this).html('@T/user/incentive/product/remaining 0');
+              }
+    });
+  }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var _allsecs = new Array();
+  var _allsecs2 = new Array();
+  var _i18n = {
+    weeks: ['星期', '星期'],
+    days: ['天', '天'],
+    hours: ['小时', '小时'],
+    minutes: ['分', '分'],
+    seconds: ['秒', '秒']
+  };
+  $('.block_remain_time').each(function(){
+    var _rid = $(this).attr('id');
+    var _seconds = parseInt($(this).attr('rel'));
+    if(_seconds > 0){
+      $(this).html(
+        remaining.getString(_seconds, _i18n, false)
+      );
+    }
+    else{
+      $(this).html('@T/user/incentive/product/remaining 0');
+    }
+    _allsecs[_rid] = _seconds;
+    _allsecs2[_rid] = _seconds;
+  });
+  timer = setInterval(function(){
+    var now = new Date();
+    true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);    $('.block_remain_time').each(function(){
+      var _rid = $(this).attr('id');
+      _seconds = _allsecs[_rid];
+      //synchronize
+      _diff_sec = _allsecs2[_rid] - _seconds;
+      if(_diff_sec < true_elapsed){
+        _seconds = _allsecs2[_rid] - true_elapsed;
+      }
+      if(_seconds > 0){
+        $(this).html(
+          remaining.getString(_seconds, _i18n, false)
+        );
+        _allsecs[_rid] = --_seconds;
+      }
+      else{
+        $(this).html('@T/user/incentive/product/remaining 0');
+              }
+    });
+  }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  var pin_message = "此次执行需要{quantity}PIN。您现有0PIN。";
+    $('#maintain_back_btn, #pd_back_btn, #gd_back_btn').click(function(){
+    $('input[name=__req]').val('start'); //back to starting step
+  });
+
+  if(""){
+    $("#pd_pin").text(pin_message.replace("{quantity}", parseInt() / 1000));
+  }else{
+    $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+  }
+
+  $("input[name=from_wallet]").change(function(){
+    if($(this).val() == 'cwallet'){
+      $("#minimum_amount").text("RMB500.00");
+    }else{
+      $("#minimum_amount").text("RMB1,000.00");
+    }
+  });
+
+  $("#show_pd_amount").html(format_monetary_value(0));
+  $("#show_gd_amount").html(format_monetary_value(0));
+
+  $("#pd_amount").keyup(function(){
+    $("#show_pd_amount").html(format_monetary_value(parseInt($(this).val() / 1000)*1000));
+    if($(this).val() > 1000 && $(this).val() % 1000 == 0){
+      $("#pd_pin").text(pin_message.replace("{quantity}", $(this).val() / 1000));
+    }else{
+      $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+    }
+  });
+  $("#gd_amount").keyup(function(){
+    $("#show_gd_amount").html(format_monetary_value(parseInt($(this).val() / 50)*50));
+  });
+});
+</script>
+
+
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  $("#btn_cancel_donation").live("click", function(e){
+    if($("select[name=report_reason]").val() == ""){
+      e.preventDefault();
+      $("#report_reason_err_text").text("@T/user/dashboard/pdgd/report-reason-failed");
+    }else{
+      $("#report_reason_err_text").text("");
+    }
+  });
+});
+</script>
+
+<script>
+</script>
+<link rel="stylesheet" href="/templates/default/css/bootstrap/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/main.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/language/zh-CN.css" type="text/css" />
+<link rel="stylesheet" href="/templates/default/css/plugins/fileupload.css" type="text/css" />
+
+
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="/bitStyle/images/favicon.ico" type="image/x-icon">
+
+
+
+<body class="zh-CN " id="">
+
+
+<include file="User/Home/Mobile/default/common_header.html" />
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="widget">
+      <div class="widget-head clearfix">
+        <h4 class="heading">PD记录</h4>
+      </div>
+      <div class="widget-body innerAll">
+               
+
+        <div class="overthrow">
+          <foreach name="pdlist" item="p">
+                      <table class="table table-bordered table-donate table-pd">
+                          <tbody>
+                      
+                            <tr>
+                              <td>
+                                <div class="donate-header clearfix">
+<!--                                   <i class="fa fa-ellipsis-h hireTable" rel="PD{$p.id}" value="pd" data-toggle="tooltip"
+                                  data-placement="top" title="" data-original-title="Click to hide">
+                                  </i> -->
+                                  <h4>
+                                    存入金额:
+                                    <span>
+                                      PD{$p.id|md5=###|substr=###,0,10}
+                                    </span>
+                                  </h4>
+                                  <b>
+                                    存入者
+                                  </b>
+                                  :{$p.p_user}
+                                  <br>
+                                  <!-- <b>
+                                    取出者
+                                  </b>
+                                  :{$p.g_user}
+                                  <br> -->
+                                  <b>
+                                    数额
+                                  </b>
+                                  :RMB{$p.jb}
+                                  <br>
+                                  <!-- <b>
+                                    剩余数额
+                                  </b>
+                                  :RMB0.00
+                                  <br> -->
+                                  <b>
+                                    日期
+                                  </b>
+                                  :{$p['date']}
+                                  <br>
+                                  <b>
+                                    状况
+                                  </b>
+                                  :
+                                  <span class="pending">
+
+
+                                    <if condition="$p.zt eq 0">
+                                      <font color=green>
+                                        待付款
+                                      </font>
+                                    </if>
+                                    <if condition="$p.zt eq 1">
+                                      <font color=green>
+                                        已付款
+                                      </font>
+                                    </if>
+                                    <if condition="$p.zt eq 2">
+                                      <font color="#017F01">
+                                        交易成功
+                                      </font>
+                                    </if>
+                                  </span>
+                                  <br>
+                                  <!-- <b>诚信奖励基金</b>:0%<br> -->
+                                   <if condition="$p.zt eq 0">
+                                      <small style="font-size:14px;font-weight:bold;">
+                                        剩余打款时间：
+                                        <span style="color:#2D2D2D" data="{$p.date|datedqsj=###}" class="countdownbox"></span>                                        
+                                      </small>
+                                    </if>
+                                    <if condition="$p.zt eq 1">
+                                      <small style="font-size:14px;font-weight:bold;">
+                                        剩余确认时间：
+                                        <span data="{$p.date|datedqsj=###}" class="countdownbox" style="color:#ff0000;">
+                                        </span>                                       
+                                      </small>
+                                    </if>
+                                    <if condition="$p.zt eq 2">
+                                      <small>
+                                        汇款时间{$p.date_hk}                                        
+                                      </small>
+                                    </if>
+                        
+                                </div>
+                                <div class="pd donate-body-PD{$p.id}" style="overflow: hidden; display: none;">
+                                  <table class="table table-donations">
+                                    <tbody>
+                                      <tr>
+                                        <td class="donate-status pending" width="100px">
+                                          编号:
+                                          <span class="number">
+                                            MD{$p['jsbz_data']['id']|md5=###|substr=###,0,6}
+                                          </span>
+                                        </td>
+                                        <td>
+                                          创建日期:
+                                          <br>
+                                          <span class="date">
+                                            {$p['jsbz_data']['date']}
+                                          </span>
+                                        </td>
+                                        <td>
+                                          <span class="user">
+                                            {$p['jsbz_data']['user']}
+                                          </span>
+                                          其他银行
+                                        </td>
+                                        <td width="20" align="center">
+                                          <i class="fa fa-chevron-right">
+                                          </i>
+                                        </td>
+                                        <td width="120px">
+                                          <span class="value money">
+                                            RMB{$p.jb}
+                                          </span>
+                                        </td>
+                                        <td width="20" align="center">
+                                          <i class="fa fa-chevron-right">
+                                          </i>
+                                        </td>
+                                        <td width="120px">
+                                          <span class="user">
+                                            {$p.p_user}
+                                          </span>
+                                          其他银行
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="pending">
+                                          <i class="fa fa-ellipsis-h">
+                                          </i>
+                                        </td>
+                                        <td colspan="3" width="50%">
+
+                                          <if condition="$p.zt eq 0">
+                                            <span class="orange">
+                                            等待您的付款
+                                            </span>
+                                          </if>
+                                          <if condition="$p.zt eq 1">
+                                            <span style="color:#135D7F">
+                                              已付款
+                                            </span>
+                                          </if>
+                                          <if condition="$p.zt eq 2">
+                                            <span color=green>
+                                              交易成功
+                                            </span>
+                                          </if>
+                                     
+                                        </td>
+                                        <td colspan="3" class="nowrap action-btn" align="right">
+                                       <!--    <a href="#dialog-confirm-confirm" data-toggle="modal" class="btn btn-default btn-sm"
+                                          id="show_confirm_box_1085568" data='{"mdid":"57937","uid":"77696737"}'
+                                          style="background-color: #1dbb1d">
+                                            确定
+                                          </a> -->
+                                         <!--  <a href="#dialog-report-confirm" data-toggle="modal" class="btn btn-danger btn-sm"
+                                          id="show_report_box_1085568" data='{"mdid":"57937","uid":"77696737"}'>
+                                            举报
+                                          </a> -->
+                                         <!--  <a href="#dialog-msg"  data-toggle="modal" class="btn btn-inverse btn-xs btn_info{$p.id}" id="show_message_box" data='{$p.id|getLiuyu=###}'>
+                                            信息
+                                          </a> -->
+                                          <a  name="btn2" id="btn2{$p.id}" type="button" value="留言" class="btn btn-info btn-xs addmsg"
+                                            data-toggle="modal" data-id="{$p.id}" data-target="#myModal7">留言</a>
+                                          <a class="btn btn-warning btn-xs btn-details">
+                                            详情
+                                          </a>
+
+
+
+                                          <if condition="$p.pic eq '0'" >
+                                 
+                                          <else/>
+                                            <a href="{$p.pic}" target="_blank" class="btn btn-success btn-sm " ><!-- <i class="fa fa-file-image-o" style="font-size: 20px;background-image:url(/cssmmm/nav8.jpg);background-repeat: no-repeat;"></i> -->付款凭证</a>
+                                            </a>
+                                          </if>
+
+
+
+                                          <script>
+                                              $(function() {
+                                                $('#btn{$p.id}').click(function() {
+                                                  $("#mainframe11", parent.document.body).attr("src", "/Home/Index/home_ddxx/id/{$p.id}/"); $("#mainframe11").reload();
+                                                });
+                                                $('#btn2{$p.id}').click(function() {
+                                                  $("#mainframe12", parent.document.body).attr("src", "/Home/Index/home_ddxx_ly/id/{$p.id}/"); $("#mainframe12").reload();
+                                                });
+                                              });
+                                            </script>
+
+
+
+                                            <if condition="$p.zt eq '0'" >
+                                              <if condition="$p.ts_zt eq '1'" >                                               
+
+                                                  <a  class="btn btn-default" data-toggle="tooltip" data-placement="top" title="48小时未汇款<br>
+                                                  请联系对方取<br/>
+                                                  消投诉!">已被投诉</a>
+                                              
+                                              <else/>
+                                                      <a  name="btn3" id="btn33{$p.id}"  class="btn_detail btn-primary btn-sm" data-toggle="modal"
+                                                        data-target="#myModa24">确认已付款</a>
+                                                        <script>
+                                                          $(function() {
+                                                            $('#btn33{$p.id}').click(function() {
+                                                              $("#mainframe13", parent.document.body).attr("src", "/Home/Index/home_ddxx_pcz/id/{$p.id}/"); $("#mainframe13").reload()
+                                                            })
+                                                          })
+                                                        </script>
+                                             </if>
+                                          
+                                          </if>
+                                          
+                                          
+                                          <if condition="$p.zt eq 1" >
+                                              <if condition="$p.ts_zt eq '2'" >
+                                                <a  class="btn btn-default" data-toggle="tooltip" data-placement="top" title="你已被对方投诉请与
+                                                  对方取得联系!">已被投诉</a>
+
+
+                                              <else/>
+                                                  <span {$p.date|datedqsj3=###}>                                                 
+                                                  
+                                                  <a style="width:120px;" name="btn3" id="btn33{$p.id}"   class="btn-danger btn-primary btn-xs" data-toggle="modal"  data-target="#myModa24">48小时未确认投诉</a>
+                                              
+                                                 <script>
+                                                      $(function(){
+                                                          $('#btn33{$p.id}').click(function(){
+                                                          $("#mainframe13",parent.document.body).attr("src","/Home/Index/home_ddxx_g_wqr/id/{$p.id}/"); 
+                                                          $("#mainframe13").reload();
+                                                          });
+                                                      })
+                                                  </script>
+                                              </if>
+                                          </if>
+
+
+                                        </td>
+
+                                            
+
+
+
+
+
+
+
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <div class="transactionWrap" style="display: none;">
+                                    <div class="transaction-details">
+                                      <table class="table table-bordered table-condensed">
+                                        <thead>
+                                          <tr>
+                                            <th colspan="2">
+                                              转账到:
+                                              <br>
+                                              支付宝账号：{$p.jsbz_user.zfb}
+                                              <br>
+                                              手机号：{$p.jsbz_user.ue_phone}
+                                              <br>
+                                              邮箱：{$p.jsbz_user.email}
+                                              <br>
+                                              微信号: {$p.jsbz_user.weixin}
+                                              <br>
+                                              银行账号:{$p.jsbz_user.yhzh}
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>
+                                              <b>
+                                                开户名
+                                              </b>
+                                            </td>
+                                            <td>
+                                              {$p.jsbz_user.ue_theme}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                              <b>
+                                                开户银行
+                                              </b>
+                                            </td>
+                                            <td>
+                                              {$p.jsbz_user.yhmc}
+                                            </td>
+                                          </tr>
+                                     
+                                          <tr>
+                                            <td colspan="2">
+                                              <ul class="contactList">
+                                                <li>
+                                                  联络接收人:{$p['jsbz_user']['ue_account']}:{$p.jsbz_user.ue_phone}
+                                                </li>
+                                                <li>
+                                                  联络取出者的管理员:{$p.jsbz_accname.ue_account}:{$p.jsbz_accname.ue_phone}
+                                                </li>
+                                                <!-- <li>
+                                                  联络转账人:{$p.jsbz_user.zfb}:13607350122
+                                                </li> -->
+                                                <!-- <li>
+                                                  联络转账人的管理员:张功满:18761116111
+                                                </li> -->
+                                              </ul>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>                                  
+                                  
+                                </div>
+                      </div>
+                    </div>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </foreach>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+                      <div class="overthrow">
+          <volist name="plist" id="p">
+              <table class="table table-bordered table-donate table-pd">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="donate-header clearfix">
+                      <!-- <i class="fa fa-ellipsis-h hireTable" rel="PD158576838" value="pd" data-toggle="tooltip" data-placement="top" title="Click to hide"></i> -->
+                        <h4>存入金额: <span>PD{$p.id}</span></h4>
+                        <b>参加者</b>: {$p.user}<br>
+                        <b>数额</b>: RMB{$p.jb}<br>                     
+                        <b>日期</b>: {$p.date}<br>
+                        <b>状况</b>: <span class="pending">
+                        <font color=red>等待匹配</font></span>
+                                                <!-- <b>回酬分布剩余时间</b>: <span class="approve_remaining_time" rel="0" id="_remain_sec_PD158576838"></span> --><!---->
+                      </div>
+                      <div class="pd donate-body-PD158576838" style="overflow: hidden; display: none;">
+                                              </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </volist>
+            </div>
+                </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="dialog-msg">
+  <div class="modal-dialog">
+            <form id="pdgd_message_form2" enctype="multipart/form-data" method="post" action="{:U('Index/home_ddxx_ly_cl')}">
+
+        <input type="hidden" name="id" id="message_id">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="hierarchy_title">信息</h3>
+          </div>
+          <div class="modal-body np">
+            <div id="message_div" class="messageWrap" style="padding:10px 20px 0;"></div>
+            <div id="message_foot">
+              <textarea class="form-control form-control-text-area" placeholder="回复" name="mesg" id="message" rows="4"></textarea>
+              <p class="error" id="message_text"></p>
+            </div>
+          </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                        <input type="submit" id="btn_approve_donation" class="btn btn-primary btn-sm" value="回复信息" />
+                    </div>
+        </div>
+      </form>
+  </div>
+</div>
+
+
+<div class="modal fade" id="dialog-confirm-confirm">
+  <div class="modal-dialog">
+    <form id="approve_pdgd_form" enctype="multipart/form-data" method="post" action="updaterecord.php?act=confirm">
+    <input type="hidden" name="confirm_mdid">
+    <fieldset>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="hierarchy_title">确认</h3>
+        </div>
+        <div class="modal-body">
+          您确定已经给对方打款了吗?<br/><br/>
+          如果您确定已经给对方打款了，为了双方资金安全抵达，请上传正确的汇款成功图片。<br/><br/>对方查询之后，快速给您批准！<br/><br/>
+          <div id="confirm_upload_images_div">
+            <div id="confirm_message_div" class="messageWrap"></div>
+            <div id="confirm_message_foot">
+              <div id="confirm_upload">
+                <div class="btn-group btn-group-sm" id="confirm_upload_clone">
+                  <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <div class="input-group">
+                      <input class="ipt" type="text" id="url" name="confirm_img" value="" size="40" readonly />
+                      <span class="input-group-btn">
+                          <input type="button" id="uploadButton" value="选择文件" /> <font color="red">* 截图必须上传</font>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                  </div>
+        <div class="modal-footer" id="confirm_cancel_btn">
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+          <input type="submit" id="btn_approve_donation" class="btn btn-primary btn-sm" value="确定" />
+        </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="dialog-approve-confirm">
+  <div class="modal-dialog">
+    <form id="approve_pdgd_form" method="post" action="updaterecord.php?act=approve">
+    <input type="hidden" name="__req" value="7">
+    <input type="hidden" name="__nonce" value="d5d98364fc32b1c2fcb183a37b2f21862a9737deba0bba47cafabe0ebc486340">
+    <input type="hidden" name="approve_mdid">
+    <fieldset>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="hierarchy_title">确认批准</h3>
+        </div>
+        <div class="modal-body">
+          您确定要批准此合并舍得吗?         <div id="approve_message_div" class="messageWrap"></div>
+        </div>
+        <div class="modal-footer" id="approve_cancel_btn">
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+          <input type="submit" id="btn_approve_donation" class="btn btn-primary btn-sm" value="确定" />
+        </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade" id="dialog-report-confirm">
+  <div class="modal-dialog">
+    <form id="report_pdgd_form" method="post" action="updaterecord.php?act=report">
+    <input type="hidden" name="__req" value="8">
+    <input type="hidden" name="__nonce" value="18315862da192da1effbee919afafa7bedb8beeb1e03dc6091fc5cebae1c44bd">
+    <input type="hidden" name="report_uid">
+    <input type="hidden" name="report_mdid">
+    <fieldset>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="hierarchy_title">确认举报</h3>
+        </div>
+        <div class="modal-body">
+                    <p>举报的时间要求：在倒计时48小时的最后两小时里面，举报是可以成功的。<br>
+                    如果举报时间未到请在倒计时2小后举报，并表达举报内容，如，联系不上，还有多少钱没得回来等。
+                  </p>
+          <p>请提供您欲举报此合并舍得的原因。</p>
+          <label>选项 :</label>
+          <select class="form-control" name="report_reason">
+                          <option value="">请选择</option>
+                          <option value="1">假冒欺诈</option>
+                          <option value="2">更换银行户口</option>
+                          <option value="3">更换电话号码</option>
+                          <option value="4">不能得</option>
+                          <option value="5">其他</option>
+                      </select>
+          <span id="report_reason_err_text" class="error"></span><br/>
+          <label>信息 :</label>
+          <textarea class="form-control form-control-text-area" placeholder="Reply here..." name="report_message" rows="4"></textarea>
+        </div>
+        <div class="modal-footer" id="approve_cancel_btn">
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+          <input type="submit" id="btn_cancel_donation" class="btn btn-primary btn-sm" value="确定" />
+        </div>
+      </div>
+    </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="myModa23" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="title23">请选择</h5>
+                <small class="font-bold"></small>
+            </div>
+            <div class="modal-body" style="height:400px; overflow:auto">
+              <iframe src='' id="mainframe188" width="830px;" height="350px;" ></iframe>
+            </div>
+            <div class="modal-footer">
+                
+                  <button type="button" class="btn btn-default btn-info" data-dismiss="modal">关闭</button>
+                <!--  
+                <button type="button" class="btn-primary" data-dismiss="modal" id="select_fanshi">确认</button>-->
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModa24" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="title24">请选择</h5>
+                <small class="font-bold"></small>
+            </div>
+            <div class="modal-body" style="height:400px; overflow:auto">
+              <iframe src='' id="mainframe13" width="830px;" height="350px;" ></iframe>
+            </div>
+            <div class="modal-footer">
+                
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                 
+                <!--<button type="button" class="btn-primary" data-dismiss="modal" id="select_fanshi2">确认</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dialog-photo">
+  <div class="modal-dialog">
+    <form name="cancel_order_form" method="post" action="">
+      <input type="hidden" name="" value="">
+      <input type="hidden" name="" value="">
+      <input type="hidden" name="pboid" value>
+      <div class="modal-content">
+        <div class="modal-body np" id="image_div">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="color-line">
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="title2">
+              留言信息
+            </h5>
+            <small class="font-bold">
+            </small>
+          </div>
+          <div class="modal-body" style="height:300px; overflow:auto">
+            <iframe src='' id="mainframe12" width="830px;" height="350px;">
+            </iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-default" data-dismiss="modal">
+              关闭
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+	<script>
+	   document.getElementById('pdBtn').style.display="none";
+	   document.getElementById('gdBtn').style.display="none";
+	   document.getElementById('qdBtn').style.display="none";
+	   document.getElementById('aBtnDiv').style.display="block";
+
+	   $("#aBtn_Text").html("查看取出金额记录");
+	   $("#aBtn").attr('href','/home/index/gdlist.html');
+	</script>
+</body>
+</html>
+

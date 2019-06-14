@@ -1,0 +1,1 @@
+a:8:{i:0;s:2:"id";i:1;s:7:"ppdd_id";i:2;s:4:"user";i:3;s:2:"nr";i:4;s:4:"date";i:5;s:7:"user_nc";s:3:"_pk";s:2:"id";s:5:"_type";a:6:{s:2:"id";s:7:"int(11)";s:7:"ppdd_id";s:7:"int(14)";s:4:"user";s:11:"varchar(14)";s:2:"nr";s:4:"text";s:4:"date";s:8:"datetime";s:7:"user_nc";s:12:"varchar(255)";}}

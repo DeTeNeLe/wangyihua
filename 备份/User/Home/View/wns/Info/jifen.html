@@ -1,0 +1,276 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<!-- header end -->
+   <div class="content-wrapper tab-content tab-addtabs"> 
+    <div role="tabpanel" class="tab-pane active" style="overflow: auto"> 
+     <div class="maincon"> 
+      <div class="well bs-component">
+			<legend style="text-align: left;font-weight: bold;">当前{:C('jifen_wallet_name')}余额：{$userData['jifen']}</legend>
+				<form class="form-horizontal" <if condition="C('cxj_dhjhm_num') eq 0">style="display:none"</if>>
+                    <fieldset>
+                        <legend>{:C('jifen_wallet_name')}兑换{:C('jhm_name')} </legend>
+                        <span class="help-block">兑换无需手续费,每{:C('cxj_dhjhm_num')}个{:C('jifen_wallet_name')}可兑换1个{:C('jhm_name')}</span>
+                        <div class="form-group col-lg-6 col-xs-12">
+                            <div class="col-lg-8 col-xs-8">
+                                <input type="text" class="form-control" id="num_zz_user" value="{$_SESSION['uname']}"
+								placeholder="兑换账号或手机号" disabled="disabled">
+                            </div>
+                            <label for="num_zz_user" class="col-lg-4 col-xs-4 text-left control-label"></label>
+                        </div>
+                   		<div class="form-group col-lg-6 col-xs-12">
+                            <div class="col-lg-8 col-xs-8">
+                                <input type="text" class="form-control" id="num_zz_nums" placeholder="要兑换的{:C('jhm_name')}数量">
+                            </div>
+                            <label for="num_zz_nums" class="col-lg-4 col-xs-4 text-left control-label"></label>
+                        </div>
+						<input type="button" class="form-control" value="提交" disabled="disabled" id="num_zz_submit">
+                    </fieldset>
+             </form>
+      </div>
+	  <div class="well bs-component" style="display:none">
+          <form class="form-horizontal">
+                <fieldset>
+                     <legend>{:C('jifen_wallet_name')}激活会员</legend>
+                     <span class="help-block">你可以使用{:C('cxj_dhjhm_num')}{:C('jifen_wallet_name')}激活你的一代和二代直推会员</span>
+                     <div class="form-group col-lg-6 col-xs-12">
+                       <table class="table">
+                           <tbody>
+                        		<tr>
+                        			<th>层级</th><th>昵称</th><th>账号</th><th>手机号</th><th>操作</th>	
+                        		</tr>
+                                <tr>
+								   <td>一代</td>
+								   <td>李沧海</td>
+								   <td>97693188@qq.com</td>
+								   <td>15188358607</td>
+								   <td><span class='btn btn-success activeone' data='94028'>激活</span></td>
+								</tr>                    		
+						  </tbody>
+                       </table>
+                     </div>
+                </fieldset>
+          </form>
+      </div>
+      <div class="walletpanel"> 
+       <div class="contitle active">
+         {:C('jifen_wallet_name')} 消费纪录
+       </div> 
+       <table class="table"> 
+        <tbody>
+         <tr> 
+          <th>编号</th>
+          <th>日期</th>
+          <th>类型</th>
+          <th>数量</th>
+		  <th>余额</th>
+          <th>说明</th>
+         </tr>
+		 <foreach name='jifen_list' item='v'>
+         <tr>
+          <td>{$v.id}</td>
+          <td>{$v.date}</td>
+          <td>
+		      <if condition="$v.type eq 'zc'">转出</if>
+		      <if condition="$v.type eq 'dhjhm'">兑换激活码</if>
+			  <if condition="$v.type eq 'cf'">惩罚</if>
+			  <if condition="$v.type eq 'jj'">奖金</if>
+		  </td>
+		  <td>{$v.num}</td>
+		  <td>{$v.yue}</td>
+		  <td>{$v.info}</td>
+         </tr>
+		 </foreach>
+        </tbody>
+       </table> 
+       <div class="fixed-table-pagination" style="display: block;"> 
+	   <div class="pull-left pagination-detail"> 
+         <span class="pagination-info"> 共 {$jifen_count} 条纪录</span> 
+         <span class="page-list2">每页显示 <span class="btn-group dropup"> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span class="page-size2">10</span> <span class="caret"></span> </button> 
+           <ul class="dropdown-menu" role="menu"> 
+            <li role="dropdown-menu" class="active"><a>10</a></li>
+            <li role="dropdown-menu"><a>25</a></li>
+            <li role="dropdown-menu"><a>50</a></li> 
+           </ul> </span>条记录</span> 
+        </div> 
+        <div class="pull-right pagination"> 
+         <div class="page"> 
+		      {$jifen_page}
+         </div> 
+        </div> 
+        </div>      
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <style>
+	.walletpanel{background: rgba(255,255,255,.9);padding: 10px 5px;}
+	.dddd{width: 96%;text-align: center;margin:0 auto;}
+	.dddd > div{height: 5em;padding: 5px;border: 1px solid rgba(0,0,0,.1)}
+	.dddd > div .num{font-size: 1.5em;font-weight: bold;display: inline-block;height: 100%;float: left;line-height: 2.8em}
+	tr.green{background: rgba(0,250,0,.2) !important;color: #444}
+	tr.red{background: rgba(250,0,0,.2) !important;color: #444}
+   </style> 
+</div>
+<script>
+	(function(){
+		document.title="{:C('jifen_wallet_name')}";
+		//积分转账
+		$(document).on('blur','#num_zz_user',function(){
+			var o = $(this).val();
+			if (o=='') return;
+			$.ajax({
+				type:'post',
+				url:'/Home/Index/home_post',
+				data:'act=get_userinfo&field=ue_theme&u_p='+o,
+				success:function(data){
+					if (data.sf==1) {
+						$('[for=\'num_zz_user\']').html('<span style=\'color:#090\'>'+data.nr+'</span>');
+					}else{
+						$('[for=\'num_zz_user\']').html('<span style=\'color:#a00\'>'+data.nr+'</span>');
+					}
+				}
+			});
+		}).on('input','#num_zz_nums',function(){
+			var o = parseInt($(this).val());
+			if (o<=0) {
+				$('#num_zz_submit').attr('disabled','disabled');
+				return;
+			}else{
+				$('[for=\'num_zz_nums\']').text('需扣除0%手续费：'+(o*0.0)+"{:C('jifen_wallet_name')}");
+				$('#num_zz_submit').removeAttr('disabled');
+			}
+		}).on('blur','#num_zz_nums',function(){
+			var o = $(this).val();
+			
+			if (o>0){
+				$.ajax({
+					type:'post',
+					url:'/Home/Index/home_post',
+				    data:"act=get_userinfo&field=jifen&u_p={$userData['ue_account']}",
+					success:function(data)
+					{
+						if (data.sf==1) 
+					    {
+							if(data.nr / {:C('cxj_dhjhm_num')} < parseInt(o))
+							{
+								$('[for=\'num_zz_nums\']').html('<span style=\'color:#090\'>'+"您的{:C('jifen_wallet_name')}不足！"+'</span>');
+							    $('#num_zz_submit').removeAttr('disabled');
+							}
+	
+						}else{
+							$('[for=\'num_zz_nums\']').html('<span style=\'color:#a00\'>'+data.nr+'</span>');
+							$('#num_zz_submit').attr('disabled','disabled');
+						}
+					}
+				});
+			}
+		}).on('click','#num_zz_submit',function(){
+			var to_user = $('#num_zz_user').val();
+			var user = $('[for=num_zz_user]').text();
+			var num = $('#num_zz_nums').val();
+			layer.confirm('是否向会员'+to_user+'兑换'+num+"{:C('jhm_name')}？",{ title:'请确认', },
+				function(index,layero){
+					$.ajax({
+						type:'post',
+						url:'/Home/Index/home_post',
+						data:'act=jifen_dhjhm&to_user='+to_user+'&num='+num,
+						success:function(data){
+							if (data.sf==1) {
+								layer.closeAll();
+								layer.msg('兑换成功');
+								setTimeout(function(){location.reload()},2000);
+							}else{
+								layer.msg(data.nr);
+							}
+						}
+					});
+				}
+			);
+		})
+
+
+		$(document).on('click','#num_mall_submit',function(){
+			var num = parseInt($('#num_mall_num').val());
+			console.log(num);
+			if (num<=0) {
+				layer.msg('请输入正确金额！');
+				return;
+			}
+			layer.load();
+			$.ajax({
+				type:'post',
+				url:'?',
+				data:'act=convertmoney&num='+num,
+				success:function(data){
+					layer.closeAll('loading');
+					layer.msg(data);
+				}
+			})
+
+		})
+
+		//激活会员
+		$(document).on('click','.activeone',function(){
+			var id = $(this).attr('data');
+			$.ajax({
+				type:'post',
+				url:'?',
+				data:'act=activeone&id='+id,
+				success:function(data){
+					var res = eval("("+data+")");
+					layer.msg(res.content);
+					if (res.status==1) location.reload();
+				}
+			});
+		})
+
+		//查看积分转账记录
+		$(document).on('click','.btn_num_record',function(){
+			var o = $(this);
+			var start = parseInt($(this).attr('data'));
+			o.text('查看更多...').attr('data',start+10);
+			$.ajax({
+				type:'post',
+				url:'?',
+				data:'act=jifenrecord&start='+start,
+				timeout:7000,
+				success:function(data){
+					var res = eval("("+data+")");
+					if (res.status==0) {
+						layer.msg(res.content);
+						return;
+					}else{
+						o.prev('table').find('tr:first-child').before(res.content);
+					}
+
+				}
+			})
+		})
+
+		//查看转积分至商城记录
+		$(document).on('click','.btn_jifentomall_record',function(){
+			var o = $(this);
+			var start = parseInt($(this).attr('data'));
+			o.text('查看更多...').attr('data',start+10);
+			$.ajax({
+				type:'post',
+				url:'?',
+				data:'act=jifentomallrec&start='+start,
+				timeout:7000,
+				success:function(data){
+					var res = eval("("+data+")");
+					if (res.status==0) {
+						layer.msg(res.content);
+						return;
+					}else{
+						o.prev('table').find('tr:first-child').before(res.content);
+					}
+
+				}
+			})
+		})
+	})();
+</script>
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

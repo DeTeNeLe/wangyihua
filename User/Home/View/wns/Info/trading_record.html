@@ -1,0 +1,746 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<!-- header end -->
+<div class="content-wrapper tab-content tab-addtabs" style=" padding-top: 0;">
+	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
+	   	<i class="fa fa-chevron-circle-left"></i>返回
+	    <script>
+			function goback(){
+                window.history.back();
+            }
+            (function(){
+                $(document).on('click','#tglj',function(){
+                    var o = $(this).prev('input');
+                    o.select();
+                    document.execCommand("copy",false,null);
+                    layer.tips('已复制至剪贴板',o);
+                })
+            })();
+		</script>
+	</span>
+	<div role="tabpanel" class="tab-pane active" style="overflow: auto">
+		<!--订单列表-->
+		<div class="maincon">
+			<div class="orderlist">
+			</div>
+			<div class="maincon">
+				<div class="orderlist out">
+					<if condition="$count eq 0">
+						<div style="color:#fff">当前没有订单</div>
+					</if>
+					<volist name="list" id="p">
+						<!--<div class="l_item sq out status_p_{$p.orderid|get_p_status=###}" act="viewin" data="{$p.orderid}">
+							<span class="sbj">状态</span>
+							<div>
+								参与者:{$p.user}
+							</div>
+							<div>
+								申请单编号:{$p.orderid}
+							</div>
+							<div>
+								金额:{$p.mainid|get_tgbz_totaljb=###}(数量:{$p.mainid|get_tgbz_totaljb=###|get_pro_num})
+							</div>
+							<div class="status_p_{$p.orderid|get_p_status=###}">
+								状态:
+							</div>
+							<div>
+								日期:{$p.date}
+							</div>
+							<div class="jiakuaicon" style="display:none;">加快进场:<input type="checkbox" data="2001020518" class="jiakuai"></div>
+							<if condition="$p.isfast eq '1'">
+								<div class="jiakuaicon" ">加速...</div>
+						</if>
+				</div>-->
+						<div class="order_bar">
+							<h5>{$p.orderid}<span>{$p.date}</span></h5>
+							<p>持仓总量: {$p.mainid|get_tgbz_totaljb=###}/{$p.cc_total_num}
+								<!--{$p.mainid|get_tgbz_totaljb=###|get_pro_num}-->
+							</p>
+							<p>开仓积分: {$p.kc}/{$p.kc_num}</p>
+							<p>平仓积分: {$p.pc}/{$p.pc_num}</p>
+							<if condition="$p.kc_zt eq 0">
+							<div style="">
+								<!--撮合交易完成！请在2019-05-19 12:23:43之前交割，否则积分失效-->
+								排队中
+							</div>
+							</if>
+							<if condition="$p.kc_zt eq 1 and $p.pc_zt eq 0">
+								<div style="">
+									<!--撮合交易完成！请在2019-05-19 12:23:43之前交割，否则积分失效-->
+									开仓已完成，平仓排队中
+								</div>
+							</if>
+							<if condition="$p.kc_zt eq 1 and $p.pc_zt eq 1">
+								<div style="">
+									<!--撮合交易完成！请在2019-05-19 12:23:43之前交割，否则积分失效-->
+									已完成
+								</div>
+							</if>
+						</div>
+					</volist>
+					<!--<div class="fixed-table-pagination " style="display: block; ">
+						<div class="pull-left pagination-detail ">
+							<span class="pagination-info " style="font-size: .8em;color: #fff "> (共 {$count} 条) </span>
+							<span class="page-list2 " style="font-size: .8em;color: #fff ">每页 <span class="btn-group dropup "> <button type="button " class="btn btn-default dropdown-toggle " data-toggle="dropdown "> <span class="page-size2 ">5</span> <span class="caret "></span> </button>
+							<ul class="dropdown-menu " role="menu ">
+								<li role="dropdown-menu " class="active ">
+									<a href="# ">5</a>
+								</li>
+								<li role="dropdown-menu ">
+									<a href="# ">10</a>
+								</li>
+								<li role="dropdown-menu ">
+									<a href="# ">25</a>
+								</li>
+							</ul>
+							</span>条</span>
+						</div>
+						<div class="pull-right pagination " style="font-size: .9em; ">
+							<div class="page ">
+								{$page}
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+			<!--<a href="?showall={$showall} " class="btn btn-success showall ">
+            <if condition='$showall eq 1'>显示
+                <else />隐藏</if>所有已完成订单</a>-->
+		</div>
+		<script>
+			var $_GET = (function() {
+				var u = window.document.location.href.toString().split("? ");
+				if(typeof(u[1]) == "string ") {
+					u = u[1].split("& ");
+					var g = {};
+					for(var i in u) {
+						var j = u[i].split("=");
+						g[j[0]] = j[1];
+					}
+					return g;
+				} else {
+					return {};
+				}
+			})();
+
+			(function() {
+				$(document).on('click', '.l_item', function() {
+					var o = $(this);
+					if(o.hasClass('open')) {
+						$(this).removeClass('open').addClass('closed');
+						$(this).next('.viewcon').slideToggle(200);
+					} else if(o.hasClass('closed')) {
+						$(this).removeClass('closed').addClass('open');
+						$(this).next('.viewcon').slideToggle(200);
+					} else {
+						var orderid = o.attr('data');
+						var act = o.attr('act');
+						o.addClass('open');
+						$.ajax({
+							type: 'post',
+							url: '/Home/Index/home_post',
+							data: 'act=' + act + '&orderid=' + orderid,
+							timeout: 7000,
+							success: function(data) {
+								o.after(data);
+								o.next('.viewcon').slideDown(200);
+							},
+							complete: function(XMLHttprequest) {
+								if(XMLHttprequest.StatusText == 'timeout') layer.msg('网络连接超时，请更换网络环境或稍后再试！')
+							}
+
+						});
+					}
+				})
+				var curpage1 = parseInt($(document).find('.page-number1.active').text());
+				var curpage2 = parseInt($(document).find('.page-number2.active').text());
+				var totalpage1 = $(document).find('.page-next1').prev('.page-number1').text();
+				var totalpage2 = $(document).find('.page-next2').prev('.page-number2').text();
+
+				function refreshpage($p1, $p2) {
+					if(!$p1) {
+						$p1 = curpage1;
+					} else {
+						curpage1 = $p1;
+					}
+					if(!$p2) {
+						$p2 = curpage2;
+					} else {
+						curpage2 = $p2;
+					}
+					var limit1 = $(document).find('.page-size1').text();
+					var limit2 = $(document).find('.page-size2').text();
+					var str = '';
+					if(limit1 > 0) {
+						str += '&limit1=' + limit1;
+					}
+					if(limit2 > 0) {
+						str += '&limit2=' + limit2;
+					}
+					str += '&page1=' + $p1;
+					str += '&page2=' + $p2;
+					if($_GET['showall']) str += '&showall=1';
+					$url = '/?o' + str;
+					location.href = $url;
+				}
+				$(document).on('click', '.page-list1 a', function() {
+					var p1 = $(this).text();
+					$(document).find('.page-size1').text(p1);
+					refreshpage();
+				})
+				$(document).on('click', '.page-list2 a', function() {
+					var p2 = $(this).text();
+					$(document).find('.page-size2').text(p2);
+					refreshpage();
+				})
+				$(document).on('click', '.page-number1:not(.active)', function() {
+					var p1 = parseInt($(this).text());
+					refreshpage(p1, curpage2);
+				})
+				$(document).on('click', '.page-number2:not(.active)', function() {
+					var p2 = parseInt($(this).text());
+					refreshpage(curpage1, p2);
+				})
+				$(document).on('keydown', '.page-number1.active', function(event) {
+					var p1 = parseInt($(this).text());
+					if(event.keyCode == 13) {
+						refreshpage(p1, curpage2);
+					}
+				})
+				$(document).on('keydown', '.page-number2.active', function(event) {
+					var p2 = parseInt($(this).text());
+					if(event.keyCode == 13) {
+						refreshpage(curpage1, p2);
+					}
+				})
+				$(document).on('click', '.page-pre1', function() {
+					if(curpage1 == 1) {
+						refreshpage(totalpage1, curpage2);
+					} else {
+						refreshpage(curpage1 - 1, curpage2);
+					}
+				})
+				$(document).on('click', '.page-next1', function() {
+					if(curpage1 == totalpage1) {
+						refreshpage(1, curpage2);
+					} else {
+						refreshpage(curpage1 + 1, curpage2);
+					}
+				})
+				$(document).on('click', '.page-pre2', function() {
+					if(curpage2 == 1) {
+						refreshpage(curpage1, totalpage2);
+					} else {
+						refreshpage(curpage1, curpage2 - 1);
+					}
+				})
+				$(document).on('click', '.page-next2', function() {
+					if(curpage2 == totalpage2) {
+						refreshpage(curpage1, 1);
+					} else {
+						refreshpage(curpage1, curpage2 + 1);
+					}
+				})
+
+			})();
+		</script>
+	</div>
+</div>
+<iframe id=" exec_target " name="exec_target " style="display: none "></iframe>
+<script>
+	var orderid;
+	var upbtn = document.createElement("button ");
+	var t = document.createTextNode("选择图片 ");
+	upbtn.appendChild(t);
+	(function() {
+	document.title = '首页';
+	$(document).on('click', '.btn-buyin', function() {
+		$.ajax({
+			type: 'post',
+			url: '/Home/Index/home_post',
+			data: 'act=buyincon',
+			timeout: 7000,
+			success: function(rlt) {
+				layer.open({
+					title: '买入',
+					content: rlt,
+					btn: ['提交', '取消'],
+					yes: function(index, layero) {
+						var bnum = parseInt($('#buyin_num').val() * 1);
+						var tigongshangxian = parseInt($('#tigongshangxian').text());
+						var tigongxiaxian = parseInt($('#tigongxiaxian').text());
+						var buyin_num = $(document).find('#buyin_num');
+						if(bnum > tigongshangxian) {
+							layer.tips('买入金额不得超过当前上限', buyin_num);
+							return;
+						}
+						if(bnum < tigongxiaxian) {
+							layer.tips('买入金额不得少于当前下限', buyin_num);
+							return;
+						}
+						if(bnum % {
+								$jj01
+							} > 0) {
+							layer.tips('买入金额必须为{$jj01}的整数倍', buyin_num);
+							return;
+						}
+						var pdb = Math.ceil(bnum / 1000);
+						var lock = false;
+						layer.confirm('您申请的' + bnum + '元订单', {
+								title: '确认是否提交买入申请？'
+							},
+							function() {
+								if(!lock) {
+									lock = true;
+									$.ajax({
+										type: 'post',
+										url: '/Home/Index/tgbzcl',
+										data: 'zffs1=1&zffs2=1&zffs3=1&amount=' + bnum,
+										timeout: 7000,
+										success: function(data) {
+											if(data.sf == 1) {
+												layer.closeAll();
+												layer.msg('提交成功！');
+												setTimeout(function() {
+													location.reload();
+												}, 5000)
+											} else if(data.sf == 2) {
+												setTimeout(function() {
+													location.href = data.nr;
+												}, 1000);
+											} else {
+												layer.msg(data.nr);
+											}
+										},
+										complete: function(XMLHttprequest) {
+											if(XMLHttprequest.statusText == 'timeout') {
+												layer.msg('连接超时，请更换网络环境或稍后再试');
+											}
+										}
+									});
+								} else {
+									layer.msg('请勿多次提交');
+								}
+							},
+							function() {}
+						);
+					},
+					btn2: function(index, layero) {
+						layer.close(index);
+					}
+				})
+			},
+			complete: function(XMLHttprequest) {
+				if(XMLHttprequest.statusText == 'timeout') {
+					layer.msg('连接超时,请更换网络环境或稍后再试!');
+				}
+			}
+		});
+	})
+	$(document).on('click', '.btn-sellout', function() {
+		$.ajax({
+			type: 'post',
+			url: '/Home/Index/home_post',
+			data: 'act=selloutcon',
+			timeout: 7000,
+			success: function(rlt) {
+				layer.open({
+					title: '卖出',
+					content: rlt,
+					btn: ['提交', '取消'],
+					yes: function(index, layero) {
+						var sell_num = $(document).find('#sell_num');
+						var selltype = $('#selltype').val() == 1 ? '/Home/Index/jsbzcl_jj' : '/Home/Index/jsbzcl_bx';
+						var num = $('#sell_num').val();
+						var card = $('#bankcard').val();
+						if(num <= 10) {
+							layer.tips('金额有误', sell_num);
+							return;
+						}
+						var lock = false;
+						layer.confirm('您申请订单成交后将获得' + num + '元', {
+								title: '确认是否提交卖出申请？'
+							},
+							function() {
+								if(!lock) {
+									lock = true;
+									$.ajax({
+										type: 'post',
+										url: selltype,
+										data: 'zffs1=1&zffs2=1&zffs3=1&get_amount=' + num + '&type=' + selltype + '&card=' + card,
+										timeout: 7000,
+										success: function(data) {
+											if(data.sf == 1) {
+												layer.closeAll();
+												layer.msg(data.nr);
+												setTimeout(function() {
+													location.reload();
+												}, 1000)
+											} else {
+												layer.msg(data.nr);
+											}
+										},
+										complete: function(XMLHttprequest) {
+											if(XMLHttprequest.statusText == 'timeout') {
+												layer.msg('连接超时，请更换网络环境或稍后再试');
+											}
+										}
+									});
+								} else {
+									layer.msg('请勿多次提交');
+								}
+							},
+							function() {
+								console.log('已取消')
+							}
+						);
+					},
+					btn2: function(index, layero) {
+						layer.close(index);
+					}
+				})
+			},
+			complete: function(XMLHttprequest) {
+				if(XMLHttprequest.statusText == 'timeout') {
+					layer.msg('连接超时,请更换网络环境或稍后再试!');
+				}
+			}
+		});
+	})
+	//买入
+	$(document).on('input', '#buyin_num', function() {
+		var o = $(this);
+		var bnum = o.val();
+		var num = Math.floor(bnum / 1000);
+		$(document).find('.winnum').text(num);
+		var tigongshangxian = parseInt($('#tigongshangxian').text());
+		if(bnum > tigongshangxian) {
+			layer.tips('买入金额不得超过当前上限', o);
+		}
+	})
+
+	$(document).on('change', '#selltype', function() {
+		if($(this).val() == 1) {
+			$('#sell_num').attr('placeholder', '最多可提现金额' + $('.jiangli_cash').val() + '元');
+			$('#js_tips').html('<br />最低取出金额：{$tj_start}</br>最高取出金额：{$tj_e}</br>{$tj_beishu}的整数倍</br>每轮提现不得超过总金额的{$tj_baifenbi}%');
+		} else {
+			$('#sell_num').attr('placeholder', '最多可提现金额' + $('.benxi_cash').val() + '元');
+			$('#js_tips').html('<br />最低取出金额：{$txthemin}</br>最高取出金额：{$txthemax}</br>{$jl_beishu}的整数倍');
+		}
+
+	})
+	$(document).on('input', '#sell_num', function() {
+		var o = $(this);
+		if($('#selltype').val() == 1) {
+			var max = $('.jiangli_cash').val();
+		} else {
+			var max = $('.benxi_cash').val();
+		}
+		max = parseInt(max);
+		if(parseInt(o.val()) > max) {
+			layer.msg('输入金额不得大于账户内余额');
+			o.val(max);
+		}
+	})
+
+	//预约订单
+	$(document).on('click', '.btn-book', function() {
+		layer.open({
+			title: '预约订单',
+			type: 2,
+			content: '/Home/Index/home_post?act=yuyue',
+			area: ['400px', '75%'],
+			btn: ['关闭']
+		})
+	})
+
+	//留言
+	$(document).on('click', '.sendmessage', function() {
+		var o = $(this);
+		id = o.attr('data');
+		layer.open({
+			title: '留言',
+			type: 2,
+			content: '/Home/Index/home_ddxx_ly?id=' + id,
+			area: ['400px', '55%'],
+			btn: ['关闭']
+		})
+	})
+
+	//预览图片
+	$(document).on('click', '.viewimg', function() {
+		var o = $(this);
+		pic = o.attr('data');
+		layer.open({
+			title: '预览图片',
+			type: 2,
+			content: '/Home/Index/home_post?act=viewimg&pic=' + pic,
+			area: ['400px', '65%'],
+			btn: ['关闭']
+		})
+	})
+
+	//确认已付款
+	$(document).on('click', '.confirmpay', function() {
+		var o = $(this);
+		id = o.attr('data');
+		layer.open({
+			title: '确认已付款',
+			type: 2,
+			content: '/Home/Index/home_ddxx_confirmpay?id=' + id,
+			area: ['400px', '65%'],
+			btn: ['关闭']
+		})
+	})
+
+	//ETH打款检测
+	$(document).on('click', '.payfromethcheck', function() {
+		var o = $(this);
+		id = o.attr('data');
+		layer.open({
+			title: 'ETH打款检测',
+			type: 2,
+			content: '/Home/Index/home_post?act=payfromethcheck&ppid=' + id,
+			area: ['500px', '65%'],
+			btn: ['关闭']
+		})
+	})
+
+	//确认收款
+	$(document).on('click', '.confirmget', function() {
+		var o = $(this);
+		id = o.attr('data');
+		layer.open({
+			title: '确认收款',
+			type: 2,
+			content: '/Home/Index/home_ddxx_confirmget?id=' + id,
+			area: ['400px', '65%'],
+			btn: ['关闭']
+		})
+	})
+
+	//未打款投诉
+	$(document).on('click', '.wdktousu', function() {
+		var o = $(this);
+		gid = o.attr('data');
+		layer.open({
+			title: '未打款投诉',
+			type: 2,
+			content: '/Home/Index/home_ddxx_g_wdk?id=' + gid,
+			area: ['400px', '65%'],
+			btn: ['关闭']
+		})
+	})
+
+	//上传凭证
+	$(document).on('click', '.shangchuanpingzheng', function() {
+			var o = $(this);
+			orderid = o.attr('data');
+			var rec = o.prev('div').prev('div').find('span:last-child').text();
+			layer.open({
+				title: '上传给会员' + rec + '打款的凭证',
+				type: 1,
+				content: "<div style='padding:20px;'><input type='file' name='file' id='file_upload' /></div>",
+				btn: ['上传', '取消'],
+				yes: function(index, layero) {
+					var fd = new FormData();
+					fd.append('file', $("#file_upload")[0].files[0]);
+					fd.append('orderid', orderid);
+					layer.load();
+					$.ajax({
+						type: "post",
+						url: "https://img.lxjy2017.com/?act=uploadimg",
+						async: false,
+						processData: false,
+						contentType: false,
+						data: fd,
+						dataType: 'text',
+						success: function(data) {
+							var res = eval("(" + data + ")");
+							if(res.status == 0) {
+								layer.closeAll();
+								layer.msg(res.content);
+							} else if(res.status == 1) {
+								var imgpath = res.content;
+								$.ajax({
+									type: 'post',
+									url: '?',
+									data: 'act=uploadimgdone&id=' + orderid + '&img=' + imgpath,
+									success: function(data2) {
+										var res2 = eval("(" + data2 + ")");
+										if(res2.status == 0) {
+											layer.closeAll();
+											layer.msg(res2.content);
+										} else {
+											layer.msg(res2.content);
+											location.reload();
+										}
+									}
+								})
+							}
+						}
+					});
+					layer.close(index);
+				},
+			});
+		}) //确认收款 $(document).on('click','.querenshoukuan',function(){ var id = $(this).attr('data'); layer.open({ title:'请确认', offset:'20%', area:['300px','200px'], type:1, content:'
+		<
+		div style = \'padding:30px\'>请确认是否收到对方打款</div>', btn: ['确认', '取消'], yes: function(index, layero) {
+			layer.load();
+			$.ajax({
+				type: 'post',
+				url: '?',
+				data: 'act=querenshoukuan&id=' + id,
+				timeout: 7000,
+				success: function(data) {
+					if(data = 1) {
+						layer.msg('操作成功,请刷新！');
+						layer.close(index);
+						location.reload();
+					} else {
+						layer.msg(data);
+					}
+				},
+				complete: function(XMLHttprequest) {
+					layer.closeAll('loading');
+					if(XMLHttprequest.statusText == 'timeout') {
+						layer.msg('连接超时，请稍后再试！');
+					}
+				}
+			});
+		}
+	});
+	}) //加快进场 $(document).on('click','.jiakuai',function(){ var id = $(this).attr('data'); var jiakuai = $(this).is(':checked') ? 1 : 0; var tip = jiakuai ? '加快进场后排单3天后即可打款，确定加快吗？<br><span style=\ 'color:red\'>如果您当前为防撞会员，开启加速将使防撞功能失效，48小时内取消加速可恢复防撞，不取消的将永远失去防撞功能。</span>' : '确定取消加快该订单吗？'; layer.confirm(tip,{title:'请确认'},function(){ $.ajax({ type:'post', url:'?', data:'act=jiakuaijinchang&id='+id+'&do='+jiakuai, success:function(data){ var res = eval("("+data+")"); layer.msg(res.content); if (res.status==1) { location.reload(); } } }); },function(){location.reload();}) }) //防撞 $(document).on('click','.fangzhuang',function(){ var fangzhuang = $(this).is(':checked') ? 1 : 0; var tip = fangzhuang ? '开启防撞后收一笔打一笔，进场速度可能较慢，是否确定开启防撞？' : '取消防撞可能导致撞单，同时允许加快进场，是否取消防撞功能？'; layer.confirm(tip,{title:'请确认'},function(){ $.ajax({ type:'post', url:'/Home/Index/home_post', data:'act=fangzhuang&do='+fangzhuang, success:function(data){ layer.msg(data.nr); setTimeout(function(){location.reload()},400); } }) },function(){location.reload();}) }) $(document).on('click','.clickbank',function(){ var o = $(this); var t = o.text(); t = t.replace(/ /g,''); o.text(t); }) //tips $(document).on('click','.hptip.alert',function(){ var o = $(this); var p = o.next('.window').html(); layer.open({ type:1, content:p, title:'警告', btn:['关闭'] }) }) var initime = Math.round(new Date().getTime()/1000); setInterval(function(){ $('.daojishi').each(function(){ var o = $(this); var ts = parseInt(o.attr('data')); var newnow = Math.round(new Date().getTime()/1000); var past = newnow-initime; var n = ts-past; var newtime = Math.floor(n/3600)+'小时'+Math.floor((n%3600)/60)+'分'+(n%60)+'秒'; o.html(newtime); }) },1000); })();
+</script>
+<style>
+	div#contentbtn .btn {
+		padding: 10px 0;
+		font-size: 20px;
+		color: white;
+		/* font-weight: bold; */
+		width: 31%;
+		display: inline-block;
+	}
+	
+	div#contentbtn .btn:first-child {
+		float: left;
+	}
+	
+	div#contentbtn .btn:last-child {
+		float: right;
+	}
+	
+	div#contentbtn .btn:hover {
+		background: #499ac8
+	}
+	
+	div#contentbtn .btn:focus {
+		background: #2471a6
+	}
+	
+	div#contentbtn .btn span {
+		display: block;
+		font-size: .5em;
+		font-weight: normal;
+		opacity: 0.7;
+	}
+	
+	.skin-green {
+		background-color: #3c8dbc;
+	}
+	
+	a.normal {
+		display: block;
+		font-size: 1.3em;
+		padding: 10px 0;
+		background: rgba(20, 100, 80, .6);
+		border: rgba(255, 255, 255, .8);
+		text-align: center;
+		color: #fff;
+		text-decoration: none
+	}
+	
+	.buyincon,
+	.sellcon {
+		background: #fff;
+		width: 100%;
+		padding: 10px;
+		margin-top: -5px;
+		text-align: left;
+	}
+	
+	.wine {
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		vertical-align: bottom;
+		margin: 3px 5px 0;
+		border: 1px solid rgba(0, 0, 0, .3);
+		background: url('/assets/wns/img/wine.jpg')center center no-repeat;
+		background-size: contain;
+	}
+	
+	.btn.btn-buyin {
+		background: #e0f7bb;
+		background: -moz-linear-gradient(top, #e0f7bb 1%, #b7f751 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #e0f7bb), color-stop(100%, #b7f751));
+		background: -webkit-linear-gradient(top, #e0f7bb 1%, #b7f751 100%);
+		background: -o-linear-gradient(top, #e0f7bb 1%, #b7f751 100%);
+		background: -ms-linear-gradient(top, #e0f7bb 1%, #b7f751 100%);
+		background: linear-gradient(to bottom, #e0f7bb 1%, #b7f751 100%);
+		color: #333 !important;
+		text-shadow: 0 1px 1px #fff
+	}
+	
+	.btn.btn-sellout {
+		background: #f9f1db;
+		background: -moz-linear-gradient(top, #f9f1db 0%, #f9ca52 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f1db), color-stop(100%, #f9ca52));
+		background: -webkit-linear-gradient(top, #f9f1db 0%, #f9ca52 100%);
+		background: -o-linear-gradient(top, #f9f1db 0%, #f9ca52 100%);
+		background: -ms-linear-gradient(top, #f9f1db 0%, #f9ca52 100%);
+		background: linear-gradient(to bottom, #f9f1db 0%, #f9ca52 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f1db', endColorstr='#f9ca52', GradientType=0);
+		color: #333 !important;
+		text-shadow: 0 1px 1px #fff
+	}
+	
+	.btn.btn-buyin:hover,
+	.btn.btn-sellout:hover {
+		color: #fff !important;
+		text-shadow: none
+	}
+	
+	#upbtncon {
+		padding: 20px;
+		min-height: 50px;
+	}
+	
+	.btn.showall {
+		display: block;
+		margin: 20px auto;
+	}
+	
+	.hptip {
+		display: block;
+		width: 100%;
+		background: #f00;
+		padding: 10px 0;
+		text-align: center;
+		color: #fff;
+		font-size: 1.2em;
+		cursor: pointer;
+	}
+	
+	.hptip+.window {
+		display: none;
+	}
+	
+	.windowin {
+		padding: 5px 10px;
+	}
+</style>
+
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->

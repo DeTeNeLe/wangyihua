@@ -1,0 +1,83 @@
+ <div class="viewcon <if condition='$is_p eq 1'>lout</if><if condition='$is_p eq 0'>lin</if>" style="display: none;">
+    <div>
+     <span class="left">打款人：</span>
+     <span>{$tgbz_user['ue_theme']}({$tgbz_user['ue_phone']|replace_xing=###})</span>
+    </div>
+    <div>
+     <span class="left">打款人领导人：</span>
+     <span>{$tgbz_accname['ue_theme']}({$tgbz_accname['ue_phone']|replace_xing=###})</span>
+    </div>
+    <div class="card">
+     <div>
+      <span class="left">银行：</span>
+      <span>{$jsbz_user['yhmc']|authcode_decode=###}</span>
+     </div>
+     <div>
+      <span class="left">卡号：</span>
+      <span class="clickbank">{$jsbz_user['yhzh']|authcode_decode=###}</span>
+     </div>
+     <div>
+      <span class="left">支行：</span>
+      <span>{$jsbz_user['yhzhxx']|authcode_decode=###}</span>
+     </div>
+     <div>
+      <span class="left">持有人：</span>
+      <span>{$jsbz_user['yhckr']|authcode_decode=###}</span>
+     </div>
+     <div>
+      <span class="left">支付宝：</span>
+      <span>{$jsbz_user['zfb']|authcode_decode=###}</span>
+     </div>
+	 <div>
+      <span class="left">微信：</span>
+      <span>{$jsbz_user['weixin']|authcode_decode=###}</span>
+     </div>
+     <div>
+      <span class="left">备注：</span>
+      <span>{$pp['jsbz_user']['remark']}</span>
+     </div>
+    </div>
+    <div>
+     <span class="left">收款人：</span>
+     <span>{$jsbz_user['ue_theme']}({$jsbz_user['ue_phone']|replace_xing=###})</span>
+    </div>
+    <div>
+     <span class="left">收款人领导人：</span>
+     <span>{$jsbz_accname['ue_theme']}({$jsbz_accname['ue_phone']|replace_xing=###})</span>
+    </div>
+    <div>
+     <span>打款时间：{$ppdd.date}</span>
+    </div>
+    <div>
+      <if condition="$ppdd.pic neq '0'" ><a class="btn btn-success viewimg" data="{$ppdd.pic}">查看打款凭证</a></if>
+	  <a class="btn btn-success sendmessage" target="#" data="{$ppdd.id}">留言</a>
+	  <if condition="$ppdd.zt eq '0' and $is_p eq 1" >
+         <if condition="$ppdd.ts_zt eq '1'" >                                               
+             <a class="btn btn-success tousued" target="#" >已被投诉</a>
+		 <else/>
+		     <a class="btn btn-success confirmpay" target="#" data="{$ppdd.id}">确认已付款</a>
+         </if>                                         
+      </if>
+	  <if condition="$ppdd.zt eq '1' and $is_p eq 1" >
+         <if condition="$ppdd.ts_zt eq '2'" >                                               
+             <a class="btn btn-success tousued" target="#" >已被投诉</a>
+		 <else/>
+		     <a class="btn btn-success confirmpay" target="#" data="{$ppdd.id}">{:C('jjqrtime')}小时未确认投诉</a>
+         </if>                                         
+      </if>
+
+	   <if condition="$ppdd.zt eq '0' and $is_p eq 0" >
+         <a class="btn btn-success wdktousu" target="#" data="{$ppdd.g_id}">{:C('jjdktime')}小时未打款投诉</a>                                 
+      </if>
+	  <if condition="$ppdd.zt eq '1' and $is_p eq 0" >
+         <if condition="$ppdd.ts_zt eq '3'" >                                               
+             <a class="btn btn-success tousued" target="#" >未确认收款被投诉</a>
+		 <else/>
+		     <a class="btn btn-success confirmget" target="#" data="{$ppdd.id}">确认收款/投诉</a>
+         </if>                                         
+      </if>
+
+	  <a class="btn btn-success payfromethcheck" target="#" data="{$ppdd.id}">ETH打款检测</a>
+    </div>
+   </div>
+</div>

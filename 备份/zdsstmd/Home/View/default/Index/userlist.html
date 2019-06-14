@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<script type="text/javascript" src="/sncss/date/laydate.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
+</script>
+
+
+</head>
+
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">数据表</a></li>
+    <li><a href="#">基本内容</a></li>
+    </ul>
+    </div>
+    
+    <div class="rightinfo">
+    
+    <div class="tools">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td> 
+    	 <form id="form1" name="form1" method="post" action="/Yshclbssb.php/Home/Index/userlist">
+	 
+   <input name="user" type="text" style="width:150px" class="dfinput" id="user" value="{$data}" />
+
+	<input placeholder="请输入开始日期" class="laydate-icon" name="start" value="{$_SESSION['start']}" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			<input placeholder="请输入结束日期" class="laydate-icon"  value="{$_SESSION['end']}" name="end" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			<input name="" type="submit" class="btn" value="确认搜索"/>
+	&nbsp;&nbsp;今天注册人数:{$reg_num}   &nbsp;&nbsp;
+	&nbsp;&nbsp;金币总额:{:get_money_sum()} &nbsp;&nbsp;动态总额：{:get_qwe_sum()}  &nbsp;&nbsp;积分总额：{:get_chengxinj_sum()}
+	&nbsp;&nbsp;今日激活人数：{:get_jhtoday_sum()}
+      </form>
+    </td>
+    <td align="right">
+    <a href="/Yshclbssb.php/Home/Index/userlist/all/-1/" style="padding:2px 5px;<if condition='$all eq -1'>background:#00CCFF</if>">所有</a>
+	<a href="/Yshclbssb.php/Home/Index/userlist/ue_check/1/" style="padding:2px 5px;<if condition='$jh eq 1'>background:#00CCFF</if>">激活</a>
+	<a href="/Yshclbssb.php/Home/Index/userlist/ue_check/0/" style="padding:2px 5px;<if condition='$jh eq 0'>background:#00CCFF</if>">未激活</a>
+	<a href="/Yshclbssb.php/Home/Index/userlist/ue_status/1/" style="padding:2px 5px;<if condition='$cz eq 1'>background:#00CCFF</if>">封号</a> 
+	<a href="/Yshclbssb.php/Home/Index/userlist/ue_status/0/" style="padding:2px 5px;<if condition='$cz eq 0'>background:#00CCFF</if>">未封号</a>
+	</td> 
+  </tr>
+    </div>
+    
+    
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th>编号<i class="sort"><img src="/sncss/images/px.gif" /></i></th>
+        <th>会员</th>
+ <!--        <th>是否经理</th> -->
+        <th>介绍人</th>
+        <!--<th>注册人</th> -->
+        <th>余额|奖金|积分</th>
+        <th>姓名</th>
+		<th>注册时间</th>
+		<th>相同IP</th>
+		<th>注册IP</th>
+		<th>被封状态</th>
+		<th>激活状态</th>
+		<th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+		
+		<foreach name='list' item='v'>
+        <tr style="<in name="v.ue_account" value="13169973076">display:none;</in>">
+		 <td>{$v.ue_id}</td>
+		 <td>{$aab=$v.ue_account}[{$v.levelname}][{$v.tj_num}]</td>
+<!-- <td><if condition="$v.sfjl eq '0'" >不是</if>
+					  <if condition="$v.sfjl eq '1'" >是</if>	</td> -->
+		  <td>{$v.ue_accname}</td>
+		  <!--<td>{$v.zcr}</td> -->
+		  <td>{$v.ue_money}|{$v.qwe}|{$v.jifen}</td>
+	      <td>{$v.ue_theme}</td>
+        <td>{$v.ue_regtime}</td>
+        <td>{$v.ue_regip|ipjc} <a href="/Yshclbssb.php/Home/Index/userlist/ip/{$v.ue_regip}">查看</a></td>
+        <td>{$v.ue_regip|authcode_decode=###}</td>
+        <td>
+		    <eq name="v.ue_status" value="1"><font color='red'>被封</font><else/>正常</eq>
+		</td>
+		<td>
+		    <eq name="v.ue_check" value="0"><font color='red'>未激活</font><else/>已激活</eq>
+		</td>
+        <td><a href="/Yshclbssb.php/Home/Index/team/user/{$v.ue_account}" class="tablelink">团队</a>   <a href="/Yshclbssb.php/Home/Index/user_xg/user/{$v.ue_account}" class="tablelink">修改</a>     <a onClick="javascript:if(!confirm('确定删除此会员？'))  return  false; " href="/Yshclbssb.php/Home/Index/userdel/id/{$v.ue_id}" >删除</a>    <a style="display:none" onClick="javascript:if(!confirm('确定重质保密？'))  return  false; " href="/Yshclbssb.php/Home/Index/usermb/id/{$v.ue_id}" >重置保密</a> <a href="/index.php/Home/Login/loginadmin/account/{$v.ue_account}/password/{$v.ue_password}/secpw/{$v.ue_secpwd}" target="_blank">登入</a>
+		</td>
+        </tr> 
+       </foreach>
+        </tbody>
+    </table>
+    <style>.pages a,.pages span {
+    display:inline-block;
+    padding:2px 5px;
+    margin:0 1px;
+    border:1px solid #f0f0f0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.pages a,.pages li {
+    display:inline-block;
+    list-style: none;
+    text-decoration:none; color:#58A0D3;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+    margin:0;
+}
+.pages a:hover{
+    border-color:#50A8E6;
+}
+.pages span.current{
+    background:#50A8E6;
+    color:#FFF;
+    font-weight:700;
+    border-color:#50A8E6;
+}</style>
+   
+   <div class="pages"><br />
+
+                        <div align="right">{$page}
+                        </div>
+   </div>
+    
+    
+    <div class="tip">
+    	<div class="tiptop"><span>提示信息</span><a></a></div>
+        
+      <div class="tipinfo">
+        <span><img src="/sncss/images/ticon.png" /></span>
+        <div class="tipright">
+        <p>是否确认对信息的修改 ？</p>
+        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+        </div>
+      </div>
+        
+        <div class="tipbtn">
+        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+
+</body>
+
+</html>

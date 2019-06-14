@@ -1,0 +1,112 @@
+<!-- header start -->
+<include file="User/Home/View/wns/common_header.html" />
+<style>
+	.content-wrapper{
+		background: #001926 !important;
+	}
+	#MEIQIA-BTN-HOLDER{ 
+		right: 17px;
+		bottom: 90px;
+	}
+
+</style>
+<!-- header end -->
+<div class="content-wrapper tab-content tab-addtabs" style="padding-top: 0px;">
+	<div style="text-align: center;width: 90%;background: #002639; margin: 10px auto; line-height: 48px;   font-size: 18px; color: white;">帮助中心</div>
+	<div>
+		<ul class="help_box">
+			<li class="help_box_bar">
+				<img src="/img/qin/aid_1.png" style="width: 20px;margin-right: 10px; " />系统公告
+				<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
+				<ul class="help_box_bar_box">
+					<volist name="arr.system_notice" id="vo">
+					<li class="bar_box">
+						<a style="display: block; width: 100%; color: #3b8cff;" href="{:U('help_detail')}?id={$vo.if_id}">
+							{$vo.if_theme}<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
+						</a> 
+					</li>
+					</volist>
+					<!--<li class="bar_box">-->
+						<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
+							<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--<li class="bar_box">-->
+						<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
+							<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right;" />-->
+						<!--</a>-->
+					<!--</li>-->
+				</ul>
+			</li>
+			<li class="help_box_bar">
+				<img src="/img/qin/aid_2.png" style="width: 20px;margin-right: 10px;"  />操作帮助
+				<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
+				<ul class="help_box_bar_box">
+					<volist name="arr.operation" id="vo1">
+						<li class="bar_box">
+							<a style="display: block; width: 100%; color: #3b8cff;" href="{:U('help_detail')}?id={$vo1.if_id}">
+								{$vo1.if_theme}<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
+							</a>
+						</li>
+					</volist>
+				</ul>
+			</li>
+			<li class="help_box_bar">
+				<img src="/img/qin/aid_3.png" style="width: 20px;margin-right: 10px;"  />教学专区
+				<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
+				<ul class="help_box_bar_box">
+					<volist name="arr.education" id="vo2">
+						<li class="bar_box">
+							<a style="display: block; width: 100%; color: #3b8cff;" href="{:U('help_detail')}?id={$vo2.if_id}">
+								{$vo2.if_theme}<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
+							</a>
+						</li>
+					</volist>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="footer_box">
+	<a href="/Index/home/">
+		<img src="/img/qin/deal_u.png" />
+		<p>交易</p>
+	</a>
+	<a href="/Info/jhm/">
+		<img src="/img/qin/token_u.png" />
+		<p>通证</p>
+	</a>
+	<a href="/Index/help/">
+		<img src="/img/qin/aid_s.png" />
+		<p style="color: #3B8CFF">帮助</p>
+	</a>
+	<a href="/Info/grsz/">
+		<img src="/img/qin/mine_u.png" />
+		<p>我的</p>
+	</a>
+</div>
+<!-- footer start -->
+<include file="User/Home/View/wns/common_footer.html" />
+<!-- footer end -->
+<script>
+	$(function() {
+		document.title = "帮助中心";
+		//$('.help_box_bar').toggle();
+		$('.help_box_bar').click(function() {
+			//$(this).find('.help_box_bar_box').toggle();
+			if($(this).find('.img1').attr('state') == "1") {
+				$(this).find('.img1').attr('state', '2');
+				$(this).find('.img1').attr('src', '/img/qin/xiasanjiao.png');
+				$(this).find('.help_box_bar_box').show();
+			} else {
+				$(this).find('.img1').attr('state', '1');
+				$(this).find('.img1').attr('src', '/img/qin/xiangxia2.png');
+				$(this).find('.help_box_bar_box').hide();
+			}
+		})
+		$('.bar_box').click(function() {
+			$(this).parent().parent().find('.img1').attr('src', '/img/qinngxia2.png');
+			$(this).parent('.help_box_bar_box').css('display', 'none');
+		})
+	})
+</script>

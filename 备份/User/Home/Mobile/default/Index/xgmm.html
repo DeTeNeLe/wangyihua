@@ -1,0 +1,149 @@
+<include file='index:head' />
+<link rel="stylesheet" type="text/css" media="screen" href="http://yunsheng.oss-cn-beijing.aliyuncs.com/skin/styles/pwd.css">
+<div class="wrapper">
+    <div class="tabs0">
+        <li style="width:100%"><a href="/article_category.html?id=6" class="current">修改密码</a></li>
+    </div>
+    <div class="card_line">
+        <form id="inputForm"  method="post" autocomplete="off">
+            <input type="hidden" name="rec" value="chg_pwd" />
+            <input type="hidden" name="token" value="29d47772" />
+            <dl>
+                <dt>密码类型：</dt>
+                <dd>
+                    <select name="passtype" id="passtype" class="txt required inputw">
+                        <option id="passtype0" name="passtype0" value="1">登录密码</option>
+                        <option id="passtype1" name="passtype1" value="2">二级密码</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl>
+                <dt>旧密码：</dt>
+                <dd><input id="oldPassword" name="oldPassword" type="password" maxlength="20" minlength="5" class="required inputw"></dd>
+            </dl>
+            <dl>
+                <dt>新密码：</dt>
+                <dd><input id="newPassword" name="newPassword" type="password" value="" maxlength="20" minlength="5" class="required inputw" /></dd>
+            </dl>
+            <dl>
+                <dt>确认密码：</dt>
+                <dd><input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="20" minlength="6" class="required inputw" equalTo="#newPassword" /></dd>
+            </dl>
+            <h1><input id="btnSubmit" class="btn btn-success" type="submit" value="保存" /></h1>
+        </form>
+        <p id="messageBox" class="alert text-center" style=" display:none">输入有误,请先更正!</p>
+    </div>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#oldPassword").focus();
+            $("#inputForm").validate({
+                rules: {
+                    oldPassword: {
+                        required: true,
+                        maxlength: 20,
+                        minlength: 2
+                    },
+                    newPassword: {
+                        required: true,
+                        maxlength: 20,
+                        minlength: 6
+                    },
+                    confirmNewPassword: {
+                        required: true,
+                        maxlength: 20,
+                        minlength: 6
+                    }
+
+                },
+                messages: {
+                    oldPassword: {
+                        required: '请输入旧密码',
+                        maxlength: '登录密码不大于20位',
+                        minlength: '登录密码不少于6位'
+                    },
+                    newPassword: {
+                        required: '请输入新密码',
+                        maxlength: '登录密码不大于20位',
+                        minlength: '登录密码不少于6位'
+                    },
+                    confirmNewPassword: {
+                        required: '请确认新密码',
+                        equalTo: '请输入一致的密码',
+                        maxlength: '登录密码不大于20位',
+                        minlength: '登录密码不少于6位'
+                    }
+                
+				},
+                submitHandler: function (form) {
+                    form.submit();//原来的方式
+                    // $(form).ajaxSubmit();
+                },
+                errorContainer: "#messageBox",
+                errorPlacement: function (error, element) {
+                    $("#messageBox").text('输入有误,请先更正!');
+                    if (element.is(":checkbox") || element.is(":radio") || element.parent().is(".input-append")) {
+                        error.appendTo(element.parent().parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
+            $("#passtype").change(function () {
+                document.getElementById('oldPassword').value = "";
+                document.getElementById('newPassword').value = "";
+                document.getElementById('confirmNewPassword').value = "";
+                var type = $("#passtype").val();
+
+                $("#oldPassword").rules("remove");
+                $("#oldPassword").rules("add", {
+                    required: true, maxlength: 20, minlength: 2,
+                    messages: {
+                        required: "请输入旧密码",
+                        minlength: "登录密码不少于2位",
+                        maxlength: "登录密码不大于20位"
+                    }
+                });
+                $("#newPassword").rules("remove");
+                $("#newPassword").rules("add", {
+                    required: true, maxlength: 20, minlength: 6,
+                    messages: {
+                        required: "请输入新密码",
+                        minlength: "新密码不少于6位",
+                        maxlength: "新密码不大于20位"
+                    }
+                });
+                $("#confirmNewPassword").rules("remove");
+                $("#confirmNewPassword").rules("add", {
+                    required: true, maxlength: 20, minlength: 6,
+                    messages: {
+                        required: "请输入新密码",
+                        equalTo: '请输入一致的新密码',
+                        minlength: "新密码不少于6位",
+                        maxlength: "新密码不大于20位"
+                    }
+                });
+            });
+
+        });
+    </script>
+<script>
+   $('#btnSubmit').click(function () {
+       var js_type = $('#passtype option:selected').val();
+       if (js_type == 1) {
+           var url = "{:U('Info/xgyjmmcl')}";
+           $('#inputForm').attr('action', url);
+       }else {
+           var url = "{:U('Info/xgejmmcl')}";
+           $('#inputForm').attr('action', url);
+       }
+       $('#inputForm').submit();
+   });
+
+</script>
+<include file='index:foot' />
