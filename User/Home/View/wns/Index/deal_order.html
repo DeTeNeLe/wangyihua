@@ -218,6 +218,9 @@
 		background-color: #3B8CFF;
 		border-color: #3B8CFF;
 	}
+	.order_bar h5{
+		border-bottom: none;
+	}
 </style>
 <div class="content-wrapper tab-content tab-addtabs" style=" padding-top: 0;">
 	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
@@ -249,9 +252,9 @@
 					<volist name="plist" id="p">
 							<div class="order_bar">
 								<h5>{$p.orderid}<span>{$p.date}</span></h5>
-								<p>持仓总量: {$p.mainid|get_tgbz_totaljb=###} </p>
-								<p>开仓积分: {$p.mainid|get_kc_jb=###}
-								</p>
+								<!--<p>持仓总量: {$p.mainid|get_tgbz_totaljb=###} </p>-->
+								<!--<p>开仓积分: {$p.mainid|get_kc_jb=###}-->
+								<!--</p>-->
 								<div class=""> <button class="btn btn-qd" style="background:#0B61A4;color:white;font-size:15px;" data="{$p.mainid}">抢单</button></div>
 								<!---<div>等待平仓积分撮合交易</div>--->
 							</div>

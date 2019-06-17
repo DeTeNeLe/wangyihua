@@ -3638,6 +3638,9 @@ class IndexController extends CommonController
             }
         }
 
+        //执行删除产生异常的订单【仅在此处】
+        del_abnormal_tgbz();
+
         $this->success('符合预约条件的有 '. $total_count . ',成功预约了'.$suc_count.'笔订单','',3);
     }
 

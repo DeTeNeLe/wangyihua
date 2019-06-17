@@ -508,7 +508,7 @@
 					$.ajax({
 						type: 'post',
 						url: '/Home/Index/home_post',
-						data: 'act=jifen_dhjhm&to_user=' + to_user + '&num=' + num,
+						data: 'act=jifen_dhpdm&to_user=' + to_user + '&num=' + num,
 						success: function(data) {
 							if(data.sf == 1) {
 								layer.closeAll();

@@ -8,7 +8,7 @@
 <div class="col-lg-10 newyuyue_list" style="margin: 30px auto;font-size: 1.4em;<?php if( $userData['isyuyue'] == 0 ): ?>display:none<?php endif; ?>">
 	<div class="form-group">
 		<select class="form-control" name="yy_days" id="yy_days" style="width: 38%;display: inline-block;" <?php if($userData['isyuyue'] == 1 ): ?>disabled<?php endif; ?> >
-			<?php $__FOR_START_1349543085__=1;$__FOR_END_1349543085__=$schedule_max_day;for($i=$__FOR_START_1349543085__;$i < $__FOR_END_1349543085__;$i+=1){ ?><option value="<?php echo ($i); ?>" <?php if($userData['yuyuezhouqi'] == $i): ?>selected<?php endif; ?> >连续<?php echo ($i); ?>天</option><?php } ?>
+			<?php $__FOR_START_12938__=1;$__FOR_END_12938__=$schedule_max_day;for($i=$__FOR_START_12938__;$i < $__FOR_END_12938__;$i+=1){ ?><option value="<?php echo ($i); ?>" <?php if($userData['yuyuezhouqi'] == $i): ?>selected<?php endif; ?> >连续<?php echo ($i); ?>天</option><?php } ?>
 		</select>
 		<!--<input type="text" class="form-control" id="yy_money" placeholder="预约金额" style="width: 50%;display: inline-block;" value="20000" 
 		<?php if($userData['isyuyue'] == 1 ): ?>disabled<?php endif; ?> />-->

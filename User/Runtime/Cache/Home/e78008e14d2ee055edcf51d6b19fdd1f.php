@@ -245,9 +245,16 @@
 	.content-wrapper{
 		background: #001926 !important;
 	}
-	#MEIQIA-BTN-HOLDER{ 
+	#MEIQIA-BTN-HOLDER{
 		right: 17px;
 		bottom: 90px;
+	}
+	#looyu_dom_0{
+		/*display:none;*/
+		background-size:89px 139px !important;
+	}
+	#doyoo_panel{
+		top:340px !important;
 	}
 
 </style>
@@ -261,19 +268,19 @@
 				<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
 				<ul class="help_box_bar_box">
 					<?php if(is_array($arr["system_notice"])): $i = 0; $__LIST__ = $arr["system_notice"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="bar_box">
-						<a style="display: block; width: 100%; color: #3b8cff;" href="<?php echo U('help_detail');?>?id=<?php echo ($vo["if_id"]); ?>">
-							<?php echo ($vo["if_theme"]); ?><img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
-						</a> 
-					</li><?php endforeach; endif; else: echo "" ;endif; ?>
+							<a style="display: block; width: 100%; color: #3b8cff;" href="<?php echo U('help_detail');?>?id=<?php echo ($vo["if_id"]); ?>">
+								<?php echo ($vo["if_theme"]); ?><img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
+							</a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 					<!--<li class="bar_box">-->
-						<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
-							<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />-->
-						<!--</a>-->
+					<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
+					<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />-->
+					<!--</a>-->
 					<!--</li>-->
 					<!--<li class="bar_box">-->
-						<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
-							<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right;" />-->
-						<!--</a>-->
+					<!--<a style="display: block; width: 100%; color: #3b8cff;" href="Index/help_detail/">-->
+					<!--下级1<img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right;" />-->
+					<!--</a>-->
 					<!--</li>-->
 				</ul>
 			</li>
@@ -288,17 +295,21 @@
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</li>
-			<li class="help_box_bar">
-				<img src="/img/qin/aid_3.png" style="width: 20px;margin-right: 10px;"  />教学专区
-				<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
-				<ul class="help_box_bar_box">
-					<?php if(is_array($arr["education"])): $i = 0; $__LIST__ = $arr["education"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?><li class="bar_box">
-							<a style="display: block; width: 100%; color: #3b8cff;" href="<?php echo U('help_detail');?>?id=<?php echo ($vo2["if_id"]); ?>">
-								<?php echo ($vo2["if_theme"]); ?><img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />
-							</a>
-						</li><?php endforeach; endif; else: echo "" ;endif; ?>
-				</ul>
-			</li>
+			<a onclick="doyoo.util.openChat('g=10083611');return false;">
+				<li class="help_box_bar">
+					<img src="/img/qin/aid_3.png" style="width: 20px;margin-right: 10px;"  />联系客服
+					<img class="img1" state='1' src="/img/qin/xiangxia2.png" style="width: 1em; float:right; margin-top: 20px;" />
+					<ul class="help_box_bar_box">
+						<!--<?php if(is_array($arr["education"])): $i = 0; $__LIST__ = $arr["education"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?>-->
+						<!--<li class="bar_box">-->
+						<!--<a style="display: block; width: 100%; color: #3b8cff;" href="<?php echo U('help_detail');?>?id=<?php echo ($vo2["if_id"]); ?>">-->
+						<!--<?php echo ($vo2["if_theme"]); ?><img src="/img/qin/down-trangle-copy.png" style="width: 1em; float:right" />-->
+						<!--</a>-->
+						<!--</li>-->
+						<!--<?php endforeach; endif; else: echo "" ;endif; ?>-->
+					</ul>
+				</li>
+			</a>
 		</ul>
 	</div>
 </div>
@@ -326,24 +337,29 @@
 </html>
 <!-- footer end -->
 <script>
-	$(function() {
-		document.title = "帮助中心";
-		//$('.help_box_bar').toggle();
-		$('.help_box_bar').click(function() {
-			//$(this).find('.help_box_bar_box').toggle();
-			if($(this).find('.img1').attr('state') == "1") {
-				$(this).find('.img1').attr('state', '2');
-				$(this).find('.img1').attr('src', '/img/qin/xiasanjiao.png');
-				$(this).find('.help_box_bar_box').show();
-			} else {
-				$(this).find('.img1').attr('state', '1');
-				$(this).find('.img1').attr('src', '/img/qin/xiangxia2.png');
-				$(this).find('.help_box_bar_box').hide();
-			}
-		})
-		$('.bar_box').click(function() {
-			$(this).parent().parent().find('.img1').attr('src', '/img/qinngxia2.png');
-			$(this).parent('.help_box_bar_box').css('display', 'none');
-		})
-	})
+    $(function() {
+        document.title = "帮助中心";
+        //$('.help_box_bar').toggle();
+        $('.help_box_bar').click(function() {
+            //$(this).find('.help_box_bar_box').toggle();
+            if($(this).find('.img1').attr('state') == "1") {
+                $(this).find('.img1').attr('state', '2');
+                $(this).find('.img1').attr('src', '/img/qin/xiasanjiao.png');
+                $(this).find('.help_box_bar_box').show();
+            } else {
+                $(this).find('.img1').attr('state', '1');
+                $(this).find('.img1').attr('src', '/img/qin/xiangxia2.png');
+                $(this).find('.help_box_bar_box').hide();
+            }
+        })
+        $('.bar_box').click(function() {
+            $(this).parent().parent().find('.img1').attr('src', '/img/qinngxia2.png');
+            $(this).parent('.help_box_bar_box').css('display', 'none');
+        })
+        $('#kefu').on('click',function(){
+            $('#doyoo_panel').click();
+            $('#looyu_dom_1').click();
+        })
+    })
 </script>
+<script type="text/javascript" charset="utf-8" src="http://lead.soperson.com/20004057/10107234.js"></script>

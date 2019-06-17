@@ -757,12 +757,27 @@ class IndexController extends CommonController {
                     $map1['mainid'] = $tgbz[0]['mainid'];
                     $cur_tgbz_jb = M('tgbz')->where($map1)->sum('jb');//当前开仓订单的总额
 
+                    //当前用户在本次预约周期内的最近一次的一条记录
+                    $last_cur_tgbz = get_cur_yuyue_zhouqi_last_tgbz();
+                    $isyuyue = get_userinfo($_SESSION['uname'],'isyuyue');
+                    if( !empty($last_cur_tgbz) && $isyuyue == 1 ) {
+                        $yuyue_table = $yuyue_table .
+                            "<tr style='color:Red'>
+				          <td>" . date('Y-m-d', strtotime($last_cur_tgbz['date'])) . "</td>
+				          <td>" . $last_cur_tgbz['total'] . "</td>
+				          <td>已成功挂单</td>
+				        </tr> ";
+                    }
+
+                    /*
 					$yuyue_table = $yuyue_table .
 					   "<tr style='color:Red'>
 				          <td>".date('Y-m-d',strtotime($tgbz[0]['date']))."</td>
 				          <td>".$cur_tgbz_jb."</td>
 				          <td>已成功挂单</td>
-				        </tr> ";				}
+				        </tr> ";
+                    */
+				}
                 $map1['user'] = $_SESSION['uname'];
                 $tgbz = M('tgbz')->where($map1)->limit(1)->order('date desc')->select();
                 $cur_info_data = M('user')->where(array('UE_account'=>$_SESSION['uname']))->find();
@@ -785,6 +800,41 @@ class IndexController extends CommonController {
                     $today_paidan_time_end = strtotime( $paidan_time_end_date );
                 }
                 if( $cur_info_data['isyuyue'] == 1 ) {
+
+                    $cur_last_yuyue_time_start = strtotime($cur_info_data['yuyue_cur_time']);//在本周期内上一条预约的时间，如果有就赋值时间，没有就设置为预约的起始时间yuyue_cur_time；
+                    //当前用户在本次预约周期内的最近一次的一条记录
+                    $last_cur_tgbz_two = get_cur_yuyue_zhouqi_last_tgbz();
+                    if( !empty($last_cur_tgbz_two) )
+                    {
+                        $cur_last_yuyue_time_start = strtotime($last_cur_tgbz_two['date']);
+                    }
+                    $base_time = time();
+                    if( $cur_last_yuyue_time_start > $base_time ){
+                        $base_time = $cur_last_yuyue_time_start;
+                    }
+
+                    //本次预约周期内剩余的排单次数
+                    $cur_balance_yuyue_zhouqi = cur_balance_yuyue_zhouqi();
+                    if( $cur_balance_yuyue_zhouqi > 0 ){
+                        for ($x = 0; $x < $cur_balance_yuyue_zhouqi; $x++) {
+                            $base_time_date = date('Y-m-d',($base_time));
+                            $today_date = date("Y-m-d",time());
+                            if( $base_time_date == date('Y-m-d',$cur_last_yuyue_time_start) && !empty($last_cur_tgbz_two) && $today_date == $base_time_date ) {
+                                $base_time = $base_time + 3600 * 24;
+                            }
+                            if (($base_time + 3600 * 24 * $x) >= $cur_last_yuyue_time_start) {
+
+                                    $yuyue_table = $yuyue_table .
+                                        "<tr>
+                                      <td>" . date('Y-m-d', ($base_time + 3600 * 24 * $x)) . "</td>
+                                      <td>" . $yuyuemoney . "</td>
+                                      <td>等待执行;</td>
+                                    </tr> ";
+                            }
+                        }
+                    }
+
+                    /*
                     for ($x = 0; $x < $yuyuezhouqi; $x++) {
                         if (($time + 3600 * 24 * $x) > $today_paidan_time_start) {
                             $yuyue_table = $yuyue_table .
@@ -795,6 +845,7 @@ class IndexController extends CommonController {
 				        </tr> ";
                         }
                     }
+                    */
                 }
 
                 /*
@@ -992,6 +1043,16 @@ class IndexController extends CommonController {
 				$this->error('未挂单封号','/Home/Login/index.html');
 			}
             $this->error("请于" . $userData['next_tgbz_time']. "之前买入，否则封号",'/Home/index.html');
+        }
+
+        //a.判断买入人的防撞功能是否开启，
+        if( $userData['fangzhuang'] == 1 )
+        {
+            //b.如果是开启状态，就判断该用户的第一个订单是否完成预付款，若完成预付款，就关闭防撞功能
+            if( checkUserFirstTgbzStatus($userData['ue_account']) == 1 ){
+                //关闭打款人的防撞功能
+                M('user')->where(array('UE_account' => $userData['ue_account']))->save(array('fangzhuang'=>0));
+            }
         }
 
         //////////////////----------
@@ -1818,8 +1879,8 @@ class IndexController extends CommonController {
             $usermm = M('user')->where(array(UE_account => $_SESSION['uname']))->find();
             $tgbz_time = M('tgbz')->where("user='" . $_SESSION['uname'] . "' ")->max('date');
             if (C("tgbz_time") > 0) {
-                if ((strtotime($tgbz_time) + C("tgbz_time") * 3600 * 24) > time()) {
-					$this->ajaxReturn(array('nr' => '你距离上次排单时间不足' . C('tgbz_time') . '天', 'sf' => 0));
+                if ((strtotime($tgbz_time) + C("tgbz_time") * 3600) > time()) {
+					$this->ajaxReturn(array('nr' => '你距离上次排单时间不足' . C('tgbz_time') . '小时', 'sf' => 0));
                 }
             }
 
@@ -2513,7 +2574,7 @@ class IndexController extends CommonController {
 
         //$count2 = $User->where($map2)->count(); // 查询满足要求的总记录数
         //$page = new \\Think\Page ( $count, 3 ); // 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $p2 = getpage($count2, 50);
+        $p2 = getpage($count2, $count2);
         //$plist = $User->where($map2)->order('id DESC')->limit($p2->firstRow, $p2->listRows)->select();
         $plist = $User->alias('ppdd')
             ->field('ppdd.*')
@@ -2541,7 +2602,7 @@ class IndexController extends CommonController {
         $map['zt'] = array(in, array('0', '6','1'));
         //$map['isprepay'] = array('eq','1');
         $count = $User->where($map)->count();
-        $p = getpage($count, 5);
+        $p = getpage($count, $count);
         $plist = $User->where($map)->order('id DESC')->limit($p->firstRow, $p->listRows)->select();
         //获取开仓订单中最新一条的支付时间为订单的时间
         $ppddModel = M('ppdd');
@@ -2602,7 +2663,7 @@ class IndexController extends CommonController {
 
         //$count2 = $User->where($map2)->count(); // 查询满足要求的总记录数
         //$page = new \\Think\Page ( $count, 3 ); // 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $p2 = getpage($count2, 50);
+        $p2 = getpage($count2, $count2);
         //$plist = $User->where($map2)->order('id DESC')->limit($p2->firstRow, $p2->listRows)->select();
         $plist = $User->alias('ppdd')
             ->field('ppdd.*')
@@ -2632,8 +2693,9 @@ class IndexController extends CommonController {
         $map['zt'] = array(in, array('1'));
         $map['qr_zt'] = array('eq',1);
         //$map['isprepay'] = array('eq','1');
-        $count = $User->where($map)->group('mainid')->count();
-        $p = getpage($count, 5);
+        $count_data = $User->where($map)->group('mainid')->select();
+        $count = count($count_data);
+        $p = getpage($count, $count);
         $plist = $User->where($map)->group('mainid')->order('id DESC')->limit($p->firstRow, $p->listRows)->select();
 
         //获取平仓订单中最新一条的支付时间为订单的时间
@@ -2697,7 +2759,7 @@ class IndexController extends CommonController {
         $map3['zt'] = array('in', array('0', '1'));
         $count3 = $User->where($map3)->count(); // 查询满足要求的总记录数
         //$page = new \\Think\Page ( $count, 3 ); // 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $p3 = getpage($count3, 50);
+        $p3 = getpage($count3, $count3);
         $gdlist = $User->where($map3)->order('id DESC')->limit($p3->firstRow, $p3->listRows)->select();
         $gdlist = getGDinfo($gdlist);
         $this->assign('pp_g_list', $gdlist); // 赋值数据集
@@ -2711,7 +2773,7 @@ class IndexController extends CommonController {
         $map1['_string'] = 'mainid = id'  . $sall;
         $map1['zt'] = array(in, array('0', '6','1'));
         $count1 = $User->where($map1)->count();
-        $p1 = getpage($count1, 5);
+        $p1 = getpage($count1, $count1);
         $jlist = $User->where($map1)->order('id DESC')->limit($p1->firstRow, $p1->listRows)->select();
 
         //查询出当前订单交割订单所对应的所有匹配订单信息【通过mainid】
@@ -3108,8 +3170,8 @@ class IndexController extends CommonController {
 
 				if(C('sms_open_pay') == "1")
 				{
-					//sendSMS($ppddxx['g_user'],"亲爱的会员您好，您的订单对方已支付，请及时确认【" . C('sms_sign') . "】");
-                    sendSMS($ppddxx['g_user'],'',"SMS_165386286");
+					sendSMS(get_userinfo($ppddxx['g_user'],'ue_phone'),"亲爱的会员，您的订单对方已支付，请及时确认【" . C('sms_sign') . "】");
+                    //sendSMS($ppddxx['g_user'],'',"SMS_165386286");
 					insetSMSLog($ppddxx['g_user'],get_userinfo($ppddxx['g_user'],'ue_phone'),6,"亲爱的会员您好，您的订单对方已支付，请及时确认【" . C('sms_sign') . "】");
 				}
                 die("<script>alert('提交成功,请联系对方确认收款！');parent.location.reload();</script>");
@@ -3200,6 +3262,17 @@ class IndexController extends CommonController {
 
                 //获取买入人的详细信息
                 $tgbz_user_xx = M('user')->where(array('UE_account' => $ppddxx['p_user']))->find(); //充值人详细
+
+                //a.判断买入人的防撞功能是否开启，
+                if( $tgbz_user_xx['fangzhuang'] == 1 )
+                {
+                    //b.如果是开启状态，就判断该用户的第一个订单是否完成预付款，若完成预付款，就关闭防撞功能
+                    if( checkUserFirstTgbzStatus($tgbz_user_xx['ue_account']) == 1 ){
+                        //关闭打款人的防撞功能
+                        M('user')->where(array('UE_account' => $tgbz_user_xx['ue_account']))->save(array('fangzhuang'=>0));
+                    }
+                }
+
                 //如果买入有推荐人
                 if($tgbz_user_xx['ue_accname']<>'')
 				{file_put_contents('level2.txt',$tgbz_user_xx['ue_accname']);
@@ -5045,6 +5118,9 @@ class IndexController extends CommonController {
 
         //将开启防撞功能的用户的该功能做关闭[手动调用]
         //$this->close_fangzhuang();
+
+        //测试当前用户的第一个订单的预付款是否完成打款
+        //$res = checkUserFirstTgbzStatus($_SESSION['uname']);
 
         /*
 	    $tgbz_user_xx['ue_accname'] = '4439705@qq.com';

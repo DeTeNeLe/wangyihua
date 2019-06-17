@@ -2182,5 +2182,144 @@ function is_jg_unfinished_status(){
     return 0;
 }
 
+/**
+ * 检查会员的最早注册开仓的一个订单是否已经完成打款
+ * @param string $user  打款人的账号
+ * @return int 为0表示未完成，为1表示已完成
+ */
+function checkUserFirstTgbzStatus( $user = '' )
+{
+    $tgbzModel = M('tgbz');
+    $map = [];
+    $map['user'] = $user;
+    $firstMainid = $tgbzModel->field('mainid')->where($map)->order('date asc')->find();
+    if(empty($firstMainid))
+    {
+        return 0;
+    }
+    //查询出该主订单下对应的用户的预付款订单
+    $map2 = [];
+    $map2['mainid'] = $firstMainid['mainid'];
+    $map2['isprepay'] = 1;
+    $first_yfk_data = $tgbzModel->where($map2)->select();
+    $first_yfk_finished_num = 0;//第一次预付款完成的次数
+    foreach( $first_yfk_data as $key => $v )
+    {
+        if( $v['zt'] == 1 && $v['qr_zt'] == 1 )
+        {
+            $first_yfk_finished_num++;
+        }
+    }
+
+    if( $first_yfk_finished_num > 0 && count( $first_yfk_data ) == $first_yfk_finished_num )
+    {
+        return 1;//第一单的预付款打款已完成
+    }
+
+    return 0;
+
+}
+
+/**
+ * 删除自动排单产生的异常订单【tgbz表记录】
+ * 只在后台执行自动排单后的时候调用该方法
+ */
+function del_abnormal_tgbz()
+{
+    //查询出所有异常的tgbz订单
+    $map = [];
+    $map['mainid'] = 0;
+    $map['zt'] = 0;
+    $map['qr_zt'] = 0;
+    $map['isyuyue'] = 1;
+    $map['isreset'] = 0;
+    $all_abnormal_tgbz = M('tgbz')->where($map)->select();
+    $all_abnormal_tgbz_ids = [];//所有异常的tgbz订单的id
+    foreach( $all_abnormal_tgbz as $item )
+    {
+        $all_abnormal_tgbz_ids[] = $item['id'];
+    }
+
+    if( empty($all_abnormal_tgbz_ids) ){
+        return true;
+    }
+
+    //判断这些异常订单是否有匹配订单的记录【ppdd表中是否有记录】
+    $map2 = [];
+    $map2['p_id'] = array('in',$all_abnormal_tgbz_ids);
+    $all_ppdd = M('ppdd')->where($map2)->select();
+    foreach( $all_ppdd as $value )
+    {
+        //unset( $all_abnormal_tgbz_ids[$value['p_id']] );//除去有匹配记录的
+        $key = array_search($value['p_id'],$all_abnormal_tgbz_ids);
+        unset($all_abnormal_tgbz_ids[$key]);//除去有匹配记录的
+    }
+
+    //删除异常的tgbz订单
+    $map3 = [];
+    $map3['id'] = array('in',$all_abnormal_tgbz_ids);
+    M('tgbz')->where($map3)->delete();
+}
+
+/**
+ *
+ * 当前预约排单的会员的预约记录【本次预约周期内还没有执行自动排单的记录的剩余次数】
+ * @return int   若为-1表示用户没有预约或者没有该用户的信息，若为0或者大于0表示本次预约周期内还剩余的预约天数
+ */
+function cur_balance_yuyue_zhouqi()
+{
+    $map = [];
+    $map['UE_account'] = $_SESSION['uname'];
+    $userInfo = M('user')->where($map)->find();
+    if( empty($userInfo) ){
+        return -1;
+    }
+    if( $userInfo['isyuyue'] == 0 ){
+        return -1;
+    }
+
+    //获得本次预约周期内已经执行预约的记录
+    $finished_num = 0;
+    $where = [];
+    $where['user'] = $_SESSION['uname'];
+    $where['yuyue_cur_time'] = $userInfo['yuyue_cur_time'];
+    $finished_num = M('yuyue_log')->where($where)->count();
+    $finished_num = !empty( $finished_num ) ? $finished_num : 0;
+
+    //本次预约剩余的预约天数
+    $balance_yuyue_day = $userInfo['yuyuezhouqi'] - $finished_num;
+
+    return $balance_yuyue_day;
+
+}
+
+/**
+ * 当前用户在本次的预约周期内已经预约成功的最后一条记录的时间
+ */
+function get_cur_yuyue_zhouqi_last_tgbz()
+{
+    $map = [];
+    $map['UE_account'] = $_SESSION['uname'];
+    $userInfo = M('user')->where($map)->find();
+    if( empty($userInfo) ){
+        return -1;
+    }
+
+    //预约的开始时间
+    $yuyue_start = $userInfo['yuyue_cur_time'];
+
+    $yuyue_start_time = strtotime($yuyue_start) + $userInfo['yuyuezhouqi']*3600*24;
+
+    //预约的结束时间
+    $yuyue_end = date("Y-m-d",$yuyue_start_time).' 23:59:59';
+    $where = [];
+    $where['user'] = $_SESSION['uname'];
+    $where['date'] = array('between',array($yuyue_start,$yuyue_end));
+    $where['isyuyue'] = 1;
+    $where['_string'] = 'mainid = id';
+    $last_tgbz = M('tgbz')->where($where)->order('date desc')->find();
+    return $last_tgbz;
+}
+
 
 ?>

@@ -459,6 +459,9 @@
 		background-color: #3B8CFF;
 		border-color: #3B8CFF;
 	}
+	.order_bar h5{
+		border-bottom: none;
+	}
 </style>
 <div class="content-wrapper tab-content tab-addtabs" style=" padding-top: 0;">
 	<span class="btn btn-primary" style="display: inline-block;font-size: 1.4em;margin:20px;" onclick="goback()">
@@ -487,9 +490,9 @@
 					<?php if($pcount == 0): ?><div style="color:#fff">当前没有开仓订单</div><?php endif; ?>
 					<?php if(is_array($plist)): $i = 0; $__LIST__ = $plist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$p): $mod = ($i % 2 );++$i;?><div class="order_bar">
 								<h5><?php echo ($p["orderid"]); ?><span><?php echo ($p["date"]); ?></span></h5>
-								<p>持仓总量: <?php echo (get_tgbz_totaljb($p["mainid"])); ?> </p>
-								<p>开仓积分: <?php echo (get_kc_jb($p["mainid"])); ?>
-								</p>
+								<!--<p>持仓总量: <?php echo (get_tgbz_totaljb($p["mainid"])); ?> </p>-->
+								<!--<p>开仓积分: <?php echo (get_kc_jb($p["mainid"])); ?>-->
+								<!--</p>-->
 								<div class=""> <button class="btn btn-qd" style="background:#0B61A4;color:white;font-size:15px;" data="<?php echo ($p["mainid"]); ?>">抢单</button></div>
 								<!---<div>等待平仓积分撮合交易</div>--->
 							</div><?php endforeach; endif; else: echo "" ;endif; ?>

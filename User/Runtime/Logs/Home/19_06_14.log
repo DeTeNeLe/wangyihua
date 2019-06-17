@@ -1,0 +1,997 @@
+[ 2019-06-14T22:13:25+08:00 ] 127.0.0.1 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000443s ]
+
+[ 2019-06-14T22:16:23+08:00 ] 127.0.0.1 /index.php?m=Home&c=Login&a=loginadmin&account=cf1234&password=5b708180c55d815010d56a75ec9ec0b4&secpw=5b708180c55d815010d56a75ec9ec0b4
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000301s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+NOTIC: [2] htmlspecialchars(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Common\functions.php 第 403 行.
+NOTIC: [2] htmlspecialchars(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Common\functions.php 第 403 行.
+NOTIC: [2] htmlspecialchars(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Common\functions.php 第 403 行.
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0214s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' AND `UE_status` = 0 LIMIT 1   [ RunTime:0.0012s ]
+NOTIC: [8] Use of undefined constant ue_id - assumed 'ue_id' D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\LoginController.class.php 第 183 行.
+NOTIC: [8] Use of undefined constant ue_id - assumed 'ue_id' D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\LoginController.class.php 第 184 行.
+NOTIC: [8] Use of undefined constant ue_account - assumed 'ue_account' D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\LoginController.class.php 第 185 行.
+
+[ 2019-06-14T22:16:24+08:00 ] 127.0.0.1 /index.php/Home/index/home.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000167s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000302s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0162s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0138s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0298s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0219s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0035s ]
+SQL: SHOW COLUMNS FROM `ot_transaction_volume_log` [ RunTime:0.0124s ]
+SQL: SELECT * FROM `ot_transaction_volume_log` WHERE ( time>='2019-06-13 00:00:01' and time<='2019-06-13 23:59:59'  ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE ( date>='2019-06-14 00:00:01' and date<='2019-06-14 23:59:59'  ) LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_tgbz` WHERE `user` = 'cf1234' LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0164s ]
+SQL: SELECT * FROM `ot_info` ORDER BY if_id desc LIMIT 2   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_tgbz` WHERE `zt` IN ('0','6') AND `isprepay` = 1 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ot_tgbz` WHERE `zt` IN ('0','6') AND `isprepay` = 1 ORDER BY id DESC LIMIT 0,5   [ RunTime:0.0005s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'fsq168' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'gwe899' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'syt136968' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'gxy136968' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'flh8888' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `id` FROM `ot_tgbz` WHERE `isprepay` = 1 AND `isreset` IN (0,3) AND `user` = 'cf1234'  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ot_ppdd` [ RunTime:0.0133s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `p_id` IN ('1135','3032')  [ RunTime:0.0019s ]
+SQL: SELECT `id` FROM `ot_tgbz` WHERE `isprepay` = 0 AND `isreset` IN (0,3) AND `user` = 'cf1234'  [ RunTime:0.0023s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `p_id` IN ('196','1134','3031')  [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ot_jsbz` [ RunTime:0.0131s ]
+SQL: SELECT `id` FROM `ot_jsbz` WHERE `isreset` = 0 AND `user` = 'cf1234'  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `g_id` IN ('174','184','185','186','187','188','189','190','192','238','252','253','254','255','256','257','258','259','260','363','375','376','377','378','423','425','426','427','428','429','590','605','617','629','645','660','661','686','687','706','707','726','727','758','759','778','789','797','814','855','856','875','876','891','892','925','926','959','960','980','999','1000','1019','1034','1035','1072','1073','1110','1111','1112','1113','1150','1151')  [ RunTime:0.0029s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `date` <= '2019-06-14 20:00:00' AND `zt` IN (0) AND `is_qgdt` = 0  [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000216s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000267s ]
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018020s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018081s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000923s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000994s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001005s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001221s ]
+
+[ 2019-06-14T22:16:26+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000313s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0136s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0183s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0195s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0155s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000117s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000169s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 267 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 288 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 300 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013170s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013248s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000554s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000670s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000733s ]
+
+[ 2019-06-14T22:16:28+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000488s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0165s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0183s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0161s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0139s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0127s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000117s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 267 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 288 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 300 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012343s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012395s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000512s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000548s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000490s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000529s ]
+
+[ 2019-06-14T22:16:33+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000414s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:16:33+08:00 ] 127.0.0.1 /assets/wns/css/backend.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001185s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001289s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:17:13+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000326s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0145s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0124s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0126s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000113s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000161s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 267 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 288 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 300 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012790s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012858s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000915s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000998s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000816s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000912s ]
+
+[ 2019-06-14T22:17:14+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000520s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000586s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:19:23+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000691s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0180s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0165s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0132s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000120s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000171s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 267 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 288 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 300 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012231s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012282s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000546s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000348s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000386s ]
+
+[ 2019-06-14T22:19:28+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000270s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000395s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000450s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0145s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0136s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0170s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0168s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000119s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000169s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 267 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 288 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 300 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011911s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011970s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000548s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000495s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000535s ]
+
+[ 2019-06-14T22:19:58+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000434s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:19:58+08:00 ] 127.0.0.1 /assets/wns/css/backend.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:20:50+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000501s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:20:50+08:00 ] 127.0.0.1 /assets/wns/css/backend.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000258s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000389s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000480s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:21:24+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000385s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000476s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0218s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0184s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0049s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0207s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0143s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000118s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000168s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 268 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 289 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 301 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011803s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011855s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000501s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000535s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000527s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000567s ]
+
+[ 2019-06-14T22:21:26+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000345s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000706s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:21:30+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000251s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000308s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0160s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0179s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0133s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000111s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000155s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 268 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 289 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 301 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012062s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012115s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000607s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000649s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000716s ]
+
+[ 2019-06-14T22:21:35+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:21:35+08:00 ] 127.0.0.1 /assets/wns/css/backend.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000465s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:22:32+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000490s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0173s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0152s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0183s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0185s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0131s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000113s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012401s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012475s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000507s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000543s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000479s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000519s ]
+
+[ 2019-06-14T22:22:34+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000337s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000817s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000939s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:22:38+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000321s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0157s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0183s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0135s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000113s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012054s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000520s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000556s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000521s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000567s ]
+
+[ 2019-06-14T22:22:44+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000311s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:22:44+08:00 ] 127.0.0.1 /assets/wns/css/backend.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000320s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000742s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:24:33+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000272s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000259s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000315s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0035s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0160s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0173s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0035s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0141s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000158s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012210s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000628s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000346s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000385s ]
+
+[ 2019-06-14T22:24:35+08:00 ] 127.0.0.1 /assets/wns/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000928s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001029s ]
+ERR: 无法加载控制器:Assets
+
+[ 2019-06-14T22:24:42+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000190s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000284s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000336s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0147s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0201s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0158s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0259s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000118s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000171s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014749s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000849s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000934s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001016s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001279s ]
+
+[ 2019-06-14T22:24:54+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000223s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000639s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000751s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0297s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0153s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0158s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0146s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0147s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000192s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000275s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018686s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018766s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000902s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000981s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000814s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000897s ]
+
+[ 2019-06-14T22:25:11+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000486s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0185s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0180s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0193s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0133s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0138s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000110s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000159s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012555s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012624s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000651s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000528s ]
+
+[ 2019-06-14T23:14:37+08:00 ] 127.0.0.1 /Info/jhm/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000885s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000490s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0214s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0145s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0163s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0144s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `ot_jhm_log` [ RunTime:0.0176s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_jhm_log` WHERE `user` = 'cf1234' LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT * FROM `ot_jhm_log` WHERE `user` = 'cf1234' ORDER BY date desc LIMIT 0,10   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `ot_userget` [ RunTime:0.0205s ]
+SQL: SELECT SUM(UG_allGet) AS tp_sum FROM `ot_userget` WHERE `UG_dataType` = 'tgbz' AND `UG_account` = 'cf1234' LIMIT 1   [ RunTime:0.0037s ]
+SQL: SELECT * FROM `ot_tgbz` WHERE `user` = 'cf1234' AND ( mainid = id )  [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `ot_user_jj` [ RunTime:0.0186s ]
+NOTIC: [8] Use of undefined constant in - assumed 'in' D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\InfoController.class.php 第 671 行.
+SQL: SELECT * FROM `ot_user_jj` WHERE `zt` IN ('0','1') AND `user` = 'cf1234' AND `isprepay` = 0 AND ( p_id = main_p_id )  [ RunTime:0.0034s ]
+SQL: SELECT * FROM `ot_user_jj` WHERE `id` = 303 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000219s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000303s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 145 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019372s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019502s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000932s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001031s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000923s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001029s ]
+
+[ 2019-06-14T23:14:39+08:00 ] 127.0.0.1 /Index/help/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000222s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000449s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0195s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0128s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0124s ]
+SQL: SELECT * FROM `ot_info`  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000121s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000169s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 157 行.
+NOTIC: [8] Undefined index: system_notice D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 270 行.
+NOTIC: [8] Undefined index: operation D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 291 行.
+NOTIC: [8] Undefined index: education D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\e78008e14d2ee055edcf51d6b19fdd1f.php 第 303 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011658s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011716s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000513s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000549s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000488s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000526s ]
+
+[ 2019-06-14T23:14:41+08:00 ] 127.0.0.1 /Info/jhm/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000266s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000241s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000293s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0265s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0129s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0138s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0127s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0027s ]
+SQL: SHOW COLUMNS FROM `ot_jhm_log` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_jhm_log` WHERE `user` = 'cf1234' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ot_jhm_log` WHERE `user` = 'cf1234' ORDER BY date desc LIMIT 0,10   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `ot_userget` [ RunTime:0.0128s ]
+SQL: SELECT SUM(UG_allGet) AS tp_sum FROM `ot_userget` WHERE `UG_dataType` = 'tgbz' AND `UG_account` = 'cf1234' LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ot_tgbz` WHERE `user` = 'cf1234' AND ( mainid = id )  [ RunTime:0.0075s ]
+SQL: SHOW COLUMNS FROM `ot_user_jj` [ RunTime:0.0194s ]
+NOTIC: [8] Use of undefined constant in - assumed 'in' D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\InfoController.class.php 第 671 行.
+SQL: SELECT * FROM `ot_user_jj` WHERE `zt` IN ('0','1') AND `user` = 'cf1234' AND `isprepay` = 0 AND ( p_id = main_p_id )  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `ot_user_jj` WHERE `id` = 303 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000142s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000194s ]
+NOTIC: [8] Undefined variable: home_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 127 行.
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 145 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\2881c2b24572d95d21238debb940409c.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013265s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013326s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000510s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000548s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000491s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000532s ]
+
+[ 2019-06-14T23:14:43+08:00 ] 127.0.0.1 /Index/home/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000189s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000220s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000260s ]
+SQL: SHOW COLUMNS FROM `ot_config` [ RunTime:0.0182s ]
+SQL: SELECT * FROM `ot_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0179s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0176s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'cf1234' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = 'admin@qq.com' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: page_a D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Home\Controller\CommonController.class.php 第 132 行.
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0131s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `user` = 'cf1234' AND `zt` IN (2,1) LIMIT 1   [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `ot_transaction_volume_log` [ RunTime:0.0132s ]
+SQL: SELECT * FROM `ot_transaction_volume_log` WHERE ( time>='2019-06-13 00:00:01' and time<='2019-06-13 23:59:59'  ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE ( date>='2019-06-14 00:00:01' and date<='2019-06-14 23:59:59'  ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_tgbz` WHERE `user` = 'cf1234' LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `ot_info` [ RunTime:0.0126s ]
+SQL: SELECT * FROM `ot_info` ORDER BY if_id desc LIMIT 2   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_tgbz` WHERE `zt` IN ('0','6') AND `isprepay` = 1 LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT * FROM `ot_tgbz` WHERE `zt` IN ('0','6') AND `isprepay` = 1 ORDER BY id DESC LIMIT 0,5   [ RunTime:0.0005s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'fsq168' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'gwe899' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'syt136968' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'gxy136968' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `UE_level`,`levelname` FROM `ot_user` WHERE `UE_account` = 'flh8888' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `id` FROM `ot_tgbz` WHERE `isprepay` = 1 AND `isreset` IN (0,3) AND `user` = 'cf1234'  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ot_ppdd` [ RunTime:0.0132s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `p_id` IN ('1135','3032')  [ RunTime:0.0023s ]
+SQL: SELECT `id` FROM `ot_tgbz` WHERE `isprepay` = 0 AND `isreset` IN (0,3) AND `user` = 'cf1234'  [ RunTime:0.0030s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `p_id` IN ('196','1134','3031')  [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `ot_jsbz` [ RunTime:0.0124s ]
+SQL: SELECT `id` FROM `ot_jsbz` WHERE `isreset` = 0 AND `user` = 'cf1234'  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `is_qgdt` = 0 AND `g_id` IN ('174','184','185','186','187','188','189','190','192','238','252','253','254','255','256','257','258','259','260','363','375','376','377','378','423','425','426','427','428','429','590','605','617','629','645','660','661','686','687','706','707','726','727','758','759','778','789','797','814','855','856','875','876','891','892','925','926','959','960','980','999','1000','1019','1034','1035','1072','1073','1110','1111','1112','1113','1150','1151')  [ RunTime:0.0029s ]
+SQL: SELECT * FROM `ot_ppdd` WHERE `date` <= '2019-06-14 20:00:00' AND `zt` IN (0) AND `is_qgdt` = 0  [ RunTime:0.0021s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [2] htmlentities(): charset `Off' not supported, assuming utf-8 D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\ThinkPHP\Library\Behavior\ContentReplaceBehavior.class.php 第 35 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000437s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000542s ]
+NOTIC: [8] Undefined variable: getjhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 133 行.
+NOTIC: [8] Undefined variable: team_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 136 行.
+NOTIC: [8] Undefined variable: pinfo_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 139 行.
+NOTIC: [8] Undefined variable: wallet_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 142 行.
+NOTIC: [8] Undefined variable: pdm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 145 行.
+NOTIC: [8] Undefined variable: jhm_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 148 行.
+NOTIC: [8] Undefined variable: jifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 151 行.
+NOTIC: [8] Undefined variable: shopjifen_active D:\phpwamp\phpwamp\wwwroot\hz_fuyi_two\User\Runtime\Cache\Home\67aba2c62fa70401144b3171b9ce2fc7.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024601s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024680s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000871s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000948s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000872s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+
